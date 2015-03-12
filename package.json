@@ -1,0 +1,26 @@
+{
+  "name": "GoodJob",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "bower install",
+
+    "prestart": "npm install",
+    "start": "http-server app/ -a 0.0.0.0 -p 8000"
+  },
+  "devDependencies": {
+    "http-server": "^0.6.1",
+    "bower": "^1.3.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/duff92/GoodJob.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/duff92/GoodJob/issues"
+  },
+  "homepage": "https://github.com/duff92/GoodJob"
+}
