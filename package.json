@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/duff92/GoodJob",
   "dependencies": {
+    "alchemy-api": "^1.1.1",
     "angularfire": "^1.0.0",
     "firebase": "^2.2.2"
   }
