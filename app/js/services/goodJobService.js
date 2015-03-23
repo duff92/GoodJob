@@ -27,6 +27,17 @@ goodJobApp.factory('GoodJob', function ($resource, $routeParams){
 
 });
 
+// this factory returns a synchronized array of chat messages
+goodJobApp.factory("chatMessages", ["$firebaseArray",
+  function($firebaseArray) {
+    // create a reference to the Firebase where we will store our data
+    var randomRoomId = Math.round(Math.random() * 100000000);
+    var ref = new Firebase("https://goodjob.firebaseio.com/demo/" + randomRoomId);
+
+    // this uses AngularFire to create the synchronized array
+    return $firebaseArray(ref);
+  }
+]);
 
 /* Contains of all personal information of the users, should use firebase integration for security of storing myProfile, newJobs and myApplications */
 goodJobApp.factory('PersonalProfile', function(){
@@ -38,7 +49,7 @@ goodJobApp.factory('PersonalProfile', function(){
 
 		//getting profile info
 		this.getAllProfileInfo = function(){
-			return = myProfile;
+			return myProfile;
 		}
 
 		//Updates single post in profile
@@ -88,11 +99,3 @@ goodJobApp.factory('PersonalProfile', function(){
 
 
 });
-
-//Maybe used later for login authentication
-/*goodJobApp.factory("Auth", ["$firebaseAuth",
-  function($firebaseAuth) {
-    var ref = new Firebase("https://goodjob.firebaseio.com");
-    return $firebaseAuth(ref);
-  }
-]);*/
