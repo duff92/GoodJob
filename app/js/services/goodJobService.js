@@ -1,6 +1,14 @@
 
 
 'use strict';
+
+goodJobApp.factory("Auth", ["$firebaseAuth",
+  function($firebaseAuth) {
+    var ref = new Firebase("https://goodjob.firebaseio.com");
+    return $firebaseAuth(ref);
+  }
+]);
+
 /* GoodJob factory, methods for handeling the applications */
 goodJobApp.factory('GoodJob', function ($resource, $routeParams){
 
