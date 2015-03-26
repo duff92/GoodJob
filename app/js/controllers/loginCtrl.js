@@ -4,16 +4,16 @@ goodJobApp.controller("LoginCtrl", ["$scope", "Auth",
 	function($scope, Auth) {
 	 //$scope.help_message = "";
 	 $scope.login = function() {
-	  console.log("Trying to login...");
-      Auth.$authWithPassword({
-		  email    : "bobtony@firebase.com",
-		  password : "correcthorsebatterystaple"
-		}, function(error, authData) {
-		  if (error) {
-		    console.log("Login Failed!", error);
-		  } else {
-		    console.log("Authenticated successfully with payload:", authData);
-		  }
+	  console.log("Trying to login...", Auth);
+
+
+		Auth.$authWithPassword({
+		  email: $scope.email,
+		  password: $scope.pass
+		}).then(function(authData) {
+		  console.log("Logged in as:", authData.uid);
+		}).catch(function(error) {
+		  console.error("Authentication failed:", error);
 		});
     }
 
@@ -31,13 +31,5 @@ goodJobApp.controller("LoginCtrl", ["$scope", "Auth",
 	        $scope.error = error;
 	      });
 	  }
-	  // download the data into a local object
-	 /*ref.authWithOAuthPopup("google", function(error, authData) {
-  if (error) {
-    console.log("Login Failed!", error);
-  } else {
-    console.log("Authenticated successfully with payload:", authData);
-  }
-});*/
 	}
 ]);

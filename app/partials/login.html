@@ -10,7 +10,7 @@
     <!-- Login form via email/password-->
     <div class="row">
 			<div class="col-xs-12 col-sm-6 col-sm-offset-3">	
-			    <form  ng-submit="login()" action="" autocomplete="off" method="GET">
+			    <form  autocomplete="off">
 					<div class="input-group">
 						<span class="input-group-addon"><i class="fa fa-user"></i></span>
 						<input type="text" class="form-control" name="username" ng-model="email" placeholder="email address">
@@ -19,11 +19,11 @@
 										
 					<div class="input-group">
 						<span class="input-group-addon"><i class="fa fa-lock"></i></span>
-						<input  type="password" class="form-control" ng-model="password" name="password" placeholder="Password">
+						<input  type="password" class="form-control" ng-model="pass" name="password" placeholder="Password">
 					</div>
                     <span class="help-block">{{help_message}}</span>
 
-					<input class="btn btn-lg btn-primary btn-block" type="submit" value="Login"></input>
+					<button class="btn btn-lg btn-primary btn-block" ng-click="login()">Login</button>
 				</form>
 			</div>
     </div>
