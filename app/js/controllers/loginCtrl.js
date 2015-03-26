@@ -1,23 +1,23 @@
 
 
-goodJobApp.controller("LoginCtrl", ["$scope", "Auth", 
-	function($scope, Auth) {
+goodJobApp.controller("LoginCtrl", ["$scope", "Auth", "$location",
+	function($scope, Auth, $location) {
 	 //$scope.help_message = "";
 	 $scope.login = function() {
-	  console.log("Trying to login...", Auth);
-
+	  	console.log("Trying to login...", Auth);
 
 		Auth.$authWithPassword({
 		  email: $scope.email,
 		  password: $scope.pass
 		}).then(function(authData) {
-		  console.log("Logged in as:", authData.uid);
+		  console.log("Logged in as:", authData);
+		  $location.path('/home');
 		}).catch(function(error) {
 		  console.error("Authentication failed:", error);
 		});
     }
 
-	  $scope.createUser = function(){
+	 /* $scope.createUser = function(){
 	  	  $scope.message = null;
 	      $scope.error = null;
 	      console.log("creating user...");
@@ -31,5 +31,5 @@ goodJobApp.controller("LoginCtrl", ["$scope", "Auth",
 	        $scope.error = error;
 	      });
 	  }
-	}
-]);
+	}*/
+}]);
