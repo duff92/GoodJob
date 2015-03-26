@@ -35,27 +35,28 @@ goodJobApp.factory('GoodJob', function ($resource, $routeParams){
 
 });
 
-// this factory returns a synchronized array of chat messages
-goodJobApp.factory("chatMessages", ["$firebaseArray",
-  function($firebaseArray) {
-    // create a reference to the Firebase where we will store our data
-    var randomRoomId = Math.round(Math.random() * 100000000);
-    var ref = new Firebase("https://goodjob.firebaseio.com/demo/" + randomRoomId);
-
-    // this uses AngularFire to create the synchronized array
-    return $firebaseArray(ref);
-  }
-]);
-
 /* Contains of all personal information of the users, should use firebase integration for security of storing myProfile, newJobs and myApplications */
 goodJobApp.factory('PersonalProfile', function(){
-		var newJobs = [];
-		var myApplications = [];
-		var myProfile = [];
+		
+		var ref = new Firebase("https://goodjob.firebaseio.com");
+		//var newJobs = [];
+		//var myApplications = [];
 
 		//-------------- PROFILE INFO ------------------------
-
-		//getting profile info
+		this.createProfile = function(name, adress){
+			ref.onAuth(function(authData) {
+			  if (authData) {
+			    // save the user's profile into Firebase so we can list users,
+			    // use them in Security and Firebase Rules, and show profiles
+			    ref.child("users").child(authData.uid).set({
+			      provider: authData.provider,
+			      name: name,
+			      adress: adress
+			    });
+			  }
+			});
+		}
+		/*//getting profile info
 		this.getAllProfileInfo = function(){
 			return myProfile;
 		}
@@ -89,13 +90,13 @@ goodJobApp.factory('PersonalProfile', function(){
 		
 		/*Add application to my applications
 			IN: applicationToAdd - application to add to myApplications
-		*/
+		
 		this.addNewApplication = function(applicationToAdd){
 
 		}
 		/*Remove application from my applications
 			IN: id - applicationid of application to remove from myApplications
-		*/
+		
 		this.removeApplication = function(id){
 
 		}
@@ -103,7 +104,7 @@ goodJobApp.factory('PersonalProfile', function(){
 		//Returns all searched applications 
 		this.getAllApplications = function(){
 			return myApplications;
-		}
+		}*/
 
-
+		return this;
 });
