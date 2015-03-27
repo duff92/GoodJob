@@ -9,8 +9,8 @@ goodJobApp.config(['$routeProvider',
         templateUrl: 'partials/home.html',
         controller: 'MainCtrl'
       }).
-       when('/getstarted', {
-        templateUrl: 'partials/getstarted.html',
+       when('/available-jobs', {
+        templateUrl: 'partials/available-jobs.html',
         controller: 'MainCtrl'
       }).
        when('/add', {
