@@ -9,6 +9,14 @@ goodJobApp.config(['$routeProvider',
         templateUrl: 'partials/home.html',
         controller: 'MainCtrl'
       }).
+       when('/getstarted', {
+        templateUrl: 'partials/getstarted.html',
+        controller: 'MainCtrl'
+      }).
+       when('/add', {
+        templateUrl: 'partials/add.html',
+        controller: 'MainCtrl'
+      }).
       when('/login', {
         templateUrl: 'partials/login.html',
         controller: 'LoginCtrl'
@@ -19,6 +27,6 @@ goodJobApp.config(['$routeProvider',
       }).
 
       otherwise({
-        redirectTo: '/login'
+        redirectTo: '/home'
       });
   }]);
