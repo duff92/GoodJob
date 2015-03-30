@@ -31,7 +31,7 @@ goodJobApp.config(['$routeProvider',
       }).
       when('/profile', {
         templateUrl: 'partials/profile.html',
-        controller: 'MainCtrl'
+        controller: 'ProfileCtrl'
       }).
       when('/register', {
         templateUrl: 'partials/apply.html',
