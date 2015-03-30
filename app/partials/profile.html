@@ -1,0 +1,70 @@
+<div class="container">
+
+	<div>
+		<h2 class="text-center">
+			User profile
+		</h2>
+	</div>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+				<h2 class="panel-title">
+					User information
+				</h2>
+			</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-xs-4 col-sm-4">
+					<img class="profile-img" src="http://fc00.deviantart.net/fs71/f/2012/137/9/7/lilo_by_memechii-d505p0t.png" ></img>
+				</div>
+				<div class="col-xs-8 col-sm-8 text-left">
+					<div ng-repeat="info in userInfo" >
+						<div class="row">
+							<div class="col-sm-4 text-left"> {{ info.info_header }}</div>
+							<div class="col-sm-8 text-left"><b> {{ info.info_value }} </b></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="text-center">
+					<button class="btn" ng-click="updateUserInfo()">
+						Update information
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+				<h2 class="panel-title">
+					User competence
+				</h2>
+			</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-xs-4 col-sm-4">
+					<img class="profile-img" src="http://fc00.deviantart.net/fs71/f/2012/137/9/7/lilo_by_memechii-d505p0t.png" ></img>
+				</div>
+				<div class="col-xs-8 col-sm-8 text-left">
+					<div ng-repeat="competence in userCompetence" >
+						<div class="row">
+							<div class="col-sm-4 text-left"> {{ competence.competence_header }}</div>
+							<div class="col-sm-8 text-left"><b> {{ competence.competence_value }} </b></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="text-center">
+					<button class="btn" ng-click="updateUserCompetence()">
+						Update competences
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
