@@ -1,5 +1,5 @@
 
-var goodJobApp = angular.module('GoodJob', ['firebase','ngRoute','ngResource']);
+var goodJobApp = angular.module('GoodJob', ['firebase','ngRoute','ngResource','chart.js']);
 
 
 goodJobApp.config(['$routeProvider',
