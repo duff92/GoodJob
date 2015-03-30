@@ -1,10 +1,8 @@
-	
-
 "use strict";
 angular.module('goodJob.listOfAdds', ['firebase.auth', 'firebase.utils', 'ngRoute', 'goodJob.applications'])
 
 	.config(['$routeProvider', function($routeProvider) {
-    	$routeProvider.when('/list-of-adds', {
+    	$routeProvider.when('/list', {
       		controller: 'ApplicationCtrl',
       		templateUrl: 'list-of-adds/list-of-adds.html'
     	});

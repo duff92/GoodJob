@@ -1,5 +1,6 @@
 
 var goodJob = angular.module('goodJob', [
+  'goodJob.home',
   'goodJob.config',
   'goodJob.security',
   'goodJob.login',
