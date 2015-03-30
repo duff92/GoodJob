@@ -1,5 +1,5 @@
 "use strict";
-angular.module('goodJob.home', ['ngRoute'])
+angular.module('goodJob.home', ['firebase.auth', 'firebase.utils', 'ngRoute', 'goodJob.applications'])
 
 	.config(['$routeProvider', function($routeProvider) {
     	$routeProvider.when('/home', {
@@ -8,8 +8,12 @@ angular.module('goodJob.home', ['ngRoute'])
     	});
   	}])
 
-	.controller("HomeCtrl", ["$scope","$location",
+	.controller("HomeCtrl", ["$scope", "$routeParams",
 		function($scope, $location) {
+
+			console.log("Writing ads");
+
+
 		 //$scope.help_message = "";
 		}
 		]);
