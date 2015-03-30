@@ -3,7 +3,9 @@ var goodJob = angular.module('goodJob', [
   'goodJob.config',
   'goodJob.security',
   'goodJob.login',
-  'goodJob.listOfAdds']);
+  'goodJob.listOfAdds',
+  'goodJob.applications',
+  'goodJob.profile']);
 
 /*goodJobApp.run(["$rootScope", "$location", function($rootScope, $location) {
 $rootScope.$on("$routeChangeError", function(event, next, previous, error) {
@@ -19,6 +21,6 @@ goodJob.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       otherwise({
-        redirectTo: '/login'
+        redirectTo: '/home'
       });
   }]);
