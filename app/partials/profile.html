@@ -2,55 +2,69 @@
 
 	<div>
 		<h2 class="text-center">
-			Available jobs
+			User profile
 		</h2>
 	</div>
-	<div ng-repeat="ad in ads">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h2 class="panel-title company_name">
-					{{ ad.company_name }} - {{ ad.company_match }} match
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+				<h2 class="panel-title">
+					User information
 				</h2>
 			</div>
-			<div class="panel-body">
-			    <div class="row">
-			    	<div class="col-xs-6 col-sm-8 text-left">
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-xs-4 col-sm-4">
+					<img class="profile-img" src="http://fc00.deviantart.net/fs71/f/2012/137/9/7/lilo_by_memechii-d505p0t.png" ></img>
+				</div>
+				<div class="col-xs-8 col-sm-8 text-left">
+					<div ng-repeat="info in userInfo" >
 						<div class="row">
-							<div class="col-sm-4 text-left"> Job title: </div>
-							<div class="col-sm-8 text-left"><b> {{ ad.job_title }} </b></div>
+							<div class="col-sm-4 text-left"> {{ info.info_header }}</div>
+							<div class="col-sm-8 text-left"><b> {{ info.info_value }} </b></div>
 						</div>
-						<div class="row">
-							<div class="col-sm-4 text-left"> Job hours: </div>
-							<div class="col-sm-8 text-left"><b> {{ ad.job_hours }} </b></div>
-						</div>
-						<div class="row">
-							<div class="col-sm-4 text-left"> Job city: </div>
-							<div class="col-sm-8 text-left"><b> {{ ad.job_city }} </b></div>
-						</div>
-						<div class="row">
-							<div class="col-sm-4 text-left"> Job starts: </div>
-							<div class="col-sm-8 text-left"><b> {{ ad.job_starts }} </b></div>
-						</div>
-						<div class="row">
-							<div class="col-sm-4 text-left"> Job ends: </div>
-							<div class="col-sm-8 text-left"><b> {{ ad.job_ends }} </b></div>
-						</div>
-						<div class="row">
-							<div class="col-sm-4 text-left"> Deadline to apply: </div>
-							<div class="col-sm-8 text-left"><b> {{ ad.job_deadline }} </b></div>
-						</div>
- 					</div>
-					<div class="col-xs-6 col-sm-4 ">
-						<img class="img" src="{{ ad.company_logo }}" ></img>
 					</div>
-		    	</div>
-		    	<div class="row">
-					<div class="text-center">
-						<button class="btn" ng-click="addNewApplication()">Apply here</button>
-					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="text-center">
+					<button class="btn" ng-click="updateUserInfo()">
+						Update information
+					</button>
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+				<h2 class="panel-title">
+					User competence
+				</h2>
+			</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-xs-4 col-sm-4">
+					<img class="profile-img" src="http://fc00.deviantart.net/fs71/f/2012/137/9/7/lilo_by_memechii-d505p0t.png" ></img>
+				</div>
+				<div class="col-xs-8 col-sm-8 text-left">
+					<div ng-repeat="competence in userCompetence" >
+						<div class="row">
+							<div class="col-sm-4 text-left"> {{ competence.competence_header }}</div>
+							<div class="col-sm-8 text-left"><b> {{ competence.competence_value }} </b></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="text-center">
+					<button class="btn" ng-click="updateUserCompetence()">
+						Update competences
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </div>
 
