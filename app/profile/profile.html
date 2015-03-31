@@ -1,0 +1,100 @@
+
+<div class="scrollable">
+ <div class="scrollable-content section">
+
+<div class="container">
+
+	<div>
+		<h2 class="text-center">
+			User profile
+		</h2>
+	</div>
+
+	<!-- User Information -->
+	<div class="panel panel-default">
+		<div class="panel-heading">
+				<h2 class="panel-title">
+					User information
+				</h2>
+			</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-xs-4 col-sm-4">
+					<img class="profile-img" src="http://fc00.deviantart.net/fs71/f/2012/137/9/7/lilo_by_memechii-d505p0t.png" ></img>
+				</div>
+				<div class="col-xs-8 col-sm-8 text-left">
+					<div ng-repeat="info in userInfo" >
+						<div class="row">
+							<div class="col-sm-4 text-left"> {{ info.info_header }}</div>
+							<div class="col-sm-8 text-left"><b> {{ info.info_value }} </b></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="text-center">
+					<button class="btn" ng-click="updateUserInfo()">
+						Update information
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- User values -->
+	<div class="panel panel-default">
+		<div class="panel-heading">
+				<h2 class="panel-title">
+					User values
+				</h2>
+			</div>
+		<div class="panel-body">
+
+			<canvas id="bar" class="chart chart-bar" 
+					data="values_data"
+  					labels="values_lables"
+  					series="values_series">
+  			</canvas> 
+
+			<div class="row">
+				<div class="text-center">
+					<button class="btn" ng-click="updateUserCompetence()">
+						Update values
+					</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- User competences -->
+	<div class="panel panel-default">
+		<div class="panel-heading">
+				<h2 class="panel-title">
+					User competence
+				</h2>
+			</div>
+		<div class="panel-body">
+
+			<canvas id="base" class="chart-base" 
+					chart-type="competence_chart" 
+					data="competence_data" 
+					labels="competence_lables" 
+					legend="false">
+			</canvas> 
+
+			<div class="row">
+				<div class="text-center">
+					<button class="btn" ng-click="updateUserCompetence()">
+						Update competences
+					</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	
+
+</div>
+</div></div>
