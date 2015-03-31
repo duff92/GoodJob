@@ -1,0 +1,124 @@
+<div ui-content-for="title">
+  <span>Accordion</span>
+</div>
+
+<div class="scrollable">
+  <div class="scrollable-content">
+    <div class="section">
+      <div class="panel-group" 
+        
+        ui-state='myAccordion' 
+        ui-default='2'>
+
+        <div class="panel panel-default" ng-repeat="i in [1,2,3]">
+          <div class="panel-heading" ui-set="{'myAccordion': i}">
+        
+            <h4 class="panel-title">
+                Collapsible Group Item #{{i}}
+            </h4>
+          </div>
+          <!-- 
+            use uiScopeContext to use scope vars in ui-if/ui-hide/ui-show/ui-class expression 
+            ie.
+            <div ui-hide="sharedState1 == myVar1 && sharedState2 == myVar2"
+              ui-scope-context="myVar1, myVar2"
+            >
+            </div>
+
+            Be aware that scope vars will take precedence over sharedStates so,
+            in order to avoid name clashes you can use 'as' to refer to scope vars
+            with a different name in conditions:
+
+            <div ui-hide="x == myVar1 && y == myVar2"
+              ui-scope-context="x as myVar1, y as myVar2"
+            >
+            </div>
+          -->
+          <div ui-if="myAccordion == i" ui-scope-context='i'>
+            <div class="panel-body">
+              {{lorem}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div class="section">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="btn-group pull-right">
+            <a ui-turn-on='myDropdown' class='btn'>
+              <i class="fa fa-ellipsis-v"></i>
+            </a>
+            <ul 
+              class="dropdown-menu"
+              ui-outer-click="Ui.turnOff('myDropdown')"
+              ui-outer-click-if="Ui.active('myDropdown')"
+              role="menu"
+              ui-show="myDropdown" 
+              ui-state="myDropdown"
+              ui-turn-off="myDropdown">
+
+              <li><a>Action</a></li>
+              <li><a>Another action</a></li>
+              <li><a>Something else here</a></li>
+              <li class="divider"></li>
+              <li><a>Separated link</a></li>
+            </ul>
+          </div>
+          <h3 class="panel-title">Note</h3>
+        </div>
+        <div class="panel-body">
+           {{lorem}}
+        </div>
+      </div>
+    </div>
+
+      <div class="section section-break">
+      <a href="" 
+          ui-turn-on="modal1"
+          class="btn btn-default">Show Modal</a>
+      <a href="" 
+          ui-turn-on="modal2"
+          class="btn btn-default">Show Overlay</a>
+    </div>
+
+    <div class="section section-break">
+      <p>
+        {{lorem}}
+      </p>
+    </div>
+  </div>
+</div>
+
+<div ui-content-for="modals">
+  <div ng-include="'apply/modal1.html'"></div>
+  <div ng-include="'apply/modal2.html'"></div>
+</div>
+
+
+<div class="scrollable" ui-state="searchBar">
+  <input
+    ng-if="Ui.active('searchBar')"
+    type="search"
+    class="form-control scrollable-header"
+    placeholder="Search.." />
+
+  <div class="scrollable-content" ui-scroll-bottom='bottomReached()'>
+    <div class="list-group">
+      <a ng-repeat="item in scrollItems" href="#" class="list-group-item">
+        {{ item }} <i class="fa fa-chevron-right pull-right"></i>
+      </a>
+    </div>
+  </div>
+
+  <a class="btn btn-block btn-lg btn-primary scrollable-footer" ui-toggle='searchBar'>
+    <i class="fa fa-search"></i> 
+    <span ui-hide="searchBar">Show</span>
+    <span ui-show="searchBar">Hide</span>
+    Search Bar
+  </a>
+</div>
+
+  </div>
+</div>
