@@ -1,5 +1,5 @@
 "use strict";
-angular.module('goodJob.profile', ['firebase.auth', 'firebase.utils', 'ngRoute'])
+angular.module('goodJob.profile', ['firebase.auth', 'firebase.utils', 'ngRoute', 'chart.js'])
 
 	.config(['$routeProvider', function($routeProvider) {
     	$routeProvider.when('/profile', {
@@ -22,14 +22,29 @@ angular.module('goodJob.profile', ['firebase.auth', 'firebase.utils', 'ngRoute']
 			                          { info_header: "City",
 			                            info_value: "Hawaii"}]
 
-			  $scope.userCompetence =[{ competence_header: "Word",
-			                            competence_value: "1"},
-			                          { competence_header: "Excel",
-			                            competence_value: "1"},
-			                          { competence_header: "Hawaiian",
-			                            competence_value: "5"},
-			                          { competence_header: "Dancing",
-			                            competence_value: "4"},
-			                          { competence_header: "Surfing",
-			                            competence_value: "3"}]  
+			  $scope.values_series = [ 'Basic Behaviour', 'Adapted Behaviour'];
+
+  $scope.values_lables = [ 'Dominant',    'Influential',  'Steady',     'Conscientious'];
+  $scope.values_data =   [[ 36,            76,             62,           37            ],
+                          [ 33,            74,             62,           63           ]];
+  $scope.values_colors = [ 'Red',         'Yellow',       'Green',      'Blue'         ];
+
+  $scope.data = [
+    [65, 59, 80, 81, 56, 55, 40],
+    [28, 48, 40, 19, 86, 27, 90]
+  ];
+
+  $scope.competence_lables =[  "Surfing", 
+                                "Hawaiian",
+                                "Mail-Order Sales",
+                                "Tele Sales",
+                                "Corporate Sales"];
+
+  $scope.competence_data = [  3,
+                                5, 
+                                1, 
+                                4, 
+                                2];
+
+  $scope.competence_chart = 'PolarArea';
 	}]);
