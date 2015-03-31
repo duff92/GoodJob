@@ -1,6 +1,7 @@
 "use strict";
 angular.module('goodJob.applications', ['firebase.auth', 'firebase.utils', 'ngRoute', 'chart.js'])
 
+<<<<<<< HEAD
   .config(['$routeProvider', function($routeProvider) {
       $routeProvider.whenAuthenticated('/applications', {
           controller: 'ApplicationsCtrl',
@@ -10,6 +11,17 @@ angular.module('goodJob.applications', ['firebase.auth', 'firebase.utils', 'ngRo
 
   .controller("ApplicationsCtrl", ["$scope", "Auth", "$location",
     function($scope, Auth, $location) {       
+=======
+	.config(['$routeProvider', function($routeProvider) {
+    	$routeProvider.when('/applications', {
+      		controller: 'ApplicationsCtrl',
+      		templateUrl: 'applications/applications.html'
+    	});
+  	}])
+
+	.controller("ApplicationsCtrl", ["$scope", "Auth", "$location",
+		function($scope, Auth, $location) {				
+>>>>>>> anna_branch
 
         $scope.ads =[{  company_name:     "Bison",
                         company_match:    "76%",
@@ -42,9 +54,14 @@ angular.module('goodJob.applications', ['firebase.auth', 'firebase.utils', 'ngRo
             alert("You need to get your application accepted first! Please be patient...");
           }
         }
+<<<<<<< HEAD
         $scope.logout = function(){
           console.log("Log out user!");
           Auth.$unauth();
         }
 
   }]);
+=======
+
+	}]);
+>>>>>>> anna_branch
