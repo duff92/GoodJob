@@ -1,10 +1,10 @@
 "use strict";
-angular.module('goodJob.profile', ['firebase.auth', 'firebase.utils', 'ngRoute', 'chart.js'])
+angular.module('goodJob.applications', ['firebase.auth', 'firebase.utils', 'ngRoute', 'chart.js'])
 
 	.config(['$routeProvider', function($routeProvider) {
-    	$routeProvider.when('/profile', {
-      		controller: 'ProfileCtrl',
-      		templateUrl: 'profile/profile.html'
+    	$routeProvider.when('/applications', {
+      		controller: 'ApplicationsCtrl',
+      		templateUrl: 'applications/applications.html'
     	});
   	}])
 
