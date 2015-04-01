@@ -29,11 +29,6 @@ angular.module('goodJob.profile', ['firebase.auth', 'firebase.utils', 'ngRoute',
                           [ 33,            74,             62,           63           ]];
   $scope.values_colors = [ 'Red',         'Yellow',       'Green',      'Blue'         ];
 
-  $scope.data = [
-    [65, 59, 80, 81, 56, 55, 40],
-    [28, 48, 40, 19, 86, 27, 90]
-  ];
-
   $scope.competence_lables =[  "Surfing", 
                                 "Hawaiian",
                                 "Mail-Order Sales",

@@ -8,43 +8,39 @@ angular.module('goodJob.applications', ['firebase.auth', 'firebase.utils', 'ngRo
     	});
   	}])
 
-	.controller("ProfileCtrl", ["$scope", "Auth", "$location",
-		function($scope, Auth, $location) {
-					 
-			  $scope.userInfo =[{       info_header: "Firstname",
-			                            info_value: "Lilo"},
-			                          { info_header: "Surname",
-			                            info_value: "Pelekai"},
-			                          { info_header: "Email",
-			                            info_value: "lilopelekai@email.com"},
-			                          { info_header: "Phone",
-			                            info_value: "012-345 67 89"},
-			                          { info_header: "City",
-			                            info_value: "Hawaii"}]
+	.controller("ApplicationsCtrl", ["$scope", "Auth", "$location",
+		function($scope, Auth, $location) {				
 
-			  $scope.values_series = [ 'Basic Behaviour', 'Adapted Behaviour'];
+        $scope.ads =[{  company_name:     "Bison",
+                        company_match:    "76%",
+                        company_logo:     "https://cdn.tutsplus.com/vector/uploads/legacy/articles/linkb_20weirdlogos/weirdlogos_prev.jpg",
+                          job_title:      "Meat taster",
+                          job_hours:      "Part time, 25%",
+                          job_city:       "Madrid",
+                          job_starts:     "May 2015",
+                          job_ends:       "May 2016",
+                          job_deadline:   "2015-04-01",
+                          job_status:     "Accepted" 
+                      },{ company_name:   "Ballet Acadamy",
+                        company_match:    "85%",
+                        company_logo:     "http://www.virginiabeachballetacademy.com/rw_common/images/VBBA%20Logo%20120H.png",
+                          job_title:      "Shoe maker",
+                          job_hours:      "Full time, 100%",
+                          job_city:       "Malmö",
+                          job_starts:     "May 2015",
+                          job_ends:       "Dec 2016",
+                          job_deadline:   "2015-03-31",
+                          job_status:     "Accepted" 
+                      }]
 
-  $scope.values_lables = [ 'Dominant',    'Influential',  'Steady',     'Conscientious'];
-  $scope.values_data =   [[ 36,            76,             62,           37            ],
-                          [ 33,            74,             62,           63           ]];
-  $scope.values_colors = [ 'Red',         'Yellow',       'Green',      'Blue'         ];
+        $scope.continue = function(value) {
+          console.log(value);
+          if (value === 'Accepted') {
+            alert("Congratulations! Please meet us in Mars 2080 for your interview!");
+          }
+          else {
+            alert("You need to get your application accepted first! Please be patient...");
+          }
+        }
 
-  $scope.data = [
-    [65, 59, 80, 81, 56, 55, 40],
-    [28, 48, 40, 19, 86, 27, 90]
-  ];
-
-  $scope.competence_lables =[  "Surfing", 
-                                "Hawaiian",
-                                "Mail-Order Sales",
-                                "Tele Sales",
-                                "Corporate Sales"];
-
-  $scope.competence_data = [  3,
-                                5, 
-                                1, 
-                                4, 
-                                2];
-
-  $scope.competence_chart = 'PolarArea';
 	}]);
