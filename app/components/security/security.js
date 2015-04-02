@@ -9,7 +9,7 @@
 
     .config(['$routeProvider', function ($routeProvider) {
       // routes which are not in our map are redirected to /home
-      //$routeProvider.otherwise({redirectTo: '/home'});
+      $routeProvider.otherwise({redirectTo: '/home'});
     }])
 
   /**
@@ -63,7 +63,7 @@
         }
 
         function authRequired(path) {
-          console.log('authRequired?', path, securedRoutes.indexOf(path)); //debug
+          console.log('authRequired? ', 'Path: ', path, ' index in securedRoutes: ', securedRoutes.indexOf(path)); //debug
           return securedRoutes.indexOf(path) !== -1;
         }
       }

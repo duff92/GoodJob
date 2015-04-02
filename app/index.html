@@ -66,7 +66,7 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
   <div ng-include="'partials/sidebar.html'" class="sidebar sidebar-left"></div>
   <div class="sidebar sidebar-right"></div>
 
-  <div class="app" ng-swipe-right='Ui.turnOn("uiSidebarLeft")' ng-swipe-left='Ui.turnOff("uiSidebarLeft")'>
+  <div class="app" ng-swipe-right='Ui.turnOn("uiSidebarLeft")'>
 
 <div class="navbar navbar-app navbar-absolute-top">
         <div class="navbar-brand navbar-brand-center" ui-yield-to="title">
@@ -78,9 +78,7 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
           </div>
         </div>
         <div class="btn-group pull-right" ui-yield-to="navbarAction">
-          <div ui-toggle="uiSidebarRight" class="btn">
-            <i class="fa fa-comment"></i> Sidebar
-          </div>
+            <a href="#/login" class="btn ng-scope">Login</a>
         </div>
       </div>
 

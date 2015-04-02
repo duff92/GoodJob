@@ -12,19 +12,25 @@ angular.module('goodJob.login', ['firebase.auth', 'firebase.utils', 'ngRoute'])
 		function($scope, Auth, $location) {
 		 //$scope.help_message = "";
 		 $scope.login = function() {
-		  	console.log("Trying to login...", Auth);
+		  	var remMe = "default";
+		  	console.log("Trying to login...");
 
+		  	if(!!$scope.rememberMe){
+		  		remMe = "sessionOnly";
+		  	}
 			Auth.$authWithPassword({
 			  email: $scope.email,
 			  password: $scope.pass
+			},{
+				rememberMe: remMe
 			}).then(function(authData) {
 			  console.log("Logged in as:", authData);
-			  $location.path('/home');
+			  $location.path('/profile');
 			}).catch(function(error) {
 			  console.error("Authentication failed:", error);
 			});
 	    }
-
+/*
 		  $scope.createUser = function(){
 		  	  $scope.message = null;
 		      $scope.error = null;
@@ -42,5 +48,5 @@ angular.module('goodJob.login', ['firebase.auth', 'firebase.utils', 'ngRoute'])
 				}).catch(function(error) {
 				  console.error("Error: ", error);
 				});
-		  }
+		  }*/
 	}]);
