@@ -1,32 +1,27 @@
 
 // a simple wrapper on Firebase and AngularFire to simplify deps and keep things DRY
 angular.module('firebase.utils', ['firebase', 'goodJob.config'])
-   .factory('fbutil', ['$window', 'FirebaseURL', '$q', function($window, FBURL, $q) {
+   .factory('fbutil', ['$window', 'FirebaseURL', function($window, FBURL) {
       "use strict";
 
       var utils = {
-        // convert a node or Firebase style callback to a future
-        handler: function(fn, context) {
-          return utils.defer(function(def) {
-            fn.call(context, function(err, result) {
-              if( err !== null ) { def.reject(err); }
-              else { def.resolve(result); }
-            });
-          });
-        },
-
-        // abstract the process of creating a future/promise
-        defer: function(fn, context) {
-          var def = $q.defer();
-          fn.call(context, def);
-          return def.promise;
-        },
-
+        //Reference to Firebase
         ref: firebaseRef
       };
 
       return utils;
 
+     /**
+       * Example:
+       * <code>
+       *    ref = ref.child(pathRef(['messages']));
+       * <code>
+       * Validation of arguments of firebase reference
+       * @function
+       * @name pathRef
+       * @param arguments of relative paths to the root folder
+       * @return relative path joined with '/'
+       */
       function pathRef(args) {
         for (var i = 0; i < args.length; i++) {
           if (angular.isArray(args[i])) {
