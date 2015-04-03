@@ -8,45 +8,39 @@ angular.module('goodJob.register', ['firebase.auth', 'firebase.utils', 'ngRoute'
     	});
   	}])
 
-	.controller("RegisterCtrl", ["$scope", "Auth", "$location",
-		function($scope, Auth, $location) {
+	.controller("RegisterCtrl", ["$scope", "Auth", "$location", "Profile",
+		function($scope, Auth, $location, Profile) {
 		 //$scope.help_message = "";
-		 $scope.login = function() {
-		  	console.log("Trying to login...", Auth);
-
-			Auth.$authWithPassword({
-			  email: $scope.email,
-			  password: $scope.pass
-			}).then(function(authData) {
-			  console.log("Logged in as:", authData);
-			  $location.path('/home');
-			}).catch(function(error) {
-			  console.error("Authentication failed:", error);
-			});
-	    }
+		 
 
 		  $scope.createUser = function(){
 		  	  $scope.message = null;
 		      $scope.error = null;
 		      console.log("creating user...");
-		      Auth.$createUser({
-				  email: $scope.email,
-				  password: $scope.pass
-				}).then(function(userData) {
-				  console.log("User " + userData.uid + " created successfully!");
 
-				  return Auth.$authWithPassword({email: $scope.email, password: $scope.pass});
-				}).then(function(authData) {
-				  console.log("Logged in as:", authData.uid);
-				//  PersonalProfile.createProfile("Write your name", "Your adress");
-				}).catch(function(error) {
-				  console.error("Error: ", error);
-				});
+		      if($scope.password1 == $scope.password2){
+			      Auth.$createUser({
+					  email: $scope.email,
+					  password: $scope.password1
+					}).then(function(userData) {
+					  console.log("User " + userData.uid + " created successfully!");
+
+					  return Auth.$authWithPassword({email: $scope.email, password: $scope.password1});
+					}).then(function(authData) {
+					  console.log("Logged in as:", authData.uid);
+					  Profile.setUser({
+					  		uname: $scope.username, 
+					  		phone: $scope.phone, 
+					  		firstName: $scope.firstName, 
+					  		lastName: $scope.lastName,
+					  		personalNum: $scope.personalNum});
+					}).catch(function(error) {
+					  console.error("Error: ", error);
+					});
+		      }
+		      else{
+		      	console.log("Missmatch of password!");
+		      }
 		  }
-
- $scope.personal = {
-        value: 12
-      };
-
 
 	}]);

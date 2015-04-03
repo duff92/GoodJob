@@ -8,20 +8,23 @@ angular.module('goodJob.profile', ['firebase.auth', 'firebase.utils', 'ngRoute',
     	});
   	}])
 
-	.controller("ProfileCtrl", ["$scope", "Auth", "$location",
-		function($scope, Auth, $location) {
-					 
-			  $scope.userInfo =[{       info_header: "Firstname",
-			                            info_value: "Lilo"},
-			                          { info_header: "Surname",
-			                            info_value: "Pelekai"},
-			                          { info_header: "Email",
-			                            info_value: "lilopelekai@email.com"},
-			                          { info_header: "Phone",
-			                            info_value: "012-345 67 89"},
-			                          { info_header: "City",
-			                            info_value: "Hawaii"}]
-
+	.controller("ProfileCtrl", ["$scope", "Auth", "$location", "Profile",
+		function($scope, Auth, $location, Profile) {
+				
+        Profile.getUser().$loaded.then(function(){
+          $scope.userInfo =[ {      info_header: "Username",
+                                  info_value: userObject.uname},  
+                                { info_header: "Firstname",
+                                  info_value: userObject.firstName},
+                                { info_header: "Surname",
+                                  info_value: userObject.lastName},
+                                { info_header: "Email",
+                                  info_value: "NOT IMPLEMENTED YET! :)"},
+                                { info_header: "Phone",
+                                  info_value: userObject.phone}];
+  
+        });
+			  
 			  $scope.values_series = [ 'Basic Behaviour', 'Adapted Behaviour'];
 
         $scope.values_lables = [ 'Dominant',    'Influential',  'Steady',     'Conscientious'];

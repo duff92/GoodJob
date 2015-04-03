@@ -8,6 +8,7 @@ var goodJob = angular.module('goodJob', [
   'goodJob.listOfAdds',
   'goodJob.applications',
   'goodJob.profile',
+  'profile',
   'goodJob.values',
   'goodJob.apply',
   'mobile-angular-ui','mobile-angular-ui.gestures'])

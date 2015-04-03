@@ -9,7 +9,7 @@
     <fieldset>
     <div class="form-group has-success has-feedback">
           <label>Username</label>
-          <input type="username"
+          <input type="text"
                  ng-model="username"
                  class="form-control"
                  placeholder="Enter username">
@@ -25,7 +25,7 @@
 
         <div class="form-group has-success has-feedback">
           <label>Phone</label>
-          <input type="phone"
+          <input type="number"
                  ng-model="phone"
                  class="form-control"
                  placeholder="Phone">
@@ -33,8 +33,8 @@
 
         <div class="form-group has-success has-feedback">
           <label>First Name</label>
-          <input type="email"
-                 ng-model="email"
+          <input type="text"
+                 ng-model="firstName"
                  class="form-control"
                  placeholder="First Name">
         </div>
@@ -42,8 +42,8 @@
 
         <div class="form-group has-success has-feedback">
           <label>Last Name</label>
-          <input type="email"
-                 ng-model="email"
+          <input type="text"
+                 ng-model="lastName"
                  class="form-control"
                  placeholder="Last Name">
         </div>
@@ -51,21 +51,23 @@
           <div class="form-group has-success has-feedback">
           <label>Personalnumber</label>
           <input type="number"
-                 ng-model="personal.value"
+                 ng-model="personalNum"
                  class="form-control"
-                 placeholder="Personalnumber" min="0" max="99" required>
+                 placeholder="Personalnumber" required>
         </div>
 
         <div class="form-group">
           <label>Password</label>
           <input type="password" 
+                 ng-model="password1"
                  class="form-control"
                  placeholder="Password">
         </div>
 
          <div class="form-group">
           <label>Repeat Password</label>
-          <input type="password" 
+          <input type="password"
+                 ng-model="password2" 
                  class="form-control"
                  placeholder="Repeat Password">
         </div>
@@ -77,11 +79,11 @@
         </div>
     </fieldset>
     <hr>
-
+<!-- 
 <span class="error" ng-show="registerForm.input.$error.required">
     Required!</span>
   <span class="error" ng-show="registerForm.input.$error.number">
-    Not valid number!</span>
+    Not valid number!</span> -->
 
 <span class="help-block">{{help_message}}</span>
 
