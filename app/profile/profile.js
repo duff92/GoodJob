@@ -10,20 +10,21 @@ angular.module('goodJob.profile', ['firebase.auth', 'firebase.utils', 'ngRoute',
 
 	.controller("ProfileCtrl", ["$scope", "Auth", "$location", "Profile",
 		function($scope, Auth, $location, Profile) {
-				
-        Profile.getUser().$loaded.then(function(){
-          $scope.userInfo =[ {      info_header: "Username",
-                                  info_value: userObject.uname},  
-                                { info_header: "Firstname",
-                                  info_value: userObject.firstName},
-                                { info_header: "Surname",
-                                  info_value: userObject.lastName},
-                                { info_header: "Email",
-                                  info_value: "NOT IMPLEMENTED YET! :)"},
-                                { info_header: "Phone",
-                                  info_value: userObject.phone}];
-  
-        });
+				// $scope.userInfo = $firebaseObject(Profile.getUser());
+        //console.log("ProfileCtrl", Profile.getUser(Auth.$getAuth().uid));
+        Profile.getUser(Auth.$getAuth().uid).$bindTo($scope, "userObject").then(function(){
+            $scope.userInfo =[ {      info_header: "Username",
+                                    info_value: $scope.userObject.uname},   
+                                  { info_header: "Firstname",
+                                    info_value: $scope.userObject.firstName},
+                                  { info_header: "Surname",
+                                    info_value: $scope.userObject.lastName},
+                                  { info_header: "Email",
+                                    info_value: "NOT IMPLEMENTED YET! :)"},
+                                  { info_header: "Phone",
+                                    info_value: $scope.userObject.phone}];
+    
+          });
 			  
 			  $scope.values_series = [ 'Basic Behaviour', 'Adapted Behaviour'];
 
