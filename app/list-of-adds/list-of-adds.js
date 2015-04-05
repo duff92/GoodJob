@@ -2,14 +2,16 @@
 angular.module('goodJob.listOfAdds', ['firebase.auth', 'firebase.utils', 'ngRoute', 'goodJob.applications'])
 
 	.config(['$routeProvider', function($routeProvider) {
-    	$routeProvider.when('/list', {
+    	$routeProvider.
+    	whenAuthenticated('/list', {
       		controller: 'ApplicationCtrl',
       		templateUrl: 'list-of-adds/list-of-adds.html'
     	});
+
   	}])
 
-	.controller("ApplicationCtrl", ["$scope", "$routeParams",
-		function($scope, $routeParams) {
+	.controller("ApplicationCtrl", ["$scope", "Auth","$routeParams",
+		function($scope, Auth, $routeParams) {
 		 	
 	/*  console.log("Annonsid:",$routeParams.applicationId);
 	  
@@ -52,4 +54,9 @@ angular.module('goodJob.listOfAdds', ['firebase.auth', 'firebase.utils', 'ngRout
 	            job_ends:   "Dec 2016",
 	            job_deadline:"2015-04-30"
 	        }]
+
+        $scope.logout = function(){
+          console.log("Log out user!");
+          Auth.$unauth();
+        }
 	}]);

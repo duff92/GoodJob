@@ -51,6 +51,7 @@
         // this redirects to the login page whenever that is encountered
         $rootScope.$on("$routeChangeError", function (e, next, prev, err) {
           if (err === "AUTH_REQUIRED") {
+            console.log("Error", e);
             $location.path(loginRedirectPath);
           }
         });
