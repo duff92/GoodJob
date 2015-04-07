@@ -117,7 +117,7 @@
 
     <div ui-content-for="navbarAction">
       <a class='btn' 
-		 ng-disabled="" 
+		 ng-disabled="registerForm.$invalid" 
 		 ng-click='createUser()'> Register </a>
     </div>
 
