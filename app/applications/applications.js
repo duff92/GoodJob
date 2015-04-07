@@ -2,7 +2,7 @@
 angular.module('goodJob.applications', ['firebase.auth', 'firebase.utils', 'ngRoute', 'chart.js'])
 
   .config(['$routeProvider', function($routeProvider) {
-      $routeProvider.whenAuthenticated('/applications', {
+      $routeProvider.when('/applications', {
           controller: 'ApplicationsCtrl',
           templateUrl: 'applications/applications.html'
       });
@@ -41,10 +41,6 @@ angular.module('goodJob.applications', ['firebase.auth', 'firebase.utils', 'ngRo
           else {
             alert("You need to get your application accepted first! Please be patient...");
           }
-        }
-        $scope.logout = function(){
-          console.log("Log out user!");
-          Auth.$unauth();
         }
 
   }]);
