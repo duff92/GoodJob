@@ -5,12 +5,17 @@
 <div class="scrollable">
  <div class="scrollable-content section">
    
+<<<<<<< HEAD
   <form role="form" ng-submit='login()'>
+=======
+  <form name="loginForm" role="form">
+>>>>>>> origin/josselin-branch
     <fieldset>
         <div class="form-group has-success has-feedback">
           <label>Email</label>
           <input type="email"
-                 ng-model="email"
+				 name="email"
+                 ng-model="user.email"
                  class="form-control"
                  placeholder="Enter email">
         </div>
@@ -18,8 +23,13 @@
         <div class="form-group">
           <label>Password</label>
           <input type="password"
+<<<<<<< HEAD
                  ng-model="pass" 
+=======
+			     name="password"
+>>>>>>> origin/josselin-branch
                  class="form-control"
+				 ng-model="user.password"
                  placeholder="Password">
         </div>
 
@@ -33,12 +43,16 @@
 
 <span class="help-block">{{help_message}}</span>
 
-    <button class="btn btn-primary btn-block">
+    <button class="btn btn-primary btn-block" ng-click='login($event)'>
       Login
     </button>
 
     <div ui-content-for="navbarAction">
+<<<<<<< HEAD
       <a class='btn' ng-click='login()'>Login</a>
+=======
+      <a class='btn' ng-click='login($event)'>Login</a>
+>>>>>>> origin/josselin-branch
     </div>
 
   </form>
