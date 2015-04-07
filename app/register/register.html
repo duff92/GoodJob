@@ -10,17 +10,26 @@
     <div class="form-group has-success has-feedback">
           <label>Username</label>
           <input type="text"
-                 ng-model="username"
+				 ng-model="username"
                  class="form-control"
-                 placeholder="Enter username">
+				 name="user"
+                 placeholder="Enter username" required>
+		   <span style="color:red" ng-show="registerForm.user.$dirty && registerForm.user.$invalid">
+		   <span ng-show="registerForm.user.$error.required">Username is required.</span>
+	       </span>
         </div>
 
         <div class="form-group has-success has-feedback">
           <label>Email</label>
           <input type="email"
                  ng-model="email"
+				 name="email"
                  class="form-control"
-                 placeholder="Enter email">
+                 placeholder="Enter email" required>
+		   <span style="color:red" ng-show="registerForm.email.$dirty && registerForm.email.$invalid">
+		   <span ng-show="registerForm.email.$error.required">Email is required </span>
+		   <span ng-show="registerForm.email.$error.email">Invalid email address </span>
+	       </span>
         </div>
 
         <div class="form-group has-success has-feedback">
@@ -33,29 +42,27 @@
 
         <div class="form-group has-success has-feedback">
           <label>First Name</label>
-<<<<<<< HEAD
           <input type="text"
                  ng-model="firstName"
-=======
-          <input type="email"
-                 ng-model="fName"
->>>>>>> origin/josselin-branch
+				 name="fName"
                  class="form-control"
-                 placeholder="First Name">
+                 placeholder="First Name" required>
+		   <span style="color:red" ng-show="registerForm.fName.$dirty && registerForm.fName.$invalid">
+		   <span ng-show="registerForm.fName.$error.required">First name is required </span>
+		   </span>
         </div>
 
 
         <div class="form-group has-success has-feedback">
           <label>Last Name</label>
-<<<<<<< HEAD
           <input type="text"
                  ng-model="lastName"
-=======
-          <input type="email"
-                 ng-model="lName"
->>>>>>> origin/josselin-branch
+				 name="lName"
                  class="form-control"
-                 placeholder="Last Name">
+                 placeholder="Last Name" required>
+		   <span style="color:red" ng-show="registerForm.lName.$dirty && registerForm.lName.$invalid">
+		   <span ng-show="registerForm.lName.$error.required">Last name is required </span>
+		   </span>
         </div>
 
           <div class="form-group has-success has-feedback">
@@ -63,16 +70,20 @@
           <input type="number"
                  ng-model="personalNum"
                  class="form-control"
-                 placeholder="Personalnumber" required>
+                 placeholder="Personalnumber" required="">
         </div>
 
         <div class="form-group">
           <label>Password</label>
           <input type="password" 
                  ng-model="password1"
+				 ng-minlength="5"
+				 name="pwd"
                  class="form-control"
-				 ng-model="password1"
-                 placeholder="Password">
+                 placeholder="Password" required="">
+			<span style="color:red" ng-show="registerForm.pwd.$dirty && registerForm.pwd.$invalid">
+			<span ng-show="registerForm.pwd.$error.minlength">Password must be at least 5 characters </span>
+		   </span>
         </div>
 
          <div class="form-group">
@@ -80,8 +91,7 @@
           <input type="password"
                  ng-model="password2" 
                  class="form-control"
-				 ng-model="password2"
-                 placeholder="Repeat Password">
+                 placeholder="Repeat Password" required="">
         </div>
 
         <div class="form-group">
@@ -89,6 +99,8 @@
           <ui-switch 
             ng-model='rememberMe'></ui-switch>
         </div>
+		
+		<p style="color:red;" ng-show="regError">{{regErrorMessage}}</p>
     </fieldset>
     <hr>
 <!-- 
@@ -104,7 +116,9 @@
     </button>
 
     <div ui-content-for="navbarAction">
-      <a class='btn' ng-click='createUser()'>Register</a>
+      <a class='btn' 
+		 ng-disabled="" 
+		 ng-click='createUser()'> Register </a>
     </div>
 
   </form>

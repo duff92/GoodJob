@@ -1,5 +1,5 @@
 "use strict";
-angular.module('goodJob.login', ['firebase.auth', 'firebase.utils', 'ngRoute', 'firebase'])
+angular.module('goodJob.login', ['firebase.auth', 'firebase.utils', 'ngRoute'])
 
 	.config(['$routeProvider', function($routeProvider) {
     	$routeProvider.when('/login', {
@@ -8,17 +8,17 @@ angular.module('goodJob.login', ['firebase.auth', 'firebase.utils', 'ngRoute', '
     	});
   	}])
 
-<<<<<<< HEAD
 	.controller("LoginCtrl", ["$scope", "Auth", "$location",
 		function($scope, Auth, $location) {
 		 //$scope.help_message = "";
 		 $scope.login = function() {
 		  	var remMe = "default";
 		  	console.log("Trying to login...");
-
-		  	if(!!$scope.rememberMe){
+			//DOUBLE NEGATION
+		  	if($scope.rememberMe){
 		  		remMe = "sessionOnly";
 		  	}
+			//Use of Auth object for the login
 			Auth.$authWithPassword({
 			  email: $scope.email,
 			  password: $scope.pass
@@ -26,6 +26,7 @@ angular.module('goodJob.login', ['firebase.auth', 'firebase.utils', 'ngRoute', '
 				rememberMe: remMe
 			}).then(function(authData) {
 			  console.log("Logged in as:", authData);
+			  //Redirect to profile when successfull login
 			  $location.path('/profile');
 			}).catch(function(error) {
 			  console.error("Authentication failed:", error);
@@ -51,42 +52,3 @@ angular.module('goodJob.login', ['firebase.auth', 'firebase.utils', 'ngRoute', '
 				});
 		  }*/
 	}]);
-=======
-	.controller("LoginCtrl", ["$scope", "CommonProp", "$firebaseAuth", "$location",
-		function($scope, $firebaseAuth, $location) {
-			var ref = new Firebase("https://goodjob.firebaseio.com");
-			var loginObj = $firebaseAuth(ref);
-			
-			$scope.user = {};
-			$scope.login = function(e) {
-				//Basic angularfire authentication with e-mail/password
-				e.preventDefault();
-				var userEmail = $scope.user.email;
-				var userPassword = $scope.user.password;
-				loginObj.$authWithPassword({
-					email: userEmail,
-					password: userPassword
-				})
-				.then(function(user) {
-					console.log("Logged in !");
-					CommonProp.setUser(userEmail);
-					$location.path('/home');
-				}).catch(function(error) {
-					console.error("Authentication failed:", error);
-					//Add some failure actions on the scope
-			});
-	    }
-	}])
-	.service('CommonProp', function(){ //Common properties to get the user
-		var user = '';
-		
-		return{
-			getUser: function() {
-				return user;
-			},
-			setUser: function(value) {
-				user = value;
-			}
-		};
-	});
->>>>>>> origin/josselin-branch

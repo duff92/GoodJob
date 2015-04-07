@@ -1,25 +1,25 @@
 "use strict";
-angular.module('goodJob.register', ['firebase.auth', 'firebase.utils', 'ngRoute', 'firebase'])
-
+angular.module('goodJob.register', ['firebase.auth', 'firebase.utils', 'ngRoute'])
+	//ng-route setup
 	.config(['$routeProvider', function($routeProvider) {
     	$routeProvider.when('/register', {
       		controller: 'RegisterCtrl',
       		templateUrl: 'register/register.html'
     	});
   	}])
-
-<<<<<<< HEAD
+	//Definition of the controller
 	.controller("RegisterCtrl", ["$scope", "Auth", "$location", "Profile",
 		function($scope, Auth, $location, Profile) {
-		 //$scope.help_message = "";
 		 
-
+		 
+		  //Define the createUser method user when register button is clicked
 		  $scope.createUser = function(){
 		  	  $scope.message = null;
 		      $scope.error = null;
 		      console.log("creating user...");
-
-		      if($scope.password1 == $scope.password2){
+			  //Check if the form is valid and passwords match @TODO find a better way.
+		      if(!scope.registerForm.$invalid && $scope.password1 == $scope.password2){
+				  //user creation using Auth object
 			      Auth.$createUser({
 					  email: $scope.email,
 					  password: $scope.password1
@@ -29,6 +29,7 @@ angular.module('goodJob.register', ['firebase.auth', 'firebase.utils', 'ngRoute'
 					  return Auth.$authWithPassword({email: $scope.email, password: $scope.password1});
 					}).then(function(authData) {
 					  console.log("Logged in as:", authData.uid);
+					  //Store the data into Firebase using Profile custom object
 					  Profile.setUser({
 					  		uname: $scope.username, 
 					  		phone: $scope.phone, 
@@ -36,63 +37,15 @@ angular.module('goodJob.register', ['firebase.auth', 'firebase.utils', 'ngRoute'
 					  		lastName: $scope.lastName,
 					  		personalNum: $scope.personalNum});
 					}).catch(function(error) {
+					  //On failure, we display the error message
 					  console.error("Error: ", error);
+					  $scope.regError = true;
+					  $scope.regErrorMessage = error.message;
 					});
 		      }
 		      else{
-		      	console.log("Missmatch of password!");
+		      	console.log("Invalid application");
 		      }
 		  }
 
-=======
-	.controller("RegisterCtrl", ["$scope", "CommonProp", "$firebase", "$firebaseAuth", "$location",
-		function($scope, $firebaseAuth, $location) {
-			var ref = new Firebase("https://goodjob.firebaseio.com");
-			var auth = $firebaseAuth(ref);
-			var db = $firebase(ref);
-			$scope.createUser = function(){
-				//TODO : Input validation
-				var newUserEmail = $scope.email;
-				var newUserPassword = $scope.password1;
-				if(newUserEmail && newUserPassword){
-					auth.$createUser(newUserEmail, newUserPassword)
-						.then(function() {
-							console.log("User created !");
-							//Sets the user for the other modules
-							CommonProp.setUser(newUserEmail);
-							//Goes back to home
-							$location.path('/home');
-							//TODO Input validation
-							var username = $scope.username;
-							var email = $scope.email;
-							var fName = $scope.fName;
-							var lName = $scope.lName;
-							var phone = $scope.phone;
-							var persNumber = $scope.personal.value;
-							
-							//Pushes informations about the new user into the database
-							db.$push({
-								username: username,
-								email: email,
-								fName: fName,
-								lName: lName,
-								phone: phone,
-								persNumber: persNumber
-							}).then(function(ref){
-								console.log(ref);
-							}, function(error) {
-								console.log(error);
-							});
-							
-						}, function(error) {
-							console.log(error);
-							//TODO output errors in scope.
-						});
-				}
-		  }
-
- 
-
-
->>>>>>> origin/josselin-branch
 	}]);
