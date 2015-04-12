@@ -28,7 +28,6 @@ angular.module('goodJob.profile', ['firebase.auth', 'firebase.utils', 'ngRoute',
 			  
 			  $scope.values_series = [ 'Basic Behaviour', 'Adapted Behaviour'];
 
-<<<<<<< HEAD
         $scope.values_lables = [ 'Dominant',    'Influential',  'Steady',     'Conscientious'];
         $scope.values_data =   [[ 36,            76,             62,           37            ],
                                 [ 33,            74,             62,           63           ]];
@@ -57,24 +56,4 @@ angular.module('goodJob.profile', ['firebase.auth', 'firebase.utils', 'ngRoute',
           console.log("Log out user!");
           Auth.$unauth();
         }
-=======
-  $scope.values_lables = [ 'Dominant',    'Influential',  'Steady',     'Conscientious'];
-  $scope.values_data =   [[ 36,            76,             62,           37            ],
-                          [ 33,            74,             62,           63           ]];
-  $scope.values_colors = [ 'Red',         'Yellow',       'Green',      'Blue'         ];
-
-  $scope.competence_lables =[  "Surfing", 
-                                "Hawaiian",
-                                "Mail-Order Sales",
-                                "Tele Sales",
-                                "Corporate Sales"];
-
-  $scope.competence_data = [  3,
-                                5, 
-                                1, 
-                                4, 
-                                2];
-
-  $scope.competence_chart = 'PolarArea';
->>>>>>> anna_branch
 	}]);
