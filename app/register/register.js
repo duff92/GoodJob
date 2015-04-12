@@ -20,6 +20,7 @@ angular.module('goodJob.register', ['firebase.auth', 'firebase.utils', 'ngRoute'
 			  //Check if the form is valid and passwords match @TODO find a better way.
 		      if(!$scope.registerForm.$invalid && $scope.password1 == $scope.password2){
 				  //user creation using Auth object
+				  console.log($scope.password1);
 			      Auth.$createUser({
 					  email: $scope.email,
 					  password: $scope.password1
@@ -36,6 +37,7 @@ angular.module('goodJob.register', ['firebase.auth', 'firebase.utils', 'ngRoute'
 					  		firstName: $scope.firstName, 
 					  		lastName: $scope.lastName,
 					  		personalNum: $scope.personalNum});
+					  $location.path("/profile");
 					}).catch(function(error) {
 					  //On failure, we display the error message
 					  console.error("Error: ", error);

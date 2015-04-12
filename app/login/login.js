@@ -20,8 +20,8 @@ angular.module('goodJob.login', ['firebase.auth', 'firebase.utils', 'ngRoute'])
 		  	}
 			//Use of Auth object for the login
 			Auth.$authWithPassword({
-			  email: $scope.email,
-			  password: $scope.pass
+			  email: $scope.user.email,
+			  password: $scope.user.password
 			},{
 				rememberMe: remMe
 			}).then(function(authData) {
