@@ -14,17 +14,19 @@ angular.module('goodJob.login', ['firebase.auth', 'firebase.utils', 'ngRoute'])
 		 $scope.login = function() {
 		  	var remMe = "default";
 		  	console.log("Trying to login...");
-
-		  	if(!!$scope.rememberMe){
+			//DOUBLE NEGATION
+		  	if($scope.rememberMe){
 		  		remMe = "sessionOnly";
 		  	}
+			//Use of Auth object for the login
 			Auth.$authWithPassword({
-			  email: $scope.email,
-			  password: $scope.pass
+			  email: $scope.user.email,
+			  password: $scope.user.password
 			},{
 				rememberMe: remMe
 			}).then(function(authData) {
 			  console.log("Logged in as:", authData);
+			  //Redirect to profile when successfull login
 			  $location.path('/profile');
 			}).catch(function(error) {
 			  console.error("Authentication failed:", error);
