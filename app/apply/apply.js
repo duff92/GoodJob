@@ -15,7 +15,6 @@ angular.module('goodJob.apply', ['firebase.auth', 'firebase.utils', 'ngRoute'])
 
 		 //$scope.help_message = "";
 
-
 		$scope.ads =[{  company_name:   "Monsters inc",
 			company_match: "87%",
 			company_logo: "http://vignette3.wikia.nocookie.net/disney-infinity/images/7/75/Monsters_Inc.jpg/revision/latest?cb=20130118180017",
