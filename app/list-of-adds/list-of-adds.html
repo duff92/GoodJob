@@ -1,63 +1,72 @@
-<div class="scrollable">  
-  <div class="scrollable-content">
-  <div class="container">
+<div ui-content-for="title">
+	<span>List of adds</span>
+</div>
 
-	<div>
-		<h2 class="text-center">
-			Available jobs
-		</h2>
-	</div>
-	<div ng-repeat="ad in ads">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h2 class="panel-title company_name">
-					{{ ad.company_name }} - {{ ad.company_match }} match
+<div class="scrollable">  
+	<div class="scrollable-content">
+		<div class="container">
+
+			<div>
+				<h2 class="text-center">
+					Available jobs
 				</h2>
 			</div>
-			<div class="panel-body">
-			    <div class="row">
-			    	<div class="col-xs-6 col-sm-8 text-left">
-						<div class="row">
-							<div class="col-sm-4 text-left"> Job title: </div>
-							<div class="col-sm-8 text-left"><b> {{ ad.job_title }} </b></div>
-						</div>
-						<div class="row">
-							<div class="col-sm-4 text-left"> Job hours: </div>
-							<div class="col-sm-8 text-left"><b> {{ ad.job_hours }} </b></div>
-						</div>
-						<div class="row">
-							<div class="col-sm-4 text-left"> Job city: </div>
-							<div class="col-sm-8 text-left"><b> {{ ad.job_city }} </b></div>
-						</div>
-						<div class="row">
-							<div class="col-sm-4 text-left"> Job starts: </div>
-							<div class="col-sm-8 text-left"><b> {{ ad.job_starts }} </b></div>
-						</div>
-						<div class="row">
-							<div class="col-sm-4 text-left"> Job ends: </div>
-							<div class="col-sm-8 text-left"><b> {{ ad.job_ends }} </b></div>
-						</div>
-						<div class="row">
-							<div class="col-sm-4 text-left"> Deadline to apply: </div>
-							<div class="col-sm-8 text-left"><b> {{ ad.job_deadline }} </b></div>
-						</div>
- 					</div>
-					<div class="col-xs-6 col-sm-4 ">
-						<img class="img" src="{{ ad.company_logo }}" ></img>
+			<div ng-repeat="ad in ads">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h2 class="panel-title company_name">
+							{{ ad.company_name }} - {{ ad.company_match }} match
+						</h2>
 					</div>
-		    	</div>
-		    	<div class="row">
-					<div class="text-center">
-						<button class="btn" ng-click="addNewApplication()">Apply here</button>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-xs-6 col-sm-8 text-left">
+								<div class="row">
+									<div class="col-sm-4 text-left"> Job title: </div>
+									<div class="col-sm-8 text-left"><b> {{ ad.job_title }} </b></div>
+								</div>
+								<div class="row">
+									<div class="col-sm-4 text-left"> Job hours: </div>
+									<div class="col-sm-8 text-left"><b> {{ ad.job_hours }} </b></div>
+								</div>
+								<div class="row">
+									<div class="col-sm-4 text-left"> Job city: </div>
+									<div class="col-sm-8 text-left"><b> {{ ad.job_city }} </b></div>
+								</div>
+								<div class="row">
+									<div class="col-sm-4 text-left"> Job starts: </div>
+									<div class="col-sm-8 text-left"><b> {{ ad.job_starts }} </b></div>
+								</div>
+								<div class="row">
+									<div class="col-sm-4 text-left"> Job ends: </div>
+									<div class="col-sm-8 text-left"><b> {{ ad.job_ends }} </b></div>
+								</div>
+								<div class="row">
+									<div class="col-sm-4 text-left"> Deadline to apply: </div>
+									<div class="col-sm-8 text-left"><b> {{ ad.job_deadline }} </b></div>
+								</div>
+		 					</div>
+							<div class="col-xs-6 col-sm-4 ">
+								<img class="img" src="{{ ad.company_logo }}" ></img>
+							</div>
+						</div>
+						<div class="row">
+							<div class="text-center">
+								<button class="btn" ng-click="addNewApplication()">Apply here</button>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+<<<<<<< HEAD
 </div>
 
 	<div ui-content-for="navbarAction">
       <a class='btn' ng-click='logout()'>Logout</a>
     </div>
   </div>
+=======
+>>>>>>> Added search field to applications.html and to list-of-adds.html AND created the view for apply.html
 </div>
