@@ -1,50 +1,193 @@
+<<<<<<< HEAD
 <div ui-content-for="title">
-  <span>Tabs</span>
+  <span>Values test</span>
 </div>
 
 <div class="scrollable">
   <div class="scrollable-content">
+=======
+<div class="container">
+>>>>>>> views_branch
     <div class='section'>
       <ui-state id='activeTab' default='1'></ui-state>
 
-      <ul class="nav nav-tabs">
-        <li ui-class="{'active': activeTab == 1}">
-          <a ui-set="{'activeTab': 1}">Tab 1</a>
-        </li>
-        <li ui-class="{'active': activeTab == 2}">
-          <a ui-set="{'activeTab': 2}">Tab 2</a>
-        </li>
-        <li ui-class="{'active': activeTab == 3}">
-          <a ui-set="{'activeTab': 3}">Tab 3</a>
-        </li>
-      </ul>
-
       <div ui-if="activeTab == 1">
-        <h3 class="page-header">Tab 1</h3>
-        <p>{{lorem}}</p>
+        <h3 class="page-header">Instructions</h3>
+        <p>{{ instructions }}</p>
+        <h4>Example</h4>
+        <p>This is an example on how it's going to look - pick your favourite flavor to continue!</h4>
+        <div class="row">
+          <div class="col-xs-6 list-group">
+            <a ui-set="{'activeTab': 2}" class="list-group-item active">
+              <h4 class="list-group-item-heading">Chocolate</h4>
+              <p class="list-group-item-text">A cacao based sweet.</p>
+            </a>
+          </div>
+          <div class="col-xs-6 list-group">
+            <a ui-set="{'activeTab': 2}" class="list-group-item active">
+              <h4 class="list-group-item-heading">Vanilla</h4>
+              <p class="list-group-item-text">Its white with small black dots.</p>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6 list-group">
+            <a ui-set="{'activeTab': 2}" class="list-group-item active">
+              <h4 class="list-group-item-heading">Pear</h4>
+              <p class="list-group-item-text">It's a fruit, not to be confused with apples.</p>
+            </a>
+          </div>
+          <div class="col-xs-6 list-group">
+            <a ui-set="{'activeTab': 2}" class="list-group-item active">
+              <h4 class="list-group-item-heading">Strawberries</h4>
+              <p class="list-group-item-text">Berries on a straw, questions on that?</p>
+            </a>
+          </div>
+        </div>
       </div>
 
       <div ui-if="activeTab == 2">
-        <h3 class="page-header">Tab 2</h3>
-        <p>{{lorem}}</p>
+        <h3 class="page-header">Instructions</h3>
+        <p>Great! Now you get it! Ahead of you there are two pages with values which you are asked to choose between. Good luck!</p>
+        <div class="row">
+          <div class="text-center">
+            <a ui-set="{'activeTab': 1}" class="btn btn-info">
+              Go back
+            </a>
+            <a ui-set="{'activeTab': 3}" class="btn btn-info">
+              Continue
+            </a>
+          </div>
+        </div>
       </div>
 
       <div ui-if="activeTab == 3">
-        <h3 class="page-header">Tab 3</h3>
-        <p>{{lorem}}</p>
+        <h3 class="page-header">Value test (1/2)</h3>
+        <p>{{ instructions }}</p>
+        <div class="row">
+          <div class="col-xs-6 list-group">
+            <a ui-set="{'activeTab': 4}" class="list-group-item active">
+              <h4 class="list-group-item-heading">{{ values[0].value_name }}</h4>
+              <p class="list-group-item-text">{{ values[0].value_description}}</p>
+            </a>
+          </div>
+          <div class="col-xs-6 list-group">
+            <a ui-set="{'activeTab': 4}" class="list-group-item active">
+              <h4 class="list-group-item-heading">{{ values[1].value_name }}</h4>
+              <p class="list-group-item-text">{{ values[1].value_description}}</p>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6 list-group">
+            <a ui-set="{'activeTab': 4}" class="list-group-item active">
+              <h4 class="list-group-item-heading">{{ values[2].value_name }}</h4>
+              <p class="list-group-item-text">{{ values[2].value_description}}</p>
+            </a>
+          </div>
+          <div class="col-xs-6 list-group">
+            <a ui-set="{'activeTab': 4}" class="list-group-item active">
+              <h4 class="list-group-item-heading">{{ values[3].value_name }}</h4>
+              <p class="list-group-item-text">{{ values[3].value_description}}</p>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="text-center">
+            <a ui-set="{'activeTab': 2}" class="btn btn-info">
+              Go back
+            </a>
+            <a ui-set="{'activeTab': 4}" class="btn btn-info">
+              Continue
+            </a>
+          </div>
+        </div>
       </div>
 
-      <div class="btn-group justified nav-tabs">
-        <a ui-set="{'activeTab': 1}" 
-            ui-class="{'active': activeTab == 1}" class="btn btn-default">Tab 1</a>
+      <div ui-if="activeTab == 4">
+        <h3 class="page-header">Value test (2/2)</h3>
+        <p>{{ instructions }}</p>
+        <div class="row">
+          <div class="col-xs-6 list-group">
+            <a ui-set="{'activeTab': 5}" class="list-group-item active">
+              <h4 class="list-group-item-heading">{{ values[4].value_name }}</h4>
+              <p class="list-group-item-text">{{ values[4].value_description}}</p>
+            </a>
+          </div>
+          <div class="col-xs-6 list-group">
+            <a ui-set="{'activeTab': 5}" class="list-group-item active">
+              <h4 class="list-group-item-heading">{{ values[5].value_name }}</h4>
+              <p class="list-group-item-text">{{ values[5].value_description}}</p>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6 list-group">
+            <a ui-set="{'activeTab': 5}" class="list-group-item active">
+              <h4 class="list-group-item-heading">{{ values[6].value_name }}</h4>
+              <p class="list-group-item-text">{{ values[6].value_description}}</p>
+            </a>
+          </div>
+          <div class="col-xs-6 list-group">
+            <a ui-set="{'activeTab': 5}" class="list-group-item active">
+              <h4 class="list-group-item-heading">{{ values[7].value_name }}</h4>
+              <p class="list-group-item-text">{{ values[7].value_description}}</p>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="text-center">
+            <a ui-set="{'activeTab': 3}" class="btn btn-info">
+              Go back
+            </a>
+            <a ui-set="{'activeTab': 5}" class="btn btn-info">
+              Results
+            </a>
+          </div>
+        </div>
+      </div>
 
-        <a ui-set="{'activeTab': 2}" 
-            ui-class="{'active': activeTab == 2}" class="btn btn-default">Tab 2</a>
-
-        <a ui-set="{'activeTab': 3}" 
-            ui-class="{'active': activeTab == 3}" class="btn btn-default">Tab 3</a>
-      </div>  
+      <div ui-if="activeTab == 5">
+        <h3 class="page-header">Results</h3>
+        <p> {{ result_info }} </p>
+        <h4>DISC Personality Types:</h4>
+        <p>
+          <li><p>D = Dominant (Active DISC Style, Task-Oriented)</p></li>
+          <li><p>I = Influential (Active DISC Style, People-Oriented)</p></li>
+          <li><p>S = Steady (Passive DISC Style, People-Oriented)</p></li>
+          <li><p>C = Conscientious (Passive DISC Style, Task-Oriented)</p></li>
+        </p>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+              <h2 class="panel-title">
+                Your values
+              </h2>
+            </div>
+          <div class="panel-body">
+            <canvas id="bar" class="chart chart-bar" 
+                data="values_data"
+                  labels="values_lables"
+                  series="values_series">
+            </canvas>
+          </div>
+        </div>
+        <h4>General characteristics</h4>
+        <div ng-repeat="type in personality_types">
+          <h5>{{ type.personality_type }}</h5>
+          <p>{{ type.personality_description }}</p>
+        </div>
+        <div class="row">
+          <div class="text-center">
+            <a href="#/profile" class="btn btn-info">
+              Continue to profile
+            </a>
+          </div>
+        </div>
+      </div>
+<<<<<<< HEAD
     </div>
-
   </div>
 </div>
+=======
+    </div></div>
+>>>>>>> views_branch

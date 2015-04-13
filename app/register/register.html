@@ -1,26 +1,30 @@
-<div ui-content-for="title">
-
-</div>
-
-<div class="scrollable">
- <div class="scrollable-content section">
+<div class="container">
    
   <form name="registerForm" role="form" ng-submit='createUser()'>
     <fieldset>
     <div class="form-group has-success has-feedback">
           <label>Username</label>
           <input type="text"
-                 ng-model="username"
+				 ng-model="username"
                  class="form-control"
-                 placeholder="Enter username">
+				 name="user"
+                 placeholder="Enter username" required>
+		   <span style="color:red" ng-show="registerForm.user.$dirty && registerForm.user.$invalid">
+		   <span ng-show="registerForm.user.$error.required">Username is required.</span>
+	       </span>
         </div>
 
         <div class="form-group has-success has-feedback">
           <label>Email</label>
           <input type="email"
                  ng-model="email"
+				 name="email"
                  class="form-control"
-                 placeholder="Enter email">
+                 placeholder="Enter email" required>
+		   <span style="color:red" ng-show="registerForm.email.$dirty && registerForm.email.$invalid">
+		   <span ng-show="registerForm.email.$error.required">Email is required </span>
+		   <span ng-show="registerForm.email.$error.email">Invalid email address </span>
+	       </span>
         </div>
 
         <div class="form-group has-success has-feedback">
@@ -35,8 +39,12 @@
           <label>First Name</label>
           <input type="text"
                  ng-model="firstName"
+				 name="fName"
                  class="form-control"
-                 placeholder="First Name">
+                 placeholder="First Name" required>
+		   <span style="color:red" ng-show="registerForm.fName.$dirty && registerForm.fName.$invalid">
+		   <span ng-show="registerForm.fName.$error.required">First name is required </span>
+		   </span>
         </div>
 
 
@@ -44,8 +52,12 @@
           <label>Last Name</label>
           <input type="text"
                  ng-model="lastName"
+				 name="lName"
                  class="form-control"
-                 placeholder="Last Name">
+                 placeholder="Last Name" required>
+		   <span style="color:red" ng-show="registerForm.lName.$dirty && registerForm.lName.$invalid">
+		   <span ng-show="registerForm.lName.$error.required">Last name is required </span>
+		   </span>
         </div>
 
           <div class="form-group has-success has-feedback">
@@ -53,15 +65,20 @@
           <input type="number"
                  ng-model="personalNum"
                  class="form-control"
-                 placeholder="Personalnumber" required>
+                 placeholder="Personalnumber" required="">
         </div>
 
         <div class="form-group">
           <label>Password</label>
           <input type="password" 
                  ng-model="password1"
+				 ng-minlength="5"
+				 name="pwd"
                  class="form-control"
-                 placeholder="Password">
+                 placeholder="Password" required="">
+			<span style="color:red" ng-show="registerForm.pwd.$dirty && registerForm.pwd.$invalid">
+			<span ng-show="registerForm.pwd.$error.minlength">Password must be at least 5 characters </span>
+		   </span>
         </div>
 
          <div class="form-group">
@@ -69,14 +86,26 @@
           <input type="password"
                  ng-model="password2" 
                  class="form-control"
-                 placeholder="Repeat Password">
+                 placeholder="Repeat Password" required="">
         </div>
 
+<<<<<<< HEAD
         <div class="form-group">
           <label>Remember Me</label>
           <ui-switch 
             ng-model='rememberMe'></ui-switch>
         </div>
+=======
+        <div class="input-group">
+     <div class="checkbox">
+        <label>
+          <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
+            </label>
+      </div>
+</div>
+>>>>>>> views_branch
+		
+		<p style="color:red;" ng-show="regError">{{regErrorMessage}}</p>
     </fieldset>
     <hr>
 <!-- 
@@ -87,17 +116,23 @@
 
 <span class="help-block">{{help_message}}</span>
 
-    <button class="btn btn-primary btn-block">
+      <a class='btn' 
+     ng-disabled="registerForm.$invalid" 
+     ng-click='createUser()'><button class="btn btn-primary btn-block">
       Register
-    </button>
+    </button></a>
 
+<<<<<<< HEAD
     <div ui-content-for="navbarAction">
-      <a class='btn' ng-click='createUser()'>Register</a>
+      <a class='btn' 
+		 ng-disabled="registerForm.$invalid" 
+		 ng-click='createUser()'> Register </a>
     </div>
+=======
+>>>>>>> views_branch
 
   </form>
  </div>
-</div>
 
 
 
