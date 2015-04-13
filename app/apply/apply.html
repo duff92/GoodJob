@@ -1,124 +1,89 @@
 <div ui-content-for="title">
-  <span>Accordion</span>
+  <span>Apply</span>
 </div>
 
-<div class="scrollable">
+<div class="scrollable">  
   <div class="scrollable-content">
-    <div class="section">
-      <div class="panel-group" 
-        
-        ui-state='myAccordion' 
-        ui-default='2'>
+    <div class="container">
 
-        <div class="panel panel-default" ng-repeat="i in [1,2,3]">
-          <div class="panel-heading" ui-set="{'myAccordion': i}">
-        
-            <h4 class="panel-title">
-                Collapsible Group Item #{{i}}
-            </h4>
+      <div>
+        <h2 class="text-center">
+          Apply for job
+        </h2>
+      </div>
+      <div ng-repeat="ad in ads">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h2 class="panel-title company_name">
+              {{ ad.company_name }} - {{ ad.company_match }} match
+            </h2>
           </div>
-          <!-- 
-            use uiScopeContext to use scope vars in ui-if/ui-hide/ui-show/ui-class expression 
-            ie.
-            <div ui-hide="sharedState1 == myVar1 && sharedState2 == myVar2"
-              ui-scope-context="myVar1, myVar2"
-            >
+          <div class="panel-body">
+            <h3 class="text-center">
+              Job information
+            </h3>
+            <div class="row">
+              <div class="col-xs-6 col-sm-8 text-left">
+                <div class="row">
+                  <div class="col-sm-4 text-left"> Job title: </div>
+                  <div class="col-sm-8 text-left"><b> {{ ad.job_title }} </b></div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4 text-left"> Job description: </div>
+                  <div class="col-sm-8 text-left"><b> {{ ad.job_description }} </b></div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4 text-left"> Job hours: </div>
+                  <div class="col-sm-8 text-left"><b> {{ ad.job_hours }} </b></div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4 text-left"> Job city: </div>
+                  <div class="col-sm-8 text-left"><b> {{ ad.job_city }} </b></div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4 text-left"> Job address: </div>
+                  <div class="col-sm-8 text-left"><b> {{ ad.job_address }} </b></div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4 text-left"> Job starts: </div>
+                  <div class="col-sm-8 text-left"><b> {{ ad.job_starts }} </b></div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4 text-left"> Job ends: </div>
+                  <div class="col-sm-8 text-left"><b> {{ ad.job_ends }} </b></div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4 text-left"> Deadline to apply: </div>
+                  <div class="col-sm-8 text-left"><b> {{ ad.job_deadline }} </b></div>
+                </div>
+              </div>
+              <div class="col-xs-6 col-sm-4 ">
+                <img class="img" src="{{ ad.company_logo }}" ></img>
+              </div>
             </div>
 
-            Be aware that scope vars will take precedence over sharedStates so,
-            in order to avoid name clashes you can use 'as' to refer to scope vars
-            with a different name in conditions:
-
-            <div ui-hide="x == myVar1 && y == myVar2"
-              ui-scope-context="x as myVar1, y as myVar2"
-            >
-            </div>
-          -->
-          <div ui-if="myAccordion == i" ui-scope-context='i'>
-            <div class="panel-body">
-              {{lorem}}
+            <div class="text-center">
+              <h3>Required competences</h3>
+              <div>Please enter the level of your skills on these required competences</div>
+              <div ng-repeat="competence in ad.job_competences ">
+                </br>
+                <div>
+                  <b> {{ competence }} </b>
+                  <div>
+                    <div class="btn-group" role="group">
+                      <button ng-repeat="i in ['Very bad','Bad','Average','Good','Very good']" type="button" class="btn btn-default"> {{ i }} </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </br>
+              <div>
+                <button class="btn" ng-click="sendApplication()">Apply now</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-  <div class="section">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <div class="btn-group pull-right">
-            <a ui-turn-on='myDropdown' class='btn'>
-              <i class="fa fa-ellipsis-v"></i>
-            </a>
-            <ul 
-              class="dropdown-menu"
-              ui-outer-click="Ui.turnOff('myDropdown')"
-              ui-outer-click-if="Ui.active('myDropdown')"
-              role="menu"
-              ui-show="myDropdown" 
-              ui-state="myDropdown"
-              ui-turn-off="myDropdown">
-
-              <li><a>Action</a></li>
-              <li><a>Another action</a></li>
-              <li><a>Something else here</a></li>
-              <li class="divider"></li>
-              <li><a>Separated link</a></li>
-            </ul>
-          </div>
-          <h3 class="panel-title">Note</h3>
-        </div>
-        <div class="panel-body">
-           {{lorem}}
-        </div>
-      </div>
-    </div>
-
-      <div class="section section-break">
-      <a href="" 
-          ui-turn-on="modal1"
-          class="btn btn-default">Show Modal</a>
-      <a href="" 
-          ui-turn-on="modal2"
-          class="btn btn-default">Show Overlay</a>
-    </div>
-
-    <div class="section section-break">
-      <p>
-        {{lorem}}
-      </p>
-    </div>
-  </div>
-</div>
-
-<div ui-content-for="modals">
-  <div ng-include="'apply/modal1.html'"></div>
-  <div ng-include="'apply/modal2.html'"></div>
-</div>
-
-
-<div class="scrollable" ui-state="searchBar">
-  <input
-    ng-if="Ui.active('searchBar')"
-    type="search"
-    class="form-control scrollable-header"
-    placeholder="Search.." />
-
-  <div class="scrollable-content" ui-scroll-bottom='bottomReached()'>
-    <div class="list-group">
-      <a ng-repeat="item in scrollItems" href="#" class="list-group-item">
-        {{ item }} <i class="fa fa-chevron-right pull-right"></i>
-      </a>
-    </div>
-  </div>
-
-  <a class="btn btn-block btn-lg btn-primary scrollable-footer" ui-toggle='searchBar'>
-    <i class="fa fa-search"></i> 
-    <span ui-hide="searchBar">Show</span>
-    <span ui-show="searchBar">Hide</span>
-    Search Bar
-  </a>
-</div>
-
   </div>
 </div>

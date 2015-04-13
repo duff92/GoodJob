@@ -4,9 +4,15 @@
 		font-weight: 300;
 		-webkit-font-smoothing: antialiased;
 		text-rendering: optimizeLegibility;
+
 	}
-
-
+	.container {
+	  	background-color:#ffffff;
+	  	padding:20px;
+	  	margin-top:-20px;
+	  	min-height: 100%;
+		
+	}
 	a { 
 		color: #4fc1e9;
 		transition: all 0.125s ease-in-out 0s;
@@ -26,16 +32,25 @@
 		text-decoration: none;
 	}
 
-	.app-content{
-		background-image: url("../img/bg-2.jpg");
-		 background-attachment: fixed;
-		  background-repeat: no-repeat;
-		  background-size: cover;
-		  -moz-background-size: cover;
+	.col-xs-6 {
+	  width: 50%;
+	   padding-left: 15px;
+  		padding-right: 15px;
 	}
-
+	.section{
+		margin-right: auto;
+	  margin-left: auto;
+	  padding-left: 15px;
+	  padding-right: 15px;
+	  background: #fff;
+	  padding-top: 10px;
+	  padding-bottom: 10px;
+	}
 	img{
 		width:100%;
+	}
+	.img{
+		width:150px;
 	}
 	.profile-img{
 		width:100%;
@@ -43,9 +58,14 @@
 		height:100%;
 		max-height: 150px;
 	}
-	.container {
-	  max-width: 1140px;
-	  background-color: #ffffff !important;
+	.container-home{
+	
+	   	background-image: url("../img/bg-2.jpg");
+		 background-attachment: fixed;
+		  background-repeat: no-repeat;
+		  background-size: cover;
+		  -moz-background-size: cover;
+
 	}
 	/* =================================== */
 	/*              Typography             */
@@ -76,7 +96,7 @@
 	p{
 		font-size: 18px;
 		font-weight: 300;
-		color: #7f8c8d;
+		color: #5c5c5c;
 		letter-spacing: 0.03em;
 	}
 	/* =================================== */
@@ -215,13 +235,12 @@
 	=================================== */
 
 	#descr{
-		float:left;
-		position:absolute;
 		bottom:10%;
 		display:inline-block;
 		text-align:center;
 		padding:6% 7% 8% 7%;
 		width:53.22916666666667%;
+		  float: none;
 	}
 	#descr h2{
 		color: #fff;
@@ -393,7 +412,7 @@
 
 /* Device size - header*/
 
-@media screen and (max-height: 1240px) {
+@media screen and (min-height: 1240px) {
 
 	
 }

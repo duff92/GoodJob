@@ -10,7 +10,6 @@ angular.module('goodJob.applications', ['firebase.auth', 'firebase.utils', 'ngRo
 
   .controller("ApplicationsCtrl", ["$scope", "Auth", "$location",
     function($scope, Auth, $location) {       
-
         $scope.ads =[{  company_name:     "Bison",
                         company_match:    "76%",
                         company_logo:     "https://cdn.tutsplus.com/vector/uploads/legacy/articles/linkb_20weirdlogos/weirdlogos_prev.jpg",
