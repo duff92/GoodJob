@@ -36,27 +36,10 @@ var goodJob = angular.module('goodJob', [
     function($scope, Auth, $location) {   
 
 
-Auth.$onAuth(function(user) {
-
-    $scope.menuItems = [
-        {
-            name: 'Login',
-            url:  '/login',
-            title: 'Login'
-        },
-        {
-            name: 'Register',
-            url:  '/register',
-            title: 'Register'
-        },
-        {
-            name:   'Profile',
-            url:    '/profile',
-            title:  'Profile'
-        }
-    ];
-})
-
+    $('.nav a').on('click', function(){
+        $(".btn-navbar").click(); //bootstrap 2.x
+        $(".navbar-toggle").click() //bootstrap 3.x by Richard
+    });
 
 
 
@@ -64,5 +47,6 @@ Auth.$onAuth(function(user) {
         return viewLocation === $location.path();
     };
 }]);
+
 
 

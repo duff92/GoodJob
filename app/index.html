@@ -58,11 +58,13 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
   </head>
     <body>
 
+
+
 <nav class="navbar navbar-default" ng-controller="MainNavCtrl">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" >
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -71,7 +73,7 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
       <a class="navbar-brand" href="#/home">GoodJob</a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" collapse="navbarCollapsed">
       <ul class="nav navbar-nav">
         <li class="active"><a href="/#home">Home <span class="sr-only">(current)</span></a></li>
       
@@ -82,11 +84,10 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
 
 
       <ul class="nav navbar-nav navbar-right">
-           <li data-ng-class="{current_page_item: isActive('{{ menuItem.url }}')}" data-ng-repeat="menuItem in menuItems">
-        <a data-ng-href="#{{menuItem.url}}" title="{{menuItem.title}}">
-          {{menuItem.name}}
-        </a>
-      </li>
+              <li><a href="#/login">Login</a></li>
+              <li><a href="#/register">Register</a></li>
+              <li><a href="#/profile">Profile</a></li>
+
         
       
       </ul>
