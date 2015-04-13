@@ -9,7 +9,7 @@
 
     .config(['$routeProvider', function ($routeProvider) {
       // routes which are not in our map are redirected to /home
-      //$routeProvider.otherwise({redirectTo: '/home'});
+      $routeProvider.otherwise({redirectTo: '/home'});
     }])
 
   /**
@@ -51,6 +51,7 @@
         // this redirects to the login page whenever that is encountered
         $rootScope.$on("$routeChangeError", function (e, next, prev, err) {
           if (err === "AUTH_REQUIRED") {
+            console.log("Error", e);
             $location.path(loginRedirectPath);
           }
         });
@@ -63,7 +64,7 @@
         }
 
         function authRequired(path) {
-          console.log('authRequired?', path, securedRoutes.indexOf(path)); //debug
+          console.log('authRequired? ', 'Path: ', path, ' index in securedRoutes: ', securedRoutes.indexOf(path)); //debug
           return securedRoutes.indexOf(path) !== -1;
         }
       }
