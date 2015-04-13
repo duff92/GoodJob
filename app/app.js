@@ -16,13 +16,11 @@ var goodJob = angular.module('goodJob', [
   .run(['$rootScope', 'Auth', function($rootScope, Auth) {
     // track status of authentication
     Auth.$onAuth(function(user) {
-      console.log("A user logged in: ", user);
-      $rootScope.loggedIn = !!user;
-      $rootScope.isUserLoggedIn = true; //or false
+      console.log("A user onAuth state changed to: ", !!user);
+      $rootScope.isUserLoggedIn = !!user; //or false
     });
     $rootScope.logout = function(){
       console.log("Unauth");
-      $rootScope.isUserLoggedIn = false; //or false
       Auth.$unauth();
 
     }
