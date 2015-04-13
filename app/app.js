@@ -36,6 +36,8 @@ var goodJob = angular.module('goodJob', [
     function($scope, Auth, $location) {   
 
 
+Auth.$onAuth(function(user) {
+
     $scope.menuItems = [
         {
             name: 'Login',
@@ -53,6 +55,10 @@ var goodJob = angular.module('goodJob', [
             title:  'Profile'
         }
     ];
+})
+
+
+
 
     $scope.isActive = function (viewLocation) {
         return viewLocation === $location.path();

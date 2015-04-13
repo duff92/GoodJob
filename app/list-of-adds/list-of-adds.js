@@ -3,15 +3,15 @@ angular.module('goodJob.listOfAdds', ['firebase.auth', 'firebase.utils', 'ngRout
 
 	.config(['$routeProvider', function($routeProvider) {
     	$routeProvider.
-    	whenAuthenticated('/list', {
+    	when('/list', {
       		controller: 'ApplicationCtrl',
       		templateUrl: 'list-of-adds/list-of-adds.html'
     	});
 
   	}])
 
-	.controller("ApplicationCtrl", ["$scope", "Auth","$routeParams",
-		function($scope, Auth, $routeParams) {
+	.controller("ApplicationCtrl", ["$scope", "$routeParams",
+		function($scope, $routeParams) {
 		 	
 	/*  console.log("Annonsid:",$routeParams.applicationId);
 	  

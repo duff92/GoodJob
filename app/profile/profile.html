@@ -3,12 +3,17 @@
 
 	<div>
 		<h2 class="text-center">
-			User profile
+			User profile    |  <a href="" ng-click='logout()'><button class="btn btn-lg btn-primary">Logout</button></a>
 		</h2>
 	</div>
 <div>
-      <a class='btn' ng-click='logout()'>Logout</a>
+
     </div>
+
+    <div class="alert alert-danger alert-error">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    <strong>Hello!</strong> <a href="/#values">Please fill in the value test to get a recomened view of the applications (Click Here)</a>
+</div>
 
 	<!-- User Information -->
 	<div class="panel panel-default">
@@ -33,7 +38,7 @@
 			</div>
 			<div class="row">
 				<div class="text-center">
-					<button class="btn" ng-click="updateUserInfo()">
+					<button class="btn btn-default btn-primary" ng-click="updateUserInfo()">
 						Update information
 					</button>
 				</div>
@@ -58,7 +63,7 @@
 
 			<div class="row">
 				<div class="text-center">
-					<button class="btn" ng-click="updateUserCompetence()">
+					<button class="btn btn-default btn-primary" ng-click="updateUserCompetence()">
 						Update values
 					</button>
 				</div>
@@ -85,7 +90,7 @@
 
 			<div class="row">
 				<div class="text-center">
-					<button class="btn" ng-click="updateUserCompetence()">
+					<button class="btn btn-default btn-primary" ng-click="updateUserCompetence()">
 						Update competences
 					</button>
 				</div>

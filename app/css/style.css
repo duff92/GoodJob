@@ -21,6 +21,11 @@
 		-o-transition: all 0.125s ease-in-out 0s;
 		-ms-transition: all 0.125s ease-in-out 0s;
 	}
+	
+	.alert-danger a{
+		  color: #a94442;
+		  font-weight: 800;
+	}
 
 	a:hover {
 		color: #4fc1e9;
