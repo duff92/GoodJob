@@ -1,9 +1,4 @@
-<div ui-content-for="title">
-	<span>List of adds</span>
-</div>
 
-<div class="scrollable">  
-	<div class="scrollable-content">
 		<div class="container">
 
 			<div>
@@ -11,6 +6,29 @@
 					Available jobs
 				</h2>
 			</div>
+					<div ui-state="searchBar">
+		  <input
+		    ng-if="Ui.active('searchBar')"
+		    type="search"
+		    class="form-control scrollable-header"
+		    placeholder="Search.." />
+
+		  <div class="scrollable-content" ui-scroll-bottom='bottomReached()'>
+		    <div class="list-group">
+		      <a ng-repeat="item in scrollItems" href="#" class="list-group-item">
+		        {{ item }} <i class="fa fa-chevron-right pull-right"></i>
+		      </a>
+		    </div>
+		  </div>
+
+		  <a class="btn btn-block btn-lg btn-primary scrollable-footer" ui-toggle='searchBar'>
+		    <i class="fa fa-search"></i> 
+		    <span ui-hide="searchBar">Show</span>
+		    <span ui-show="searchBar">Hide</span>
+		    Search Bar
+		  </a>
+		</div>
+
 			<div ng-repeat="ad in ads">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -59,5 +77,3 @@
 				</div>
 			</div>
 		</div>
-	</div>
-</div>

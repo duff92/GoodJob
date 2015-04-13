@@ -10,7 +10,7 @@ var goodJob = angular.module('goodJob', [
   'goodJob.profile',
   'goodJob.values',
   'goodJob.apply',
-  'mobile-angular-ui','mobile-angular-ui.gestures']);
+  'mobile-angular-ui']);
 
 /*goodJobApp.run(["$rootScope", "$location", function($rootScope, $location) {
 $rootScope.$on("$routeChangeError", function(event, next, previous, error) {
