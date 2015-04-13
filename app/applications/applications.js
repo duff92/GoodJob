@@ -1,16 +1,15 @@
 "use strict";
 angular.module('goodJob.applications', ['firebase.auth', 'firebase.utils', 'ngRoute', 'chart.js'])
 
-	.config(['$routeProvider', function($routeProvider) {
-    	$routeProvider.when('/applications', {
-      		controller: 'ApplicationsCtrl',
-      		templateUrl: 'applications/applications.html'
-    	});
-  	}])
+  .config(['$routeProvider', function($routeProvider) {
+      $routeProvider.whenAuthenticated('/applications', {
+          controller: 'ApplicationsCtrl',
+          templateUrl: 'applications/applications.html'
+      });
+    }])
 
-	.controller("ApplicationsCtrl", ["$scope", "Auth", "$location",
-		function($scope, Auth, $location) {				
-
+  .controller("ApplicationsCtrl", ["$scope", "Auth", "$location",
+    function($scope, Auth, $location) {       
         $scope.ads =[{  company_name:     "Bison",
                         company_match:    "76%",
                         company_logo:     "https://cdn.tutsplus.com/vector/uploads/legacy/articles/linkb_20weirdlogos/weirdlogos_prev.jpg",
@@ -42,5 +41,9 @@ angular.module('goodJob.applications', ['firebase.auth', 'firebase.utils', 'ngRo
             alert("You need to get your application accepted first! Please be patient...");
           }
         }
+        $scope.logout = function(){
+          console.log("Log out user!");
+          Auth.$unauth();
+        }
 
-	}]);
+  }]);
