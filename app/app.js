@@ -11,7 +11,7 @@ var goodJob = angular.module('goodJob', [
   'profile',
   'goodJob.values',
   'goodJob.apply',
-  'mobile-angular-ui','mobile-angular-ui.gestures'])
+  'mobile-angular-ui'])
 
   .run(['$rootScope', 'Auth', function($rootScope, Auth) {
     // track status of authentication

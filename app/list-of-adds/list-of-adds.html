@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div ui-content-for="title">
 	<span>List of adds</span>
 </div>
@@ -6,11 +7,41 @@
 	<div class="scrollable-content">
 		<div class="container">
 
+=======
+
+		<div class="container">
+
+>>>>>>> views_branch
 			<div>
 				<h2 class="text-center">
 					Available jobs
 				</h2>
 			</div>
+<<<<<<< HEAD
+=======
+					<div ui-state="searchBar">
+		  <input
+		    ng-if="Ui.active('searchBar')"
+		    type="search"
+		    class="form-control scrollable-header"
+		    placeholder="Search.." />
+
+		  <div class="scrollable-content" ui-scroll-bottom='bottomReached()'>
+		    <div class="list-group">
+		      <a ng-repeat="item in scrollItems" href="#" class="list-group-item">
+		        {{ item }} <i class="fa fa-chevron-right pull-right"></i>
+		      </a>
+		    </div>
+		  </div>
+
+		  <a class="btn btn-block btn-lg btn-primary scrollable-footer" ui-toggle='searchBar'>
+		    <i class="fa fa-search"></i> 
+		    <span ui-hide="searchBar">Show</span>
+		    <span ui-show="searchBar">Hide</span>
+		    Search Bar
+		  </a>
+		</div>
+>>>>>>> views_branch
 			<div ng-repeat="ad in ads">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -59,6 +90,7 @@
 				</div>
 			</div>
 		</div>
+<<<<<<< HEAD
 	</div>
 <<<<<<< HEAD
 </div>
@@ -70,3 +102,8 @@
 =======
 >>>>>>> Added search field to applications.html and to list-of-adds.html AND created the view for apply.html
 </div>
+=======
+
+
+
+>>>>>>> views_branch

@@ -1,9 +1,4 @@
-<div ui-content-for="title">
-
-</div>
-
-<div class="scrollable">
- <div class="scrollable-content section">
+<div class="container">
    
   <form name="registerForm" role="form" ng-submit='createUser()'>
     <fieldset>
@@ -94,11 +89,21 @@
                  placeholder="Repeat Password" required="">
         </div>
 
+<<<<<<< HEAD
         <div class="form-group">
           <label>Remember Me</label>
           <ui-switch 
             ng-model='rememberMe'></ui-switch>
         </div>
+=======
+        <div class="input-group">
+     <div class="checkbox">
+        <label>
+          <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
+            </label>
+      </div>
+</div>
+>>>>>>> views_branch
 		
 		<p style="color:red;" ng-show="regError">{{regErrorMessage}}</p>
     </fieldset>
@@ -111,19 +116,23 @@
 
 <span class="help-block">{{help_message}}</span>
 
-    <button class="btn btn-primary btn-block">
+      <a class='btn' 
+     ng-disabled="registerForm.$invalid" 
+     ng-click='createUser()'><button class="btn btn-primary btn-block">
       Register
-    </button>
+    </button></a>
 
+<<<<<<< HEAD
     <div ui-content-for="navbarAction">
       <a class='btn' 
 		 ng-disabled="registerForm.$invalid" 
 		 ng-click='createUser()'> Register </a>
     </div>
+=======
+>>>>>>> views_branch
 
   </form>
  </div>
-</div>
 
 
 
