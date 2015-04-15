@@ -9,22 +9,30 @@ var goodJob = angular.module('goodJob', [
   'goodJob.applications',
   'goodJob.profile',
   'profile',
+  'applicationAPI',
   'goodJob.values',
   'goodJob.apply',
   'mobile-angular-ui'])
 
   .run(['$rootScope', 'Auth', function($rootScope, Auth) {
-    // track status of authentication
+    // track status of authentication and notifications
+
     Auth.$onAuth(function(user) {
-      console.log("A user logged in: ", user);
-      $rootScope.loggedIn = !!user;
-      $rootScope.isUserLoggedIn = true; //or false
+      console.log("A user onAuth state changed to: ", !!user);
+      $rootScope.isUserLoggedIn = !!user; //or false
     });
     $rootScope.logout = function(){
       console.log("Unauth");
-      $rootScope.isUserLoggedIn = false; //or false
       Auth.$unauth();
 
+    }
+    $rootScope.valueTestStatus = function(status){
+      console.log("valueTestStatus: ", !!status);
+        $rootScope.valueTestDone = !!status;
+    }
+    $rootScope.getValueTestStatus = function(){
+      console.log("getValueTestStatus: ", !!$rootScope.valueTestDone);
+      return !!$rootScope.valueTestDone;
     }
 
 
@@ -36,27 +44,17 @@ var goodJob = angular.module('goodJob', [
     function($scope, Auth, $location) {   
 
 
-    $scope.menuItems = [
-        {
-            name: 'Login',
-            url:  '/login',
-            title: 'Login'
-        },
-        {
-            name: 'Register',
-            url:  '/register',
-            title: 'Register'
-        },
-        {
-            name:   'Profile',
-            url:    '/profile',
-            title:  'Profile'
-        }
-    ];
+    $('.nav a').on('click', function(){
+        $(".btn-navbar").click(); //bootstrap 2.x
+        $(".navbar-toggle").click() //bootstrap 3.x by Richard
+    });
+
+
 
     $scope.isActive = function (viewLocation) {
         return viewLocation === $location.path();
     };
 }]);
+
 
 

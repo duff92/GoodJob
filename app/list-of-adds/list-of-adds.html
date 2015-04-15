@@ -33,7 +33,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h2 class="panel-title company_name">
-							{{ ad.company_name }} - {{ ad.company_match }} match
+							{{ ad.company_name }} <!--- {{ ad.company_match }} match-->
 						</h2>
 					</div>
 					<div class="panel-body">
@@ -70,7 +70,7 @@
 						</div>
 						<div class="row">
 							<div class="text-center">
-								<button class="btn" ng-click="addNewApplication()">Apply here</button>
+								<a href="/#apply"><button class=" btn btn-default btn-primary">Apply here</button></a>
 							</div>
 						</div>
 					</div>

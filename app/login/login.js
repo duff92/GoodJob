@@ -30,6 +30,7 @@ angular.module('goodJob.login', ['firebase.auth', 'firebase.utils', 'ngRoute'])
 			  $location.path('/profile');
 			}).catch(function(error) {
 			  console.error("Authentication failed:", error);
+			  $scope.help_message = error.message;
 			});
 	    }
 /*
