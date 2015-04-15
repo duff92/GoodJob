@@ -14,7 +14,8 @@ var goodJob = angular.module('goodJob', [
   'mobile-angular-ui'])
 
   .run(['$rootScope', 'Auth', function($rootScope, Auth) {
-    // track status of authentication
+    // track status of authentication and notifications
+
     Auth.$onAuth(function(user) {
       console.log("A user onAuth state changed to: ", !!user);
       $rootScope.isUserLoggedIn = !!user; //or false
@@ -23,6 +24,14 @@ var goodJob = angular.module('goodJob', [
       console.log("Unauth");
       Auth.$unauth();
 
+    }
+    $rootScope.valueTestStatus = function(status){
+      console.log("valueTestStatus: ", !!status);
+        $rootScope.valueTestDone = !!status;
+    }
+    $rootScope.getValueTestStatus = function(){
+      console.log("getValueTestStatus: ", !!$rootScope.valueTestDone);
+      return !!$rootScope.valueTestDone;
     }
 
 
