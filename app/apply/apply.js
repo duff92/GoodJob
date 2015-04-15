@@ -29,7 +29,8 @@ angular.module('goodJob.apply', ['firebase.auth', 'firebase.utils', 'ngRoute'])
 							job_link: matchedJobs[i].platsannonsUrl,
 							job_posted: matchedJobs[i].publiceraddatum.substring(0,10),
 							job_deadline: matchedJobs[i].ansokan.sista_ansokningsdag.substring(0,10),
-							job_description: matchedJobs[i].annonstext.substring(0,50) + " ..."
+							job_description: matchedJobs[i].annonstext.substring(0,50) + " ...",
+							job_competences: ["Excel","Word","Paragliding"]
 	        }
 	    }, function (data) {
 	        console.log("There was an error");
