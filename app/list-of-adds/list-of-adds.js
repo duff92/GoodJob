@@ -9,10 +9,6 @@ angular.module('goodJob.listOfAdds', ['firebase.auth', 'firebase.utils', 'ngRout
     	});
 
 	}])
-	.config(['$httpProvider',function ($httpProvider) {
-    	$httpProvider.defaults.useXDomain = true;
-    	delete $httpProvider.defaults.headers.common['X-Requested-With'];
-  	}])
 
 	.controller("ApplicationCtrl", ["$scope", "$routeParams", "ApplicationAPI",
 		function ($scope, $routeParams, ApplicationAPI) {
@@ -56,6 +52,7 @@ angular.module('goodJob.listOfAdds', ['firebase.auth', 'firebase.utils', 'ngRout
 		        }]
 		    }, function (data) {
 		        console.log("There was an error");
+		        alert("There was an error loading the data");
 		    });
 
 			$scope.applyForJob = function (id) {
