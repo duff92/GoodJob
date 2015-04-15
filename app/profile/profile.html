@@ -44,28 +44,30 @@
 	</div>
 
 	<!-- User values -->
-	<div class="panel panel-default">
-		<div class="panel-heading">
-				<h2 class="panel-title">
-					User values
-				</h2>
-			</div>
-		<div class="panel-body">
-
-			<canvas id="bar" class="chart chart-bar" 
-					data="values_data"
-  					labels="values_lables"
-  					series="values_series">
-  			</canvas> 
-
-			<div class="row">
-				<div class="text-center">
-					<button class="btn btn-default btn-primary" ng-click="updateValues()">
-						Update values
-					</button>
+	<div ng-if="getValueTestStatus()">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+					<h2 class="panel-title">
+						User values
+					</h2>
 				</div>
-			</div>
+			<div class="panel-body">
 
+				<canvas id="bar" class="chart chart-bar" 
+						data="values_data"
+	  					labels="values_lables"
+	  					series="values_series">
+	  			</canvas> 
+
+				<div class="row">
+					<div class="text-center">
+						<button class="btn btn-default btn-primary" ng-click="updateValues()">
+							Update values
+						</button>
+					</div>
+				</div>
+
+			</div>
 		</div>
 	</div>
 
