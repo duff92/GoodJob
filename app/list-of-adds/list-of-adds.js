@@ -23,13 +23,13 @@ angular.module('goodJob.listOfAdds', ['firebase.auth', 'firebase.utils', 'ngRout
 
 		        for (var i = 0; i < matchedJobs.length; i++) {
 		        	$scope.ads.push({
-						company_name: matchedJobs[i].arbetsplatsnamn,
-						company_logo: "http://vignette3.wikia.nocookie.net/disney-infinity/images/7/75/Monsters_Inc.jpg/revision/latest?cb=20130118180017",
-						job_header: matchedJobs[i].annonsrubrik,
-						job_id: matchedJobs[i].annonsid,
-						job_title: matchedJobs[i].yrkesbenamning,
-						job_city: matchedJobs[i].kommunnamn,
-						job_posted: matchedJobs[i].publiceraddatum.substring(0,10),
+								company_name: matchedJobs[i].arbetsplatsnamn,
+								company_logo: "http://vignette3.wikia.nocookie.net/disney-infinity/images/7/75/Monsters_Inc.jpg/revision/latest?cb=20130118180017",
+								job_header: matchedJobs[i].annonsrubrik,
+								job_id: matchedJobs[i].annonsid,
+								job_title: matchedJobs[i].yrkesbenamning,
+								job_city: matchedJobs[i].kommunnamn,
+								job_posted: matchedJobs[i].publiceraddatum.substring(0,10)
 		        	})
 		        };
 
