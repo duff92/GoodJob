@@ -50,7 +50,7 @@
 						</div>
 						<div class="row">
 							<div class="text-center">
-								<button class="btn" ng-click="continue('Pending')">Continue</button>
+								<button class="btn btn-default btn-primary" ng-if="ad.job_status=='Accepted'" ng-click="continueWithApplication(ad.job_status)">Continue</button>
 							</div>
 						</div>
 					</div>
