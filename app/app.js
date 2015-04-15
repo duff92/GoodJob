@@ -9,6 +9,7 @@ var goodJob = angular.module('goodJob', [
   'goodJob.applications',
   'goodJob.profile',
   'profile',
+  'applicationAPI',
   'goodJob.values',
   'goodJob.apply',
   'mobile-angular-ui'])
