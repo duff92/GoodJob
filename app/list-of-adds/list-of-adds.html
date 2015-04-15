@@ -33,7 +33,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h2 class="panel-title company_name">
-							{{ ad.company_name }} - {{ ad.company_match }} match
+							{{ ad.company_name }} <!--- {{ ad.company_match }} match-->
 						</h2>
 					</div>
 					<div class="panel-body">
@@ -41,27 +41,19 @@
 							<div class="col-xs-6 col-sm-8 text-left">
 								<div class="row">
 									<div class="col-sm-4 text-left"> Job title: </div>
-									<div class="col-sm-8 text-left"><b> {{ ad.job_title }} </b></div>
+									<div class="col-sm-8 text-left"><b> {{ ad.job_header }} </b></div>
 								</div>
 								<div class="row">
-									<div class="col-sm-4 text-left"> Job hours: </div>
-									<div class="col-sm-8 text-left"><b> {{ ad.job_hours }} </b></div>
+									<div class="col-sm-4 text-left"> Job position: </div>
+									<div class="col-sm-8 text-left"><b> {{ ad.job_title }} </b></div>
 								</div>
 								<div class="row">
 									<div class="col-sm-4 text-left"> Job city: </div>
 									<div class="col-sm-8 text-left"><b> {{ ad.job_city }} </b></div>
 								</div>
 								<div class="row">
-									<div class="col-sm-4 text-left"> Job starts: </div>
-									<div class="col-sm-8 text-left"><b> {{ ad.job_starts }} </b></div>
-								</div>
-								<div class="row">
-									<div class="col-sm-4 text-left"> Job ends: </div>
-									<div class="col-sm-8 text-left"><b> {{ ad.job_ends }} </b></div>
-								</div>
-								<div class="row">
-									<div class="col-sm-4 text-left"> Deadline to apply: </div>
-									<div class="col-sm-8 text-left"><b> {{ ad.job_deadline }} </b></div>
+									<div class="col-sm-4 text-left"> Job posted: </div>
+									<div class="col-sm-8 text-left"><b> {{ ad.job_posted }} </b></div>
 								</div>
 		 					</div>
 							<div class="col-xs-6 col-sm-4 ">
@@ -70,7 +62,7 @@
 						</div>
 						<div class="row">
 							<div class="text-center">
-								<button class="btn" ng-click="addNewApplication()">Apply here</button>
+								<button class="btn btn-default btn-primary" ng-click="applyForJob(ad.job_id)">Apply for job</button>
 							</div>
 						</div>
 					</div>

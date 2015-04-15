@@ -29,10 +29,10 @@ angular.module('goodJob.applications', ['firebase.auth', 'firebase.utils', 'ngRo
                           job_starts:     "May 2015",
                           job_ends:       "Dec 2016",
                           job_deadline:   "2015-03-31",
-                          job_status:     "Accepted" 
+                          job_status:     "Pending" 
                       }]
 
-        $scope.continue = function(value) {
+        $scope.continueWithApplication = function(value) {
           console.log(value);
           if (value === 'Accepted') {
             alert("Congratulations! Please meet us in Mars 2080 for your interview!");

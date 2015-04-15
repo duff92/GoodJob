@@ -51,7 +51,9 @@ angular.module('goodJob.profile', ['firebase.auth', 'firebase.utils', 'ngRoute',
                                       2];
 
         $scope.competence_chart = 'PolarArea';
-
+        $scope.updateValues = function(){
+          $location.path("/values");
+        }
         $scope.logout = function(){
           console.log("Log out user!");
           Auth.$unauth();

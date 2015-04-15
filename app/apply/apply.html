@@ -11,30 +11,25 @@
           Apply for job
         </h2>
       </div>
-      <div ng-repeat="ad in ads">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h2 class="panel-title company_name">
-              {{ ad.company_name }} - {{ ad.company_match }} match
-            </h2>
-          </div>
-          <div class="panel-body">
-            <h3 class="text-center">
-              Job information
-            </h3>
-            <div class="row">
-              <div class="col-xs-6 col-sm-8 text-left">
-                <div class="row">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2 class="panel-title company_name">
+            {{ ad.company_name }} <!-- - {{ ad.company_match }} match -->
+          </h2>
+        </div>
+        <div class="panel-body">
+          <h3 class="text-center">
+            Job information
+          </h3>
+          <div class="row">
+            <div class="col-xs-6 col-sm-8 text-left">
+              <div class="row">
                   <div class="col-sm-4 text-left"> Job title: </div>
+                  <div class="col-sm-8 text-left"><b> {{ ad.job_header }} </b></div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4 text-left"> Job position: </div>
                   <div class="col-sm-8 text-left"><b> {{ ad.job_title }} </b></div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-4 text-left"> Job description: </div>
-                  <div class="col-sm-8 text-left"><b> {{ ad.job_description }} </b></div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-4 text-left"> Job hours: </div>
-                  <div class="col-sm-8 text-left"><b> {{ ad.job_hours }} </b></div>
                 </div>
                 <div class="row">
                   <div class="col-sm-4 text-left"> Job city: </div>
@@ -45,41 +40,56 @@
                   <div class="col-sm-8 text-left"><b> {{ ad.job_address }} </b></div>
                 </div>
                 <div class="row">
-                  <div class="col-sm-4 text-left"> Job starts: </div>
-                  <div class="col-sm-8 text-left"><b> {{ ad.job_starts }} </b></div>
+                  <div class="col-sm-4 text-left"> Job positions available: </div>
+                  <div class="col-sm-8 text-left"><b> {{ ad.job_positions }} </b></div>
                 </div>
                 <div class="row">
-                  <div class="col-sm-4 text-left"> Job ends: </div>
-                  <div class="col-sm-8 text-left"><b> {{ ad.job_ends }} </b></div>
+                  <div class="col-sm-4 text-left"> Job conditions: </div>
+                  <div class="col-sm-8 text-left"><b> {{ ad.job_conditions }} </b></div>
                 </div>
                 <div class="row">
-                  <div class="col-sm-4 text-left"> Deadline to apply: </div>
+                  <div class="col-sm-4 text-left"> Job hours: </div>
+                  <div class="col-sm-8 text-left"><b> {{ ad.job_hours }} </b></div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4 text-left"> Link to add: </div>
+                  <div class="col-sm-8 text-left"><b> {{ ad.job_link }} </b></div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4 text-left"> Job posted: </div>
+                  <div class="col-sm-8 text-left"><b> {{ ad.job_posted }} </b></div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4 text-left"> Deadline for application: </div>
                   <div class="col-sm-8 text-left"><b> {{ ad.job_deadline }} </b></div>
                 </div>
-              </div>
-              <div class="col-xs-6 col-sm-4 ">
-                <img class="img" src="{{ ad.company_logo }}" ></img>
-              </div>
+                <div class="row">
+                  <div class="col-sm-4 text-left"></br>Job description: </div>
+                  <div class="col-sm-8 text-left"><b> {{ ad.job_description }}</b></div>
+                </div>
             </div>
+            <div class="col-xs-6 col-sm-4 ">
+              <img class="img" src="{{ ad.company_logo }}" ></img>
+            </div>
+          </div>
 
-            <div class="text-center">
-              <h3>Required competences</h3>
-              <div>Please enter the level of your skills on these required competences</div>
-              <div ng-repeat="competence in ad.job_competences ">
-                </br>
+          <div class="text-center">
+            <h3>Required competences</h3>
+            <div>Please enter the level of your skills on these required competences</div>
+            <div ng-repeat="competence in ad.job_competences ">
+              </br>
+              <div>
+                <b> {{ competence }} </b>
                 <div>
-                  <b> {{ competence }} </b>
-                  <div>
-                    <div class="btn-group" role="group">
-                      <button ng-repeat="i in ['Very bad','Bad','Average','Good','Very good']" type="button" class="btn btn-default"> {{ i }} </button>
-                    </div>
+                  <div class="btn-group" role="group">
+                    <button ng-repeat="i in ['Very bad','Bad','Average','Good','Very good']" type="button" class="btn btn-default"> {{ i }} </button>
                   </div>
                 </div>
               </div>
-              </br>
-              <div>
-                <button class="btn" ng-click="sendApplication()">Apply now</button>
-              </div>
+            </div>
+            </br>
+            <div>
+              <button class="btn btn-default btn-primary" ng-click="addToActiveApplications(ad.job_id)">Send application</button>
             </div>
           </div>
         </div>

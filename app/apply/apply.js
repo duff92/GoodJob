@@ -2,32 +2,44 @@
 angular.module('goodJob.apply', ['firebase.auth', 'firebase.utils', 'ngRoute'])
 
 	.config(['$routeProvider', function($routeProvider) {
-		$routeProvider.whenAuthenticated('/apply', {
+		$routeProvider.whenAuthenticated('/apply/:jobID', {
 			controller: 'ApplyCtrl',
 			templateUrl: 'apply/apply.html'
     	});
   	}])
 
-	.controller("ApplyCtrl", ["$scope", "Auth", "$routeParams",
-		function($scope, Auth, $location) {
+	.controller("ApplyCtrl", ["$scope", "Auth", "$routeParams", "$location", "ApplicationAPI",
+		function($scope, Auth, $routeParams, $location, ApplicationAPI) {
 
-			console.log("Apply");
+			console.log("Apply for jobID: " + $routeParams.jobID);
 
-		 //$scope.help_message = "";
-
-		$scope.ads =[{  company_name:   "Monsters inc",
-			company_match: "87%",
-			company_logo: "http://vignette3.wikia.nocookie.net/disney-infinity/images/7/75/Monsters_Inc.jpg/revision/latest?cb=20130118180017",
-			job_title: "Administrator",
-			job_description: "Adminitrate monsters schedules as well as door transportation within the facility.",
-			job_hours: "Part time, 50%",
-			job_city: "Stockholm",
-			job_address: "Monsters inc, Icecream street 43, 100 28 Stockholm", 
-			job_starts: "May 2015",
-			job_ends: "May 2016",
-			job_deadline: "2015-04-15",
-			job_competences: ["Word","Screaming","Children"]
-	    }]
+	    ApplicationAPI.getApplication.get({annonsID: $routeParams.jobID}, function (data) {
+	        console.log("Response from ApplicationAPI.getAppliction:", data);
+	        $scope.ad = {
+	            company_name: matchedJobs[i].arbetsplatsnamn,
+							company_logo: "http://vignette3.wikia.nocookie.net/disney-infinity/images/7/75/Monsters_Inc.jpg/revision/latest?cb=20130118180017",
+							job_header: matchedJobs[i].annonsrubrik,
+							job_id: matchedJobs[i].annonsid,
+							job_title: matchedJobs[i].yrkesbenamning,
+							job_city: matchedJobs[i].kommunnamn,
+							job_address: matchedJobs[i].arbetsplats.postadress + ", " + matchedJobs[i].arbetsplats.postnummer + " " + matchedJobs[i].arbetsplats.postort,
+							job_positions: matchedJobs[i].antal_platser,
+							job_conditions: matchedJobs[i].villkor.varaktighet,
+							job_hours: matchedJobs[i].villkor.arbetstid,
+							job_link: matchedJobs[i].platsannonsUrl,
+							job_posted: matchedJobs[i].publiceraddatum.substring(0,10),
+							job_deadline: matchedJobs[i].ansokan.sista_ansokningsdag.substring(0,10),
+							job_description: matchedJobs[i].annonstext.substring(0,50) + " ...",
+							job_competences: ["Excel","Word","Paragliding"]
+	        }
+	    }, function (data) {
+	        console.log("There was an error");
+	    });
+		
+		$scope.addToActiveApplications = function (id) {
+	        console.log("Add to active applications");
+	        $location.path("/applications");
+	    }
 	}]
 );
 
