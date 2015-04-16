@@ -36,7 +36,6 @@ angular.module('goodJob.apply', ['firebase.auth', 'firebase.utils', 'ngRoute'])
 				job_title: platsannons.annons.yrkesbenamning,
 				job_city: platsannons.annons.kommunnamn,
 				job_address: platsannons.arbetsplats.postadress,
-				job_positions: platsannons.annons.antal_platser,
 				job_conditions: platsannons.villkor.varaktighet,
 				job_hours: platsannons.villkor.arbetstid,
 				job_link: platsannons.annons.platsannonsUrl,

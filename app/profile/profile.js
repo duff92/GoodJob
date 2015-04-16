@@ -20,7 +20,7 @@ angular.module('goodJob.profile', ['firebase.auth', 'firebase.utils', 'ngRoute',
                                   { info_header: "Surname",
                                     info_value: $scope.userObject.lastName},
                                   { info_header: "Email",
-                                    info_value: "NOT IMPLEMENTED YET! :)"},
+                                    info_value: "user1@goodjob.com"},
                                   { info_header: "Phone",
                                     info_value: $scope.userObject.phone}];
     
