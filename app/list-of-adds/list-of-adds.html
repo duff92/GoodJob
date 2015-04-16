@@ -32,13 +32,13 @@
 			<div ng-repeat="ad in ads">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h2 class="panel-title company_name">
-							{{ ad.company_name }} <!--- {{ ad.company_match }} match-->
-						</h2>
+						<h2 class="panel-title company_name"><b>
+				            {{ ad.company_name }} <!-- - {{ ad.company_match }} match -->
+				        </b></h2>
 					</div>
 					<div class="panel-body">
 						<div class="row">
-							<div class="col-xs-6 col-sm-8 text-left">
+							<div class="col-xs-8 col-sm-8 text-left">
 								<div class="row">
 									<div class="col-sm-4 text-left"> Job title: </div>
 									<div class="col-sm-8 text-left"><b> {{ ad.job_header }} </b></div>
@@ -56,7 +56,7 @@
 									<div class="col-sm-8 text-left"><b> {{ ad.job_posted }} </b></div>
 								</div>
 		 					</div>
-							<div class="col-xs-6 col-sm-4 ">
+							<div class="col-xs-4 col-sm-4 ">
 								<img class="img" src="{{ ad.company_logo }}" ></img>
 							</div>
 						</div>
