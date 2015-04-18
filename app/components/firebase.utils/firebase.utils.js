@@ -1,4 +1,5 @@
-
+//Utilitary module mainly used for getting the reference object of the firebase
+//@TODO cleanup of the code, remove useless methods.
 // a simple wrapper on Firebase and AngularFire to simplify deps and keep things DRY
 angular.module('firebase.utils', ['firebase', 'goodJob.config'])
    .factory('fbutil', ['$window', 'FirebaseURL', function($window, FBURL) {

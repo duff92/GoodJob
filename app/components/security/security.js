@@ -1,3 +1,7 @@
+/* Utilitary module for security 
+* @TODO : cleanup of the useless code.
+*
+*/
 (function (angular) {
   "use strict";
 

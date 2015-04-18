@@ -1,21 +1,28 @@
+/* Module linked to apply view.
+* It displays specific information about a selected job.
+* @See firebase.auth
+* @See firebase.utils
+*/
 "use strict";
 angular.module('goodJob.apply', ['firebase.auth', 'firebase.utils', 'ngRoute'])
-
+	//Routing
 	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.whenAuthenticated('/apply/:jobID', {
 			controller: 'ApplyCtrl',
 			templateUrl: 'apply/apply.html'
     	});
   	}])
-
+	//Definition of the controller
 	.controller("ApplyCtrl", ["$scope", "Auth", "$routeParams", "$location", "ApplicationAPI",
 		function($scope, Auth, $routeParams, $location, ApplicationAPI) {
-
+			
 			console.log("Apply for jobID: " + $routeParams.jobID);
-
+		//Get information from arbets API using job id
+		//@See ApplicationAPI
 	    ApplicationAPI.getApplication.get({'Id': $routeParams.jobID}, function (data) {
 	        console.log("Response from ApplicationAPI.getAppliction:", data);
-	        var platsannons = data.platsannons;
+	        //Job object
+			var platsannons = data.platsannons;
 
 	        // Modify the data to a more user friendly format
 	        platsannons.annons.publiceraddatum = platsannons.annons.publiceraddatum.substring(0,10)
@@ -27,7 +34,7 @@ angular.module('goodJob.apply', ['firebase.auth', 'firebase.utils', 'ngRoute'])
 	        };
 	        platsannons.arbetsplats.postadress = platsannons.arbetsplats.postadress + " " + platsannons.arbetsplats.postnummer + " " + platsannons.arbetsplats.postort;
 
-
+			//Populate the view with retrieved information
 	        $scope.ad = {
 	            company_name: platsannons.arbetsplats.arbetsplatsnamn,
 				company_logo: "/img/logo_black.png",
@@ -47,9 +54,12 @@ angular.module('goodJob.apply', ['firebase.auth', 'firebase.utils', 'ngRoute'])
 	    }, function (data) {
 	        console.log("There was an error");
 	    });
-		
+		//Function attached to button.
+		//Add specific job to user's active applications
+		//@TODO add to the user's data in firebase.
 		$scope.addToActiveApplications = function (id) {
 	        console.log("Add to active applications");
+			//Redirect to applications
 	        $location.path("/applications");
 	    }
 	}]

@@ -46,11 +46,11 @@ angular.module('goodJob.listOfAdds', ['firebase.auth', 'firebase.utils', 'ngRout
 		        //alert("There was an error loading the data");
 		    });
 			//Function attached to apply button
-			//@TODO add the job to user's list of applications
-			//@Param id the id of the logged in user
+			//
+			//@Param id the id of the job
 			$scope.applyForJob = function (id) {
 	        	console.log("Apply for job: " + id);
-				//For the moment relocate to applications
+				//Redirect to the job specific detailed information
 	        	$location.path("/apply/" + id);
 	    	}
 			//Logout funtionnality.

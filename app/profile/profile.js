@@ -1,32 +1,38 @@
+/* Module linked to the profile view
+*  It display user based information retrieved from firebase
+*  @TODO remove the static information and replace with firebase data
+*/
 "use strict";
 angular.module('goodJob.profile', ['firebase.auth', 'firebase.utils', 'ngRoute', 'chart.js'])
-
+	//Routing
 	.config(['$routeProvider', function($routeProvider) {
     	$routeProvider.whenAuthenticated('/profile', {
       		controller: 'ProfileCtrl',
       		templateUrl: 'profile/profile.html'
     	});
   	}])
-
+	//definition of the controller
 	.controller("ProfileCtrl", ["$scope", "Auth", "$location", "Profile",
 		function($scope, Auth, $location, Profile) {
-				// $scope.userInfo = $firebaseObject(Profile.getUser());
-        //console.log("ProfileCtrl", Profile.getUser(Auth.$getAuth().uid));
+		//Use of Profile factory
+		// @See Profile for more information
         Profile.getUser(Auth.$getAuth().uid).$bindTo($scope, "userObject").then(function(){
-            $scope.userInfo =[ {      info_header: "Username",
+            //populate view from firebase retrieved data
+			$scope.userInfo =[ {      info_header: "Username",
                                     info_value: $scope.userObject.uname},   
                                   { info_header: "Firstname",
                                     info_value: $scope.userObject.firstName},
                                   { info_header: "Surname",
                                     info_value: $scope.userObject.lastName},
                                   { info_header: "Email",
+									//@TODO retrieve e-mail from firebase
                                     info_value: "user1@goodjob.com"},
                                   { info_header: "Phone",
                                     info_value: $scope.userObject.phone}];
     
           });
-			  
-			  $scope.values_series = [ 'Basic Behaviour', 'Adapted Behaviour'];
+		//Static data for competences and values	  
+	    $scope.values_series = [ 'Basic Behaviour', 'Adapted Behaviour'];
 
         $scope.values_lables = [ 'Dominant',    'Influential',  'Steady',     'Conscientious'];
         $scope.values_data =   [[ 36,            76,             62,           37            ],
@@ -51,9 +57,11 @@ angular.module('goodJob.profile', ['firebase.auth', 'firebase.utils', 'ngRoute',
                                       2];
 
         $scope.competence_chart = 'PolarArea';
+		//Function attached to button redirecting to values.
         $scope.updateValues = function(){
           $location.path("/values");
         }
+		//Logout functionality.
         $scope.logout = function(){
           console.log("Log out user!");
           Auth.$unauth();
