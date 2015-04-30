@@ -21,5 +21,15 @@ angular.module('applicationAPI', ['ngResource'])
         }
   });
 
+      //Method for getting single application from Arbetsformedlingen API
+  this.myApplications = $resource("http://api.arbetsformedlingen.se/platsannons/matchning?kommunid=180&sida=1&antalrader=3",{},{
+    //GET request crafting
+    get:{
+            method:"GET",
+            headers:{'Content-Type':'application/json;charset=UTF-8', 'Accept':'application/json', 'Accept-Language':'sv-SE,sv'} 
+        }
+  });
+
+
     return this;
   }]);

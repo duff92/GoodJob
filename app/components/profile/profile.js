@@ -29,21 +29,44 @@ angular.module('profile', ['firebase.utils', 'firebase'])
 				return $firebaseObject(userRef);
 		},
 
-		getApplications: function(){
+		getApplications: function(postId){
 			var appRef = _ref.child("users").child(_ref.getAuth().uid).child("applications");
 			var applicationArray = $firebaseArray(appRef);
+			console.log(applicationArray);
 			return applicationArray;
 			//return $firebaseArray(appRef);
 		},
 
 		addApplication: function(applicationid){
-			this.getApplications().$add(applicationid);
+			this.getApplications().$add({id:applicationid}).then(function(ref) {
+			  var id = ref.key();
+			  console.log("added record with id " + id);
+			});
+
 		},
 
 		removeApplication: function(applicationid){
-			var appRef = _ref.child("users").child(_ref.getAuth().uid).child("applications");
-			appRef.$remove(appRef.$indexFor(applicationid));
-		}
 
+			console.log(applicationid);
+
+		this.getApplications().$remove(applicationid).then(function(ref) {
+			  var id = ref.key();
+			  console.log("remove record with id " + id);
+			});
+
+
+		/* Working example */
+
+		/* console.log(applicationid);
+
+		var ref = _ref.child("users").child(_ref.getAuth().uid).child("applications");
+
+		ref.child('-JoAoIKn3SwApouMYczH').remove(function(error){ 
+			if (error) { console.log("Error:", error); } 
+			else { console.log("Removed successfully!"); } 
+		});*/
+
+
+		}
   	};
  }]);

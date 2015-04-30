@@ -13,49 +13,71 @@ angular.module('goodJob.applications', ['firebase.auth', 'firebase.utils', 'ngRo
       });
     }])
   //Definition of the controller
-  .controller("ApplicationsCtrl", ["$scope", "Auth", "$location",
-    function($scope, Auth, $location) {  
+  .controller("ApplicationsCtrl", ["$scope", "Auth", "$routeParams", "$location", "ApplicationAPI", "Profile",
+    function($scope, Auth, $routeParams, $location, ApplicationAPI, Profile) {
 		//Populate the scope with a static list of data
 		//@TODO fetch the list from firebase
-        $scope.ads =[{  company_name:     "Bison",
-                        company_match:    "76%",
-                        company_logo:     "https://cdn.tutsplus.com/vector/uploads/legacy/articles/linkb_20weirdlogos/weirdlogos_prev.jpg",
-                          job_title:      "Meat taster",
-                          job_hours:      "Part time, 25%",
-                          job_city:       "Madrid",
-                          job_starts:     "May 2015",
-                          job_ends:       "May 2016",
-                          job_deadline:   "2015-04-01",
-                          job_status:     "Accepted" 
-                      },{ company_name:   "Ballet Acadamy",
-                        company_match:    "85%",
-                        company_logo:     "http://www.virginiabeachballetacademy.com/rw_common/images/VBBA%20Logo%20120H.png",
-                          job_title:      "Shoe maker",
-                          job_hours:      "Full time, 100%",
-                          job_city:       "Malmö",
-                          job_starts:     "May 2015",
-                          job_ends:       "Dec 2016",
-                          job_deadline:   "2015-03-31",
-                          job_status:     "Pending" 
-                      }]
-		//Function attached to the button continue on the add
-		//for the moment the behavior is harcoded
-		//@TODO Company must process the applications and modify the value
-		//@Param value the value of the pending application, determined by the company.
+
+
+   Profile.getUser(Auth.$getAuth().uid).$bindTo($scope, "userObject").then(function(){
+
+      var itemList = $scope.userObject.applications;
+
+      console.log(itemList);
+
+
+      
+
+   //Communicating with rest API @See ApplicationAPI
+        ApplicationAPI.myApplications.get(function (data) {
+            console.log("Response from ApplicationAPI.latestApplictions:", data);
+        //Object containing the jobs from arbets database (Array)
+            var matchedJobs = data.matchningslista.matchningdata;
+            console.log("Matchningdata", matchedJobs);
+        //Empty the add list
+            $scope.ads = [];
+        //Populate the Add list with retrieved data
+            for (var i = 0; i < matchedJobs.length; i++) {
+              $scope.ads.push({
+                company_name: matchedJobs[i].arbetsplatsnamn,
+                company_logo: "/img/logo_black.png",
+                job_header: matchedJobs[i].annonsrubrik,
+                job_id: matchedJobs[i].annonsid,
+                job_title: matchedJobs[i].yrkesbenamning,
+                job_city: matchedJobs[i].kommunnamn,
+                job_posted: matchedJobs[i].publiceraddatum.substring(0,10)
+              })
+            };
+
+        }, function (data) {
+          console.log("There was an error");
+      });
+
+
+      });
+
+     
+//Function attached to the button continue on the add
+    //for the moment the behavior is harcoded
+    //@TODO Company must process the applications and modify the value
+    //@Param value the value of the pending application, determined by the company.
         $scope.continueWithApplication = function(value) {
           console.log(value);
           if (value === 'Accepted') {
-			//@TODO E-mail generation
+      //@TODO E-mail generation
             alert("Congratulations! Please meet us in Mars 2080 for your interview!");
           }
           else {
             alert("You need to get your application accepted first! Please be patient...");
           }
         }
-		//Logout functionality
-        $scope.logout = function(){
-          console.log("Log out user!");
-          Auth.$unauth();
-        }
+          $scope.removeFromActiveApplications = function (id) {
+          console.log("Remove from active applications");
+
+          Profile.removeApplication(id);
+
+      //Redirect to applications
+          $location.path("/applications");
+      }
 
   }]);
