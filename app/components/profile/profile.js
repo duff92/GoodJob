@@ -4,7 +4,7 @@
 *  @See firebase.utils
 */
 angular.module('profile', ['firebase.utils', 'firebase'])
-  .factory('Profile', ['fbutil', '$firebaseObject', function(fbutil, $firebaseObject) {
+  .factory('Profile', ['fbutil', '$firebaseObject', '$firebaseArray', function(fbutil, $firebaseObject, $firebaseArray) {
 	//Firebase reference
   	var _ref = fbutil.ref();
 	
@@ -23,10 +23,27 @@ angular.module('profile', ['firebase.utils', 'firebase'])
 		},
 		//Getter method for the user information.
 		//Return a JSON object containing all user information stored into firebase.
-		getUser: function(userid){
-				var userRef = _ref.child("users").child(userid);
+		getUser: function(){
+				var userRef = _ref.child("users").child(_ref.getAuth().uid);
 				console.log("getUser.userRef", $firebaseObject(userRef));
 				return $firebaseObject(userRef);
+		},
+
+		getApplications: function(){
+			var appRef = _ref.child("users").child(_ref.getAuth().uid).child("applications");
+			var applicationArray = $firebaseArray(appRef);
+			return applicationArray;
+			//return $firebaseArray(appRef);
+		},
+
+		addApplication: function(applicationid){
+			this.getApplications().$add(applicationid);
+		},
+
+		removeApplication: function(applicationid){
+			var appRef = _ref.child("users").child(_ref.getAuth().uid).child("applications");
+			appRef.$remove(appRef.$indexFor(applicationid));
 		}
+
   	};
  }]);

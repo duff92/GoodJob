@@ -13,8 +13,8 @@ angular.module('goodJob.apply', ['firebase.auth', 'firebase.utils', 'ngRoute'])
     	});
   	}])
 	//Definition of the controller
-	.controller("ApplyCtrl", ["$scope", "Auth", "$routeParams", "$location", "ApplicationAPI",
-		function($scope, Auth, $routeParams, $location, ApplicationAPI) {
+	.controller("ApplyCtrl", ["$scope", "Auth", "$routeParams", "$location", "ApplicationAPI", "Profile",
+		function($scope, Auth, $routeParams, $location, ApplicationAPI, Profile) {
 			
 			console.log("Apply for jobID: " + $routeParams.jobID);
 		//Get information from arbets API using job id
@@ -59,6 +59,9 @@ angular.module('goodJob.apply', ['firebase.auth', 'firebase.utils', 'ngRoute'])
 		//@TODO add to the user's data in firebase.
 		$scope.addToActiveApplications = function (id) {
 	        console.log("Add to active applications");
+
+	        Profile.addApplication(id);
+
 			//Redirect to applications
 	        $location.path("/applications");
 	    }
