@@ -52,15 +52,20 @@ var goodJob = angular.module('goodJob', [
 
 	//Navbar
     $('.nav a').on('click', function(){
-        $(".btn-navbar").click(); //bootstrap 2.x
-        $(".navbar-toggle").click() //bootstrap 3.x by Richard
-    });
+         if (window.innerWidth < 768) {
+        $('.navbar-toggle').click()
+    }
+});
+
+    $scope.getClass = function(path) {
+    if ($location.path().substr(0, path.length) == path) {
+      return "active"
+    } else {
+      return ""
+    }
+}
 
 
-	//Keep track of active view
-    $scope.isActive = function (viewLocation) {
-        return viewLocation === $location.path();
-    };
 }]);
 
 

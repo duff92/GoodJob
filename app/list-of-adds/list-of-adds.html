@@ -6,30 +6,15 @@
 				</h2>
 			</div>
 
-					<div ui-state="searchBar">
-		  <input
-		    ng-if="Ui.active('searchBar')"
-		    type="search"
-		    class="form-control scrollable-header"
-		    placeholder="Search.." />
+				
+		  <div class="search">
+		  	<input type="search" ng-model="query" class="form-control" placeholder="Search.."></input>
+			</div>
+				<div class="text-center search">
+					Top 10 latest job sorted by {{date | date:'yyyy-MM-dd'}}
+				</div>
 
-		  <div class="scrollable-content" ui-scroll-bottom='bottomReached()'>
-		    <div class="list-group">
-		      <a ng-repeat="item in scrollItems" href="#" class="list-group-item">
-		        {{ item }} <i class="fa fa-chevron-right pull-right"></i>
-		      </a>
-		    </div>
-		  </div>
-
-		  <a class="btn btn-block btn-lg btn-primary scrollable-footer" ui-toggle='searchBar'>
-		    <i class="fa fa-search"></i> 
-		    <span ui-hide="searchBar">Show</span>
-		    <span ui-show="searchBar">Hide</span>
-		    Search Bar
-		  </a>
-		</div>
-
-			<div ng-repeat="ad in ads">
+			<div ng-repeat="ad in ads | filter:query">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h2 class="panel-title company_name"><b>

@@ -10,29 +10,29 @@
         <p>This is an example on how it's going to look - pick your favourite flavor to continue!</h4>
         <div class="row">
           <div class="col-xs-6 list-group">
-            <a ui-set="{'activeTab': 2}" class="list-group-item active">
-              <h4 class="list-group-item-heading">Chocolate</h4>
-              <p class="list-group-item-text">A cacao based sweet.</p>
+            <a href ui-set="{'activeTab': 2}" class="list-group-item blue">
+              <h4>Chocolate</h4>
+              <span>A cacao based sweet.</span>
             </a>
           </div>
           <div class="col-xs-6 list-group">
-            <a ui-set="{'activeTab': 2}" class="list-group-item active">
-              <h4 class="list-group-item-heading">Vanilla</h4>
-              <p class="list-group-item-text">Its white with small black dots.</p>
+            <a href ui-set="{'activeTab': 2}" class="list-group-item blue">
+              <h4>Vanilla</h4>
+              <span>Its white with small black dots.</span>
             </a>
           </div>
         </div>
         <div class="row">
           <div class="col-xs-6 list-group">
-            <a ui-set="{'activeTab': 2}" class="list-group-item active">
-              <h4 class="list-group-item-heading">Pear</h4>
-              <p class="list-group-item-text">It's a fruit, not to be confused with apples.</p>
+            <a href ui-set="{'activeTab': 2}" class="list-group-item blue">
+              <h4>Pear</h4>
+              <span>It's a fruit, not to be confused with apples.</span>
             </a>
           </div>
           <div class="col-xs-6 list-group">
-            <a ui-set="{'activeTab': 2}" class="list-group-item active">
-              <h4 class="list-group-item-heading">Strawberries</h4>
-              <p class="list-group-item-text">Berries on a straw, questions on that?</p>
+            <a href ui-set="{'activeTab': 2}" class="list-group-item blue">
+              <h4>Strawberries</h4>
+              <span>Berries on a straw, questions on that?</span>
             </a>
           </div>
         </div>
@@ -43,10 +43,10 @@
         <p>Great! Now you get it! Ahead of you there are two pages with values which you are asked to choose between. Good luck!</p>
         <div class="row">
           <div class="text-center">
-            <a ui-set="{'activeTab': 1}" class="btn btn-default btn-primary">
+            <a href ui-set="{'activeTab': 1}" class="btn btn-default btn-primary">
               Go back
             </a>
-            <a ui-set="{'activeTab': 3}" class="btn btn-default btn-primary">
+            <a href ui-set="{'activeTab': 3}" class="btn btn-default btn-primary">
               Continue
             </a>
           </div>
@@ -58,38 +58,38 @@
         <p>{{ instructions }}</p>
         <div class="row">
           <div class="col-xs-6 list-group">
-            <a ui-set="{'activeTab': 4}" class="list-group-item active">
-              <h4 class="list-group-item-heading">{{ values[0].value_name }}</h4>
-              <p class="list-group-item-text">{{ values[0].value_description}}</p>
+            <a href ui-set="{'activeTab': 4}" class="list-group-item blue">
+              <h4>{{ values[0].value_name }}</h4>
+              <span>{{ values[0].value_description}}</span>
             </a>
           </div>
           <div class="col-xs-6 list-group">
-            <a ui-set="{'activeTab': 4}" class="list-group-item active">
-              <h4 class="list-group-item-heading">{{ values[1].value_name }}</h4>
-              <p class="list-group-item-text">{{ values[1].value_description}}</p>
+            <a href ui-set="{'activeTab': 4}" class="list-group-item active">
+              <h4>{{ values[1].value_name }}</h4>
+              <span>{{ values[1].value_description}}</span>
             </a>
           </div>
         </div>
         <div class="row">
           <div class="col-xs-6 list-group">
-            <a ui-set="{'activeTab': 4}" class="list-group-item active">
-              <h4 class="list-group-item-heading">{{ values[2].value_name }}</h4>
-              <p class="list-group-item-text">{{ values[2].value_description}}</p>
+            <a href ui-set="{'activeTab': 4}" class="list-group-item blue">
+              <h4>{{ values[2].value_name }}</h4>
+              <span>{{ values[2].value_description}}</span>
             </a>
           </div>
           <div class="col-xs-6 list-group">
-            <a ui-set="{'activeTab': 4}" class="list-group-item active">
-              <h4 class="list-group-item-heading">{{ values[3].value_name }}</h4>
-              <p class="list-group-item-text">{{ values[3].value_description}}</p>
+            <a href ui-set="{'activeTab': 4}" class="list-group-item blue">
+              <h4>{{ values[3].value_name }}</h4>
+              <span>{{ values[3].value_description}}</span>
             </a>
           </div>
         </div>
         <div class="row">
           <div class="text-center">
-            <a ui-set="{'activeTab': 2}" class="btn btn-default btn-primary">
+            <a href ui-set="{'activeTab': 2}" class="btn btn-default btn-primary">
               Go back
             </a>
-            <a ui-set="{'activeTab': 4}" class="btn btn-default btn-primary">
+            <a href ui-set="{'activeTab': 4}" class="btn btn-default btn-primary">
               Continue
             </a>
           </div>
@@ -101,38 +101,38 @@
         <p>{{ instructions }}</p>
         <div class="row">
           <div class="col-xs-6 list-group">
-            <a ui-set="{'activeTab': 5}" class="list-group-item active">
-              <h4 class="list-group-item-heading">{{ values[4].value_name }}</h4>
-              <p class="list-group-item-text">{{ values[4].value_description}}</p>
+            <a href ui-set="{'activeTab': 5}" class="list-group-item blue">
+              <h4>{{ values[4].value_name }}</h4>
+              <span>{{ values[4].value_description}}</span>
             </a>
           </div>
           <div class="col-xs-6 list-group">
-            <a ui-set="{'activeTab': 5}" class="list-group-item active">
-              <h4 class="list-group-item-heading">{{ values[5].value_name }}</h4>
-              <p class="list-group-item-text">{{ values[5].value_description}}</p>
+            <a href ui-set="{'activeTab': 5}" class="list-group-item blue">
+              <h4>{{ values[5].value_name }}</h4>
+              <span>{{ values[5].value_description}}</span>
             </a>
           </div>
         </div>
         <div class="row">
           <div class="col-xs-6 list-group">
-            <a ui-set="{'activeTab': 5}" class="list-group-item active">
+            <a href ui-set="{'activeTab': 5}" class="list-group-item blue">
               <h4 class="list-group-item-heading">{{ values[6].value_name }}</h4>
-              <p class="list-group-item-text">{{ values[6].value_description}}</p>
+              <span>{{ values[6].value_description}}</span>
             </a>
           </div>
           <div class="col-xs-6 list-group">
-            <a ui-set="{'activeTab': 5}" class="list-group-item active">
-              <h4 class="list-group-item-heading">{{ values[7].value_name }}</h4>
-              <p class="list-group-item-text">{{ values[7].value_description}}</p>
+            <a href ui-set="{'activeTab': 5}" class="list-group-item blue">
+              <h4>{{ values[7].value_name }}</h4>
+              <span>{{ values[7].value_description}}</span>
             </a>
           </div>
         </div>
         <div class="row">
           <div class="text-center">
-            <a ui-set="{'activeTab': 3}" class="btn btn-default btn-primary">
+            <a href ui-set="{'activeTab': 3}" class="btn btn-default btn-primary">
               Go back
             </a>
-            <a ui-set="{'activeTab': 5}" class="btn btn-default btn-primary">
+            <a href ui-set="{'activeTab': 5}" class="btn btn-default btn-primary">
               Results
             </a>
           </div>

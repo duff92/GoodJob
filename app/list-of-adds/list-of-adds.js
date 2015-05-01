@@ -17,9 +17,8 @@ angular.module('goodJob.listOfAdds', ['firebase.auth', 'firebase.utils', 'ngRout
 
 	}])
 	//Definition of the controller
-	.controller("ApplicationCtrl", ["$scope", "$routeParams", "$location", "ApplicationAPI",
-		function ($scope, $routeParams, $location, ApplicationAPI) {
-
+	.controller("ApplicationCtrl", ["$scope", "$routeParams", "$location", "ApplicationAPI", "$http",
+		function ($scope, $routeParams, $location, ApplicationAPI, $http) {
 			//Communicating with rest API @See ApplicationAPI
 		    ApplicationAPI.latestApplications.get(function (data) {
 		        console.log("Response from ApplicationAPI.latestApplictions:", data);
@@ -45,6 +44,12 @@ angular.module('goodJob.listOfAdds', ['firebase.auth', 'firebase.utils', 'ngRout
 		        console.log("There was an error");
 		        //alert("There was an error loading the data");
 		    });
+
+		     $scope.date = new Date();
+		   /* $http.get('data/persons.json').success(function (data) {
+		        $scope.persons = data;
+		    });*/
+
 			//Function attached to apply button
 			//
 			//@Param id the id of the job

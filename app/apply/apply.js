@@ -4,7 +4,7 @@
 * @See firebase.utils
 */
 "use strict";
-angular.module('goodJob.apply', ['firebase.auth', 'firebase.utils', 'ngRoute'])
+angular.module('goodJob.apply', ['firebase.auth', 'firebase.utils', 'ngRoute', 'base64'])
 	//Routing
 	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.whenAuthenticated('/apply/:jobID', {
@@ -13,8 +13,8 @@ angular.module('goodJob.apply', ['firebase.auth', 'firebase.utils', 'ngRoute'])
     	});
   	}])
 	//Definition of the controller
-	.controller("ApplyCtrl", ["$scope", "Auth", "$routeParams", "$location", "ApplicationAPI", "Profile",
-		function($scope, Auth, $routeParams, $location, ApplicationAPI, Profile) {
+	.controller("ApplyCtrl", ["$scope", "Auth", "$routeParams", "$location", "ApplicationAPI", "Profile", "$base64",
+		function($scope, Auth, $routeParams, $location, ApplicationAPI, Profile, $base64) {
 			
 			console.log("Apply for jobID: " + $routeParams.jobID);
 		//Get information from arbets API using job id
@@ -34,10 +34,12 @@ angular.module('goodJob.apply', ['firebase.auth', 'firebase.utils', 'ngRoute'])
 	        };
 	        platsannons.arbetsplats.postadress = platsannons.arbetsplats.postadress + " " + platsannons.arbetsplats.postnummer + " " + platsannons.arbetsplats.postort;
 
+	        var imageData = $base64.encode(platsannons.arbetsplats.logotypurl);
+
 			//Populate the view with retrieved information
 	        $scope.ad = {
 	            company_name: platsannons.arbetsplats.arbetsplatsnamn,
-				company_logo: "/img/logo_black.png",
+				company_logo: imageData,
 				job_header: platsannons.annons.annonsrubrik,
 				job_id: platsannons.annons.annonsid,
 				job_title: platsannons.annons.yrkesbenamning,
