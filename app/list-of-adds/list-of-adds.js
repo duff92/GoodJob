@@ -21,10 +21,10 @@ angular.module('goodJob.listOfAdds', ['firebase.auth', 'firebase.utils', 'ngRout
 		function ($scope, $routeParams, $location, ApplicationAPI, $http) {
 			//Communicating with rest API @See ApplicationAPI
 		    ApplicationAPI.latestApplications.get(function (data) {
-		        console.log("Response from ApplicationAPI.latestApplictions:", data);
+		        // console.log("Response from ApplicationAPI.latestApplictions:", data);
 				//Object containing the jobs from arbets database (Array)
 		        var matchedJobs = data.matchningslista.matchningdata;
-		        console.log("Mathcningdata", matchedJobs);
+		        // console.log("Mathcningdata", matchedJobs);
 				//Empty the add list
 		        $scope.ads = [];
 				//Populate the Add list with retrieved data
@@ -54,7 +54,7 @@ angular.module('goodJob.listOfAdds', ['firebase.auth', 'firebase.utils', 'ngRout
 			//
 			//@Param id the id of the job
 			$scope.applyForJob = function (id) {
-	        	console.log("Apply for job: " + id);
+	        	// console.log("Apply for job: " + id);
 				//Redirect to the job specific detailed information
 	        	$location.path("/apply/" + id);
 	    	}

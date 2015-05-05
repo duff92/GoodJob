@@ -12,7 +12,7 @@ angular.module('profile', ['firebase.utils', 'firebase'])
 		//Set user method that creates or update user information in firebase.
 		//@Param info an object containing the user information that is required
   		setUser: function(info){
-  			console.log("setUser:",_ref.getAuth());
+  			// console.log("setUser:",_ref.getAuth());
 			    _ref.child("users").child(_ref.getAuth().uid).set({
 			      uname: info.uname,
 			      phone: info.phone,
@@ -25,14 +25,23 @@ angular.module('profile', ['firebase.utils', 'firebase'])
 		//Return a JSON object containing all user information stored into firebase.
 		getUser: function(){
 				var userRef = _ref.child("users").child(_ref.getAuth().uid);
-				console.log("getUser.userRef", $firebaseObject(userRef));
+				// console.log("getUser.userRef", $firebaseObject(userRef));
 				return $firebaseObject(userRef);
 		},
 
 		getApplications: function(postId){
+			console.log("Call for getApplications");
+
+			var activeApplicationsID = [];
 			var appRef = _ref.child("users").child(_ref.getAuth().uid).child("applications");
 			var applicationArray = $firebaseArray(appRef);
-			console.log(applicationArray);
+			
+			console.log("applicationArray",applicationArray);
+		 	console.log("applicationArray length",applicationArray.size);
+			// for (var i = 0; i < applicationArray.length; i++) {
+			//  	console.log("applicationArray[i]",applicationArray[i]);
+			// 	activeApplicationsID.push(applicationArray[i].application.id);
+			// };
 			return applicationArray;
 			//return $firebaseArray(appRef);
 		},
@@ -40,9 +49,8 @@ angular.module('profile', ['firebase.utils', 'firebase'])
 		addApplication: function(applicationid){
 			this.getApplications().$add({id:applicationid}).then(function(ref) {
 			  var id = ref.key();
-			  console.log("added record with id " + id);
+			  console.log("AddApplication added record with id " + id);
 			});
-
 		},
 
 		removeApplication: function(applicationid){
@@ -51,7 +59,7 @@ angular.module('profile', ['firebase.utils', 'firebase'])
 
 		this.getApplications().$remove(applicationid).then(function(ref) {
 			  var id = ref.key();
-			  console.log("remove record with id " + id);
+			  console.log("removeApplication record with id " + id);
 			});
 
 

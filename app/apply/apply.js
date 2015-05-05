@@ -20,7 +20,7 @@ angular.module('goodJob.apply', ['firebase.auth', 'firebase.utils', 'ngRoute', '
 		//Get information from arbets API using job id
 		//@See ApplicationAPI
 	    ApplicationAPI.getApplication.get({'Id': $routeParams.jobID}, function (data) {
-	        console.log("Response from ApplicationAPI.getAppliction:", data);
+	        // console.log("Response from ApplicationAPI.getAppliction:", data);
 	        //Job object
 			var platsannons = data.platsannons;
 
@@ -60,7 +60,7 @@ angular.module('goodJob.apply', ['firebase.auth', 'firebase.utils', 'ngRoute', '
 		//Add specific job to user's active applications
 		//@TODO add to the user's data in firebase.
 		$scope.addToActiveApplications = function (id) {
-	        console.log("Add to active applications");
+	        console.log("Add to active applications",id);
 
 	        Profile.addApplication(id);
 
