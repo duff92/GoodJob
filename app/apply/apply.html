@@ -76,30 +76,25 @@
             <h3 class="text-center">Required competences</h3>
             <div class="text-left">Please enter the level of your skills on these required competences:
             </div>
-            <div class="row">
-              <div class="col-xs-4" ng-repeat="competence in ad.job_competences ">
+              <div class="row text-center" ng-repeat="competence in ad.job_competences ">
                 </br>
-                <div>
-                  <b> {{ competence }} </b>
-                  <div>
-                    <form role="form">
-                      <div class="radio">
-                        <label><input type="radio" name="optradio">Very good</label>
-                      </div>
-                      <div class="radio">
-                        <label><input type="radio" name="optradio">Good</label>
-                      </div>
-                      <div class="radio">
-                        <label><input type="radio" name="optradio">Bad</label>
-                      </div>
-                      <div class="radio">
-                      <label><input type="radio" class="btn btn-success" name="optradio">Very bad</label>
-                      </div>
-                    </form>
+                  <b> {{ competence.title }} </b>
+                  </br>
+                  <div class="btn-group" data-toggle="buttons">
+                     <label class="btn btn-default">
+                        <input type="radio" name="options" id="option1"> Very Good
+                     </label>
+                     <label class="btn btn-default">
+                        <input type="radio" name="options" id="option2"> Good
+                     </label>
+                     <label class="btn btn-default">
+                        <input type="radio" name="options" id="option3"> Bad
+                     </label>
+                     <label class="btn btn-default">
+                        <input type="radio" name="options" id="option4"> Very Bad
+                     </label>
                   </div>
-                </div>
-              </div>
-            </div>
+               </div>
             </br>
             <div class="text-center">
               <button class="btn btn-default btn-primary" ng-click="addToActiveApplications(ad.job_id)">Send application</button>
