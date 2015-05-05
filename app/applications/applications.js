@@ -4,7 +4,7 @@
 *  @See firebase.utils
 */
 "use strict";
-angular.module('goodJob.applications', ['firebase.auth', 'firebase.utils', 'ngRoute', 'chart.js'])
+angular.module('goodJob.applications', ['firebase.auth', 'firebase.utils', 'ngRoute', 'chart.js', 'base64'])
 	 //Routing
 	.config(['$routeProvider', function($routeProvider) {
 			$routeProvider.whenAuthenticated('/applications', {
@@ -13,8 +13,8 @@ angular.module('goodJob.applications', ['firebase.auth', 'firebase.utils', 'ngRo
 			});
 		}])
 	//Definition of the controller
-	.controller("ApplicationsCtrl", ["$scope", "Auth", "$routeParams", "$location", "ApplicationAPI", "Profile",
-		function($scope, Auth, $routeParams, $location, ApplicationAPI, Profile) {
+	.controller("ApplicationsCtrl", ["$scope", "Auth", "$routeParams", "$location", "ApplicationAPI", "Profile", "$base64",
+		function($scope, Auth, $routeParams, $location, ApplicationAPI, Profile, $base64) {
 		//Populate the scope with a static list of data
 		//@TODO fetch the list from firebase
 
@@ -24,7 +24,7 @@ angular.module('goodJob.applications', ['firebase.auth', 'firebase.utils', 'ngRo
 			$scope.ads = [];
 			$scope.jobID = null;
 
-			// console.log("Itemlist: active applications at userObject",$scope.itemList);
+			// console.log("$scope.Itemlist: active applications at userObject",$scope.itemList);
 
 			for (var item in $scope.itemList) {
 				$scope.jobID = $scope.itemList[item].id;
@@ -35,6 +35,7 @@ angular.module('goodJob.applications', ['firebase.auth', 'firebase.utils', 'ngRo
 					// console.log("Response from ApplicationAPI.getAppliction:", data);
 					//Job object
 					var platsannons = data.platsannons;
+					var status = ["Pending","Accepted"];
 
 					// Modify the data to a more user friendly format
 					platsannons.annons.publiceraddatum = platsannons.annons.publiceraddatum.substring(0,10)
@@ -46,24 +47,24 @@ angular.module('goodJob.applications', ['firebase.auth', 'firebase.utils', 'ngRo
 					};
 					platsannons.arbetsplats.postadress = platsannons.arbetsplats.postadress + " " + platsannons.arbetsplats.postnummer + " " + platsannons.arbetsplats.postort;
 
-					// var imageData = $base64.encode(platsannons.arbetsplats.logotypurl);
+					var imageData = $base64.encode(platsannons.arbetsplats.logotypurl);
 
 					//Populate the view with retrieved information
 					$scope.ad = {
 						company_name: platsannons.arbetsplats.arbetsplatsnamn,
-						// company_logo: imageData,
+						company_logo: imageData,
 						job_header: platsannons.annons.annonsrubrik,
 						job_id: platsannons.annons.annonsid,
 						job_title: platsannons.annons.yrkesbenamning,
 						job_city: platsannons.annons.kommunnamn,
-						// job_address: platsannons.arbetsplats.postadress,
-						// job_conditions: platsannons.villkor.varaktighet,
-						// job_hours: platsannons.villkor.arbetstid,
-						// job_link: platsannons.annons.platsannonsUrl,
+						job_address: platsannons.arbetsplats.postadress,
+						job_conditions: platsannons.villkor.varaktighet,
+						job_hours: platsannons.villkor.arbetstid,
+						job_link: platsannons.annons.platsannonsUrl,
 						job_posted: platsannons.annons.publiceraddatum,
-						// job_deadline: platsannons.ansokan.sista_ansokningsdag,
-						// job_description: platsannons.annons.annonstext,
-						// job_competences: ["Excel","Word","Paragliding"]
+						job_deadline: platsannons.ansokan.sista_ansokningsdag,
+						job_description: platsannons.annons.annonstext,
+						job_status: status[Math.floor((Math.random() * 2))]
 					}
 					$scope.ads.push($scope.ad);
 				}, function (data) {
@@ -80,19 +81,22 @@ angular.module('goodJob.applications', ['firebase.auth', 'firebase.utils', 'ngRo
 				$scope.continueWithApplication = function(value) {
 					console.log(value);
 					if (value === 'Accepted') {
-			//@TODO E-mail generation
+						//@TODO E-mail generation
 						alert("Congratulations! Please meet us in Mars 2080 for your interview!");
 					}
 					else {
 						alert("You need to get your application accepted first! Please be patient...");
 					}
 				}
-					$scope.removeFromActiveApplications = function (id) {
-					console.log("Remove from active applications");
-
-					Profile.removeApplication(id);
-
-			//Redirect to applications
+				$scope.removeFromActiveApplications = function (applicationid) {
+					var itemID;
+					for (var item in $scope.itemList) {
+						if($scope.itemList[item].id == applicationid) {
+							itemID = $scope.itemList[item];
+							Profile.removeApplication(item);
+						}
+					}
+					//Redirect to applications
 					$location.path("/applications");
 			}
 
