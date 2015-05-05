@@ -44,6 +44,10 @@
                 <div class="col-sm-4 text-left"> Job address: </div>
                 <div class="col-sm-8 text-left"><b> {{ ad.job_address }} </b></div>
               </div>
+              <div class="row">
+                <div class="col-sm-4 text-left"> Link to add: </div>
+                <div class="col-sm-8 text-left"><a href="{{ ad.job_link }}" target="_blank"><b> Link </b></a></div>
+              </div>
             </div>
             <div class="col-xs-6 col-sm-6 text-left">
               <div class="row">
@@ -53,10 +57,6 @@
               <div class="row">
                 <div class="col-sm-4 text-left"> Job hours: </div>
                 <div class="col-sm-8 text-left"><b> {{ ad.job_hours }} </b></div>
-              </div>
-              <div class="row">
-                <div class="col-sm-4 text-left"> Link to add: </div>
-                <div class="col-sm-8 text-left"><a href="{{ ad.job_link }}" target="_blank"><b> Link </b></a></div>
               </div>
               <div class="row">
                 <div class="col-sm-4 text-left"> Job posted: </div>
