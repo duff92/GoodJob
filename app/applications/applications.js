@@ -13,8 +13,8 @@ angular.module('goodJob.applications', ['firebase.auth', 'firebase.utils', 'ngRo
 			});
 		}])
 	//Definition of the controller
-	.controller("ApplicationsCtrl", ["$scope", "Auth", "$routeParams", "$location", "ApplicationAPI", "Profile", "$base64",
-		function($scope, Auth, $routeParams, $location, ApplicationAPI, Profile, $base64) {
+	.controller("ApplicationsCtrl", ["$scope", "Auth", "$route", "$routeParams", "$location", "ApplicationAPI", "Profile", "$base64",
+		function($scope, Auth, $route, $routeParams, $location, ApplicationAPI, Profile, $base64) {
 		//Populate the scope with a static list of data
 		//@TODO fetch the list from firebase
 
@@ -97,7 +97,7 @@ angular.module('goodJob.applications', ['firebase.auth', 'firebase.utils', 'ngRo
 						}
 					}
 					//Redirect to applications
-					$location.path("/applications");
+					$route.reload();
 			}
 
 	}]);
