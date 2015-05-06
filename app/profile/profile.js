@@ -17,6 +17,9 @@ angular.module('goodJob.profile', ['firebase.auth', 'firebase.utils', 'ngRoute',
 		//Use of Profile factory
 		// @See Profile for more information
         Profile.getUser(Auth.$getAuth().uid).$bindTo($scope, "userObject").then(function(){
+
+          var userdata = $scope.currentUser = Auth.$getAuth(); 
+
             //populate view from firebase retrieved data
 			$scope.userInfo =[ {      info_header: "Username",
                                     info_value: $scope.userObject.uname},   
@@ -25,8 +28,7 @@ angular.module('goodJob.profile', ['firebase.auth', 'firebase.utils', 'ngRoute',
                                   { info_header: "Surname",
                                     info_value: $scope.userObject.lastName},
                                   { info_header: "Email",
-									//@TODO retrieve e-mail from firebase
-                                    info_value: "user1@goodjob.com"},
+                                    info_value: userdata.password.email},
                                   { info_header: "Phone",
                                     info_value: $scope.userObject.phone}];
     

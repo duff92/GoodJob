@@ -4,7 +4,7 @@
 * @See firebase.utils
 */
 "use strict";
-angular.module('goodJob.apply', ['firebase.auth', 'firebase.utils', 'ngRoute'])
+angular.module('goodJob.apply', ['firebase.auth', 'firebase.utils', 'ngRoute', 'base64'])
 	//Routing
 	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.whenAuthenticated('/apply/:jobID', {
@@ -13,14 +13,14 @@ angular.module('goodJob.apply', ['firebase.auth', 'firebase.utils', 'ngRoute'])
     	});
   	}])
 	//Definition of the controller
-	.controller("ApplyCtrl", ["$scope", "Auth", "$routeParams", "$location", "ApplicationAPI",
-		function($scope, Auth, $routeParams, $location, ApplicationAPI) {
-			
-			console.log("Apply for jobID: " + $routeParams.jobID);
+	.controller("ApplyCtrl", ["$scope", "Auth", "$routeParams", "$location", "ApplicationAPI", "Profile", "$base64",
+		function($scope, Auth, $routeParams, $location, ApplicationAPI, Profile, $base64) {
+		$scope.radioModel = 'Middle';
+		// console.log("Apply for jobID: " + $routeParams.jobID);
 		//Get information from arbets API using job id
 		//@See ApplicationAPI
 	    ApplicationAPI.getApplication.get({'Id': $routeParams.jobID}, function (data) {
-	        console.log("Response from ApplicationAPI.getAppliction:", data);
+	        // console.log("Response from ApplicationAPI.getAppliction:", data);
 	        //Job object
 			var platsannons = data.platsannons;
 
@@ -34,10 +34,11 @@ angular.module('goodJob.apply', ['firebase.auth', 'firebase.utils', 'ngRoute'])
 	        };
 	        platsannons.arbetsplats.postadress = platsannons.arbetsplats.postadress + " " + platsannons.arbetsplats.postnummer + " " + platsannons.arbetsplats.postort;
 
+
 			//Populate the view with retrieved information
 	        $scope.ad = {
 	            company_name: platsannons.arbetsplats.arbetsplatsnamn,
-				company_logo: "/img/logo_black.png",
+				company_logo: platsannons.arbetsplats.logotypurl,
 				job_header: platsannons.annons.annonsrubrik,
 				job_id: platsannons.annons.annonsid,
 				job_title: platsannons.annons.yrkesbenamning,
@@ -49,7 +50,10 @@ angular.module('goodJob.apply', ['firebase.auth', 'firebase.utils', 'ngRoute'])
 				job_posted: platsannons.annons.publiceraddatum,
 				job_deadline: platsannons.ansokan.sista_ansokningsdag,
 				job_description: platsannons.annons.annonstext,
-				job_competences: ["Excel","Word","Paragliding"]
+				job_competences: [
+							{'title':"Excel",'level':'Very Bad'},
+							{'title':"Word",'level':'Bad'},
+							{'title':"Paragliding",'level':'Very Bad'}]
 	        }
 	    }, function (data) {
 	        console.log("There was an error");
@@ -58,10 +62,11 @@ angular.module('goodJob.apply', ['firebase.auth', 'firebase.utils', 'ngRoute'])
 		//Add specific job to user's active applications
 		//@TODO add to the user's data in firebase.
 		$scope.addToActiveApplications = function (id) {
-	        console.log("Add to active applications");
+      // console.log("Add to active applications",id);
+      Profile.addApplication(id);
 			//Redirect to applications
-	        $location.path("/applications");
-	    }
+      $location.path("/applications");
+    }
 	}]
 );
 

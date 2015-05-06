@@ -20,7 +20,7 @@
         <div class="panel-body">
           <!-- Company logo -->
           <div class="text-center">
-            <img class="img" src="{{ ad.company_logo }}" ></img>
+            <img class="img" ng-src="http://{{ad.company_logo}}" ></img>
           </div>
           <!-- Job information -->
           <h3 class="text-center">
@@ -44,6 +44,10 @@
                 <div class="col-sm-4 text-left"> Job address: </div>
                 <div class="col-sm-8 text-left"><b> {{ ad.job_address }} </b></div>
               </div>
+              <div class="row">
+                <div class="col-sm-4 text-left"> Link to add: </div>
+                <div class="col-sm-8 text-left"><a href="{{ ad.job_link }}" target="_blank"><b> Link </b></a></div>
+              </div>
             </div>
             <div class="col-xs-6 col-sm-6 text-left">
               <div class="row">
@@ -53,10 +57,6 @@
               <div class="row">
                 <div class="col-sm-4 text-left"> Job hours: </div>
                 <div class="col-sm-8 text-left"><b> {{ ad.job_hours }} </b></div>
-              </div>
-              <div class="row">
-                <div class="col-sm-4 text-left"> Link to add: </div>
-                <div class="col-sm-8 text-left"><a href="{{ ad.job_link }}" target="_blank"><b> Link </b></a></div>
               </div>
               <div class="row">
                 <div class="col-sm-4 text-left"> Job posted: </div>
@@ -76,17 +76,25 @@
             <h3 class="text-center">Required competences</h3>
             <div class="text-left">Please enter the level of your skills on these required competences:
             </div>
-            <div class="text-center" ng-repeat="competence in ad.job_competences ">
-              </br>
-              <div>
-                <b> {{ competence }} </b>
-                <div>
-                  <div class="btn-group" role="group">
-                    <button ng-repeat="i in ['Very bad','Bad','Good','Very good']" type="button" class="btn btn-default"> {{ i }} </button>
+              <div class="row text-center" ng-repeat="competence in ad.job_competences ">
+                </br>
+                  <b> {{ competence.title }} </b>
+                  </br>
+                  <div class="btn-group" data-toggle="buttons">
+                     <label class="btn btn-default">
+                        <input type="radio" name="options" id="option1"> Very Good
+                     </label>
+                     <label class="btn btn-default">
+                        <input type="radio" name="options" id="option2"> Good
+                     </label>
+                     <label class="btn btn-default">
+                        <input type="radio" name="options" id="option3"> Bad
+                     </label>
+                     <label class="btn btn-default">
+                        <input type="radio" name="options" id="option4"> Very Bad
+                     </label>
                   </div>
-                </div>
-              </div>
-            </div>
+               </div>
             </br>
             <div class="text-center">
               <button class="btn btn-default btn-primary" ng-click="addToActiveApplications(ad.job_id)">Send application</button>

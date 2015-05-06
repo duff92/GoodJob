@@ -4,7 +4,7 @@
 *  @See firebase.utils
 */
 angular.module('profile', ['firebase.utils', 'firebase'])
-  .factory('Profile', ['fbutil', '$firebaseObject', function(fbutil, $firebaseObject) {
+  .factory('Profile', ['fbutil', '$firebaseObject', '$firebaseArray', function(fbutil, $firebaseObject, $firebaseArray) {
 	//Firebase reference
   	var _ref = fbutil.ref();
 	
@@ -12,7 +12,7 @@ angular.module('profile', ['firebase.utils', 'firebase'])
 		//Set user method that creates or update user information in firebase.
 		//@Param info an object containing the user information that is required
   		setUser: function(info){
-  			console.log("setUser:",_ref.getAuth());
+  			// console.log("setUser:",_ref.getAuth());
 			    _ref.child("users").child(_ref.getAuth().uid).set({
 			      uname: info.uname,
 			      phone: info.phone,
@@ -23,10 +23,33 @@ angular.module('profile', ['firebase.utils', 'firebase'])
 		},
 		//Getter method for the user information.
 		//Return a JSON object containing all user information stored into firebase.
-		getUser: function(userid){
-				var userRef = _ref.child("users").child(userid);
-				console.log("getUser.userRef", $firebaseObject(userRef));
+		getUser: function(){
+				var userRef = _ref.child("users").child(_ref.getAuth().uid);
+				// console.log("getUser.userRef", $firebaseObject(userRef));
 				return $firebaseObject(userRef);
+		},
+
+		getApplications: function(postId){
+			var activeApplicationsID = [];
+			var appRef = _ref.child("users").child(_ref.getAuth().uid).child("applications");
+			var applicationArray = $firebaseArray(appRef);
+			// console.log("applicationArray",applicationArray);
+			return applicationArray;
+		},
+
+		addApplication: function(applicationid){
+			this.getApplications().$add({id:applicationid}).then(function(ref) {
+			  var id = ref.key();
+			  // console.log("AddApplication added record with id " + id);
+			});
+		},
+
+		removeApplication: function(item){
+			var ref = _ref.child("users").child(_ref.getAuth().uid).child("applications");
+			ref.child(item).remove(function(error){ 
+				if (error) { console.log("Error:", error); } 
+				else { console.log("Removed successfully!"); } 
+			});
 		}
-  	};
- }]);
+  };
+}]);

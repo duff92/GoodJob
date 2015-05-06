@@ -17,22 +17,23 @@ angular.module('goodJob.listOfAdds', ['firebase.auth', 'firebase.utils', 'ngRout
 
 	}])
 	//Definition of the controller
-	.controller("ApplicationCtrl", ["$scope", "$routeParams", "$location", "ApplicationAPI",
-		function ($scope, $routeParams, $location, ApplicationAPI) {
-
+	.controller("ApplicationCtrl", ["$scope", "$routeParams", "$location", "ApplicationAPI", "$http",
+		function ($scope, $routeParams, $location, ApplicationAPI, $http) {
 			//Communicating with rest API @See ApplicationAPI
 		    ApplicationAPI.latestApplications.get(function (data) {
-		        console.log("Response from ApplicationAPI.latestApplictions:", data);
+		        // console.log("Response from ApplicationAPI.latestApplictions:", data);
 				//Object containing the jobs from arbets database (Array)
 		        var matchedJobs = data.matchningslista.matchningdata;
-		        console.log("Mathcningdata", matchedJobs);
+		        // console.log("Mathcningdata", matchedJobs);
 				//Empty the add list
 		        $scope.ads = [];
+
 				//Populate the Add list with retrieved data
 		        for (var i = 0; i < matchedJobs.length; i++) {
 		        	$scope.ads.push({
 								company_name: matchedJobs[i].arbetsplatsnamn,
 								company_logo: "/img/logo_black.png",
+								// company_logo: matchedJobs[i].arbetsplats.logotypurl,
 								job_header: matchedJobs[i].annonsrubrik,
 								job_id: matchedJobs[i].annonsid,
 								job_title: matchedJobs[i].yrkesbenamning,
@@ -45,11 +46,17 @@ angular.module('goodJob.listOfAdds', ['firebase.auth', 'firebase.utils', 'ngRout
 		        console.log("There was an error");
 		        //alert("There was an error loading the data");
 		    });
+
+		     $scope.date = new Date();
+		   /* $http.get('data/persons.json').success(function (data) {
+		        $scope.persons = data;
+		    });*/
+
 			//Function attached to apply button
 			//
 			//@Param id the id of the job
 			$scope.applyForJob = function (id) {
-	        	console.log("Apply for job: " + id);
+	        	// console.log("Apply for job: " + id);
 				//Redirect to the job specific detailed information
 	        	$location.path("/apply/" + id);
 	    	}

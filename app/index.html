@@ -33,6 +33,7 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
     <script src="bower_components/Chart.js/Chart.min.js"></script>
     <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
     <script src="bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.min.js"></script>
+    <script src="bower_components/angular-base64/angular-base64.js"></script>
     
     <!-- The application JavaScript code -->
     <script src="app.js"></script>
@@ -75,15 +76,17 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" collapse="navbarCollapsed">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="/#home">Home <span class="sr-only">(current)</span></a></li>
-        <li><a href="#/list">Available Jobs</a></li>
-        <li ng-hide="isUserLoggedIn"><a href="#/login">Login</a></li>
+        <li ng-class="getClass('/home')"><a href="/#home">Home <span class="sr-only">(current)</span></a></li>
+        <li ng-class="getClass('/list')"><a href="#/list">Available Jobs</a></li>
+        <li ng-class="getClass('/login')" ng-hide="isUserLoggedIn"><a  href="#/login">Login</a></li>
 
         <!--If user is logged in, show personal information-->
         
-            <li ng-show="isUserLoggedIn"><a href="#/applications">Active Job Applications</a></li>
-            <li ng-show="isUserLoggedIn"><a href="#/profile">Profile</a></li>
-            <li ng-show="isUserLoggedIn"><a href="#/login" ng-click="logout()">Logout</a></li>
+            <li ng-class="getClass('/applications')" ng-show="isUserLoggedIn"><a  href="#/applications">Active Job Applications</a></li>
+            <li ng-class="getClass('/profile')" ng-show="isUserLoggedIn"><a href="#/profile">Profile</a></li>
+            <li ng-class="getClass('/login')" ng-show="isUserLoggedIn"><a  href="#/login" ng-click="logout()">Logout</a></li>
+
+     
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

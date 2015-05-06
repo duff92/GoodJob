@@ -22,7 +22,7 @@
 		-ms-transition: all 0.125s ease-in-out 0s;
 	}
 	
-	.alert-danger a{
+	.alert-danger a, .alert-danger a:hover{
 		  color: #a94442;
 		  font-weight: 800;
 	}
@@ -78,7 +78,7 @@
 
 	h1{
 		font-size: 36px;
-		font-weight: 500;
+		font-weight: 400;
 		color: #7EBEEA;
 		margin-bottom: 40px;
 		text-transform: uppercase;
@@ -86,22 +86,24 @@
 
 	h2{
 		font-size: 48px;
-		font-weight: 300;
+		font-weight: 800;
 		color: #414141;
 		margin-bottom: 40px;
 	}
 
 	h3{
 		font-size: 24px;
-		font-weight: 300;
+		font-weight: 800;
 		color: #7EBEEA;
 		margin-bottom: 20px;
 	}
-
+	h4{
+		font-weight: 800;
+	}
 	p{
 		font-size: 18px;
-		font-weight: 300;
-		color: #5c5c5c;
+		font-weight: 500;
+		color: #363636;
 		letter-spacing: 0.03em;
 	}
 	/* =================================== */
@@ -186,6 +188,23 @@
 
 	/* Stroke button */
 
+	a.list-group-item {
+	  	z-index: 2;
+  		background-color: #428bca;
+  		border-color: #428bca;
+  		width:100%;
+  		text-align: left;
+  		font-weight: 800;
+  	}
+  	.blue{
+  		color: #ffffff !important;
+  		font-weight: 800;
+  	}
+  	.list-group a:hover{
+		color: #000000 !important;
+  	}
+
+
 	.btn-stroke{
 		color:#fff;
 		font-size: 22px;
@@ -235,7 +254,9 @@
 
 	.btn-left-stretch {float:left;}
 	.btn-right-stretch {float: right;}
-
+	.search{
+		padding-bottom:20px;
+	}
 	/* Header
 	=================================== */
 
@@ -264,8 +285,8 @@
 	}
 
 	.description{
-	color: white;
-	margin-bottom: 40px;
+		color: white;
+		margin-bottom: 40px;
 	}
 
 	.item-avatar{
@@ -404,23 +425,20 @@
 	  line-height: 44px;
   }
   .bar.bar-positive{
-  border-color: #145fd7;
-  background-color: #4a87ee;
-  background-image: linear-gradient(0deg, #145fd7, #145fd7 50%, transparent 50%);
-  color: #fff;
+	  border-color: #145fd7;
+	  background-color: #4a87ee;
+	  background-image: linear-gradient(0deg, #145fd7, #145fd7 50%, transparent 50%);
+	  color: #fff;
   }
   #example-card-showcase{
   	margin-top:120px;
   }
+
 /* Media Queries
 =================================== */
 
 /* Device size - header*/
 
-@media screen and (min-height: 1240px) {
-
-	
-}
 
 @media screen and (max-height: 1160px) {
 
@@ -535,11 +553,7 @@
     	height: auto;
 	}
 
-	
-	
-
 }
-
 
 @media screen and (max-width: 450px ) {
 

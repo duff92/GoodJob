@@ -4,58 +4,98 @@
 *  @See firebase.utils
 */
 "use strict";
-angular.module('goodJob.applications', ['firebase.auth', 'firebase.utils', 'ngRoute', 'chart.js'])
-   //Routing
-  .config(['$routeProvider', function($routeProvider) {
-      $routeProvider.whenAuthenticated('/applications', {
-          controller: 'ApplicationsCtrl',
-          templateUrl: 'applications/applications.html'
-      });
-    }])
-  //Definition of the controller
-  .controller("ApplicationsCtrl", ["$scope", "Auth", "$location",
-    function($scope, Auth, $location) {  
+angular.module('goodJob.applications', ['firebase.auth', 'firebase.utils', 'ngRoute', 'chart.js', 'base64'])
+	 //Routing
+	.config(['$routeProvider', function($routeProvider) {
+			$routeProvider.whenAuthenticated('/applications', {
+					controller: 'ApplicationsCtrl',
+					templateUrl: 'applications/applications.html'
+			});
+		}])
+	//Definition of the controller
+	.controller("ApplicationsCtrl", ["$scope", "Auth", "$route", "$routeParams", "$location", "ApplicationAPI", "Profile", "$base64",
+		function($scope, Auth, $route, $routeParams, $location, ApplicationAPI, Profile, $base64) {
 		//Populate the scope with a static list of data
 		//@TODO fetch the list from firebase
-        $scope.ads =[{  company_name:     "Bison",
-                        company_match:    "76%",
-                        company_logo:     "https://cdn.tutsplus.com/vector/uploads/legacy/articles/linkb_20weirdlogos/weirdlogos_prev.jpg",
-                          job_title:      "Meat taster",
-                          job_hours:      "Part time, 25%",
-                          job_city:       "Madrid",
-                          job_starts:     "May 2015",
-                          job_ends:       "May 2016",
-                          job_deadline:   "2015-04-01",
-                          job_status:     "Accepted" 
-                      },{ company_name:   "Ballet Acadamy",
-                        company_match:    "85%",
-                        company_logo:     "http://www.virginiabeachballetacademy.com/rw_common/images/VBBA%20Logo%20120H.png",
-                          job_title:      "Shoe maker",
-                          job_hours:      "Full time, 100%",
-                          job_city:       "Malmö",
-                          job_starts:     "May 2015",
-                          job_ends:       "Dec 2016",
-                          job_deadline:   "2015-03-31",
-                          job_status:     "Pending" 
-                      }]
-		//Function attached to the button continue on the add
+
+		Profile.getUser(Auth.$getAuth().uid).$bindTo($scope, "userObject").then(function(){
+
+			$scope.itemList = $scope.userObject.applications;
+			$scope.ads = [];
+			$scope.jobID = null;
+
+			// console.log("$scope.Itemlist: active applications at userObject",$scope.itemList);
+
+			for (var item in $scope.itemList) {
+				$scope.jobID = $scope.itemList[item].id;
+				
+				//Get information from arbets API using job id
+				//@See ApplicationAPI
+				ApplicationAPI.getApplication.get({'Id': $scope.jobID}, function (data) {
+					// console.log("Response from ApplicationAPI.getAppliction:", data);
+					//Job object
+					var platsannons = data.platsannons;
+					var status = ["Pending","Accepted","Rejected"];
+
+					// Modify the data to a more user friendly format
+					platsannons.annons.publiceraddatum = platsannons.annons.publiceraddatum.substring(0,10)
+					if (platsannons.ansokan.sista_ansokningsdag != null) {
+						platsannons.ansokan.sista_ansokningsdag = platsannons.ansokan.sista_ansokningsdag.substring(0,10);
+					};
+					if (platsannons.annons.annonstext.length > 300) {
+						platsannons.annons.annonstext = platsannons.annons.annonstext.substring(0,300) + "...";
+					};
+					platsannons.arbetsplats.postadress = platsannons.arbetsplats.postadress + " " + platsannons.arbetsplats.postnummer + " " + platsannons.arbetsplats.postort;
+
+					//Populate the view with retrieved information
+					$scope.ad = {
+						company_name: platsannons.arbetsplats.arbetsplatsnamn,
+						company_logo: platsannons.arbetsplats.logotypurl,
+						job_header: platsannons.annons.annonsrubrik,
+						job_id: platsannons.annons.annonsid,
+						job_title: platsannons.annons.yrkesbenamning,
+						job_city: platsannons.annons.kommunnamn,
+						job_address: platsannons.arbetsplats.postadress,
+						job_conditions: platsannons.villkor.varaktighet,
+						job_hours: platsannons.villkor.arbetstid,
+						job_link: platsannons.annons.platsannonsUrl,
+						job_posted: platsannons.annons.publiceraddatum,
+						job_deadline: platsannons.ansokan.sista_ansokningsdag,
+						job_description: platsannons.annons.annonstext,
+						job_status: status[Math.floor((Math.random() * 3))]
+					}
+					$scope.ads.push($scope.ad);
+				}, function (data) {
+					console.log("There was an error");
+				});
+			}
+		});
+
+		 
+//Function attached to the button continue on the add
 		//for the moment the behavior is harcoded
 		//@TODO Company must process the applications and modify the value
 		//@Param value the value of the pending application, determined by the company.
-        $scope.continueWithApplication = function(value) {
-          console.log(value);
-          if (value === 'Accepted') {
-			//@TODO E-mail generation
-            alert("Congratulations! Please meet us in Mars 2080 for your interview!");
-          }
-          else {
-            alert("You need to get your application accepted first! Please be patient...");
-          }
-        }
-		//Logout functionality
-        $scope.logout = function(){
-          console.log("Log out user!");
-          Auth.$unauth();
-        }
+				$scope.continueWithApplication = function(value) {
+					console.log(value);
+					if (value === 'Accepted') {
+						//@TODO E-mail generation
+						alert("Congratulations! Please meet us in Mars 2080 for your interview!");
+					}
+					else {
+						alert("You need to get your application accepted first! Please be patient...");
+					}
+				}
+				$scope.removeFromActiveApplications = function (applicationid) {
+					var itemID;
+					for (var item in $scope.itemList) {
+						if($scope.itemList[item].id == applicationid) {
+							itemID = $scope.itemList[item];
+							Profile.removeApplication(item);
+						}
+					}
+					//Redirect to applications
+					$route.reload();
+			}
 
-  }]);
+	}]);
