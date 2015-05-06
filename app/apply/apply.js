@@ -15,7 +15,7 @@ angular.module('goodJob.apply', ['firebase.auth', 'firebase.utils', 'ngRoute', '
 	//Definition of the controller
 	.controller("ApplyCtrl", ["$scope", "Auth", "$routeParams", "$location", "ApplicationAPI", "Profile", "$base64",
 		function($scope, Auth, $routeParams, $location, ApplicationAPI, Profile, $base64) {
-			
+		$scope.radioModel = 'Middle';
 		// console.log("Apply for jobID: " + $routeParams.jobID);
 		//Get information from arbets API using job id
 		//@See ApplicationAPI
@@ -50,7 +50,10 @@ angular.module('goodJob.apply', ['firebase.auth', 'firebase.utils', 'ngRoute', '
 				job_posted: platsannons.annons.publiceraddatum,
 				job_deadline: platsannons.ansokan.sista_ansokningsdag,
 				job_description: platsannons.annons.annonstext,
-				job_competences: ["Excel","Word","Paragliding"]
+				job_competences: [
+							{'title':"Excel",'level':'Very Bad'},
+							{'title':"Word",'level':'Bad'},
+							{'title':"Paragliding",'level':'Very Bad'}]
 	        }
 	    }, function (data) {
 	        console.log("There was an error");
