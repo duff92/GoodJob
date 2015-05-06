@@ -47,12 +47,10 @@ angular.module('goodJob.applications', ['firebase.auth', 'firebase.utils', 'ngRo
 					};
 					platsannons.arbetsplats.postadress = platsannons.arbetsplats.postadress + " " + platsannons.arbetsplats.postnummer + " " + platsannons.arbetsplats.postort;
 
-					var imageData = $base64.encode(platsannons.arbetsplats.logotypurl);
-
 					//Populate the view with retrieved information
 					$scope.ad = {
 						company_name: platsannons.arbetsplats.arbetsplatsnamn,
-						company_logo: imageData,
+						company_logo: platsannons.arbetsplats.logotypurl,
 						job_header: platsannons.annons.annonsrubrik,
 						job_id: platsannons.annons.annonsid,
 						job_title: platsannons.annons.yrkesbenamning,

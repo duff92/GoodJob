@@ -27,11 +27,13 @@ angular.module('goodJob.listOfAdds', ['firebase.auth', 'firebase.utils', 'ngRout
 		        // console.log("Mathcningdata", matchedJobs);
 				//Empty the add list
 		        $scope.ads = [];
+
 				//Populate the Add list with retrieved data
 		        for (var i = 0; i < matchedJobs.length; i++) {
 		        	$scope.ads.push({
 								company_name: matchedJobs[i].arbetsplatsnamn,
 								company_logo: "/img/logo_black.png",
+								// company_logo: matchedJobs[i].arbetsplats.logotypurl,
 								job_header: matchedJobs[i].annonsrubrik,
 								job_id: matchedJobs[i].annonsid,
 								job_title: matchedJobs[i].yrkesbenamning,
