@@ -35,7 +35,7 @@ angular.module('goodJob.applications', ['firebase.auth', 'firebase.utils', 'ngRo
 					// console.log("Response from ApplicationAPI.getAppliction:", data);
 					//Job object
 					var platsannons = data.platsannons;
-					var status = ["Pending","Accepted","Rejected"];
+					var status = ["Pending","Pending","Pending","Pending","Pending","Accepted","Rejected"];
 
 					// Modify the data to a more user friendly format
 					platsannons.annons.publiceraddatum = platsannons.annons.publiceraddatum.substring(0,10)
@@ -62,7 +62,7 @@ angular.module('goodJob.applications', ['firebase.auth', 'firebase.utils', 'ngRo
 						job_posted: platsannons.annons.publiceraddatum,
 						job_deadline: platsannons.ansokan.sista_ansokningsdag,
 						job_description: platsannons.annons.annonstext,
-						job_status: status[Math.floor((Math.random() * 3))]
+						job_status: status[Math.floor((Math.random() * 7))]
 					}
 					$scope.ads.push($scope.ad);
 				}, function (data) {
