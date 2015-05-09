@@ -15,6 +15,7 @@ var goodJob = angular.module('goodJob', [
   'applicationAPI',
   'goodJob.values',
   'goodJob.apply',
+  'goodJob.update',
   'mobile-angular-ui'])
 	//App
   .run(['$rootScope', 'Auth', function($rootScope, Auth) {

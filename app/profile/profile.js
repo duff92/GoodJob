@@ -63,6 +63,10 @@ angular.module('goodJob.profile', ['firebase.auth', 'firebase.utils', 'ngRoute',
         $scope.updateValues = function(){
           $location.path("/values");
         }
+		
+		$scope.updateUserInfo = function(){
+			$location.path("/update");
+		}
 		//Logout functionality.
         $scope.logout = function(){
           console.log("Log out user!");

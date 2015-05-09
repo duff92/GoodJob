@@ -36,7 +36,11 @@ angular.module('profile', ['firebase.utils', 'firebase'])
 			// console.log("applicationArray",applicationArray);
 			return applicationArray;
 		},
-
+		
+		setPhone : function(newPhone){
+			var obj = _ref.child("users").child(_ref.getAuth().uid);
+			obj.update({phone : newPhone});			
+		},
 		addApplication: function(applicationid){
 			this.getApplications().$add({id:applicationid}).then(function(ref) {
 			  var id = ref.key();
