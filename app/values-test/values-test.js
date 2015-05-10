@@ -6,9 +6,9 @@
 angular.module('goodJob.values', ['firebase.auth', 'firebase.utils', 'ngRoute'])
 	//Routing
 	.config(['$routeProvider', function($routeProvider) {
-    	$routeProvider.when('/values', {
+    	$routeProvider.when('/values-test', {
       		controller: 'ValuesCtrl',
-      		templateUrl: 'values/values.html'
+      		templateUrl: 'values-test/values-test.html'
 		});
 	}])
 	//Definition of the controller

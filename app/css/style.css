@@ -283,6 +283,9 @@
 		white-space:nowrap;
 		overflow:hidden;
 	}
+	.list-group-item{
+		height:105px;
+	}
 
 	.description{
 		color: white;
@@ -510,6 +513,10 @@
 
 	.btn-fill{ font-size: 22px; }
 
+	.list-group-item{
+		height:140px;
+	}
+
 
 }
 
@@ -552,6 +559,10 @@
 	.screen-height-adapt {
     	height: auto;
 	}
+		.list-group-item{
+		height:200px;
+		font-size: 15px;
+	}
 
 }
 
@@ -561,6 +572,10 @@
 		float: none;
 		position: static;
 		padding: 25% 10% 10%;
+	}
+	.list-group-item{
+		height:200px;
+		font-size: 12px;
 	}
 
 

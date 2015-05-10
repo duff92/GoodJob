@@ -7,7 +7,7 @@
 angular.module('goodJob.apply', ['firebase.auth', 'firebase.utils', 'ngRoute', 'base64'])
 	//Routing
 	.config(['$routeProvider', function($routeProvider) {
-		$routeProvider.whenAuthenticated('/apply/:jobID', {
+		$routeProvider.when('/apply/:jobID', {
 			controller: 'ApplyCtrl',
 			templateUrl: 'apply/apply.html'
     	});
@@ -63,11 +63,15 @@ angular.module('goodJob.apply', ['firebase.auth', 'firebase.utils', 'ngRoute', '
 		//@TODO add to the user's data in firebase.
 		$scope.addToActiveApplications = function (id) {
       // console.log("Add to active applications",id);
-      Profile.addApplication(id);
+
 			//Redirect to applications
-      $location.path("/applications");
+      $location.path("/active-job-applications");
+      
+      Profile.addApplication(id);
     }
 	}]
+
+
 );
 
 

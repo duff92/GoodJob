@@ -30,6 +30,15 @@ angular.module('applicationAPI', ['ngResource'])
         }
   });
 
+        //Method for getting single application from Arbetsformedlingen API
+  this.jobSearch = $resource("http://api.arbetsformedlingen.se/platsannons/matchning",{ },{
+    //GET request crafting
+    get:{
+            method:"GET",
+            headers:{'Content-Type':'application/json;charset=UTF-8', 'Accept':'application/json', 'Accept-Language':'sv-SE,sv'} 
+        }
+  });
+
 
     return this;
   }]);

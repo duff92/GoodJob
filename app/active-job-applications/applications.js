@@ -4,12 +4,12 @@
 *  @See firebase.utils
 */
 "use strict";
-angular.module('goodJob.applications', ['firebase.auth', 'firebase.utils', 'ngRoute', 'chart.js', 'base64'])
+angular.module('goodJob.activeJobApplications', ['firebase.auth', 'firebase.utils', 'ngRoute', 'chart.js', 'base64'])
 	 //Routing
 	.config(['$routeProvider', function($routeProvider) {
-			$routeProvider.whenAuthenticated('/applications', {
+			$routeProvider.whenAuthenticated('/active-job-applications', {
 					controller: 'ApplicationsCtrl',
-					templateUrl: 'applications/applications.html'
+					templateUrl: 'active-job-applications/applications.html'
 			});
 		}])
 	//Definition of the controller

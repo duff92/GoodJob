@@ -9,7 +9,7 @@
 
     <div ng-hide="getValueTestStatus()" class="alert alert-danger alert-error">
     	<a href="javascript:void(0)" class="close" data-dismiss="alert">&times;</a>
-    	<strong>Hello!</strong> <a href="/#values">Please fill in the value test to get a recommended view of the applications</a>
+    	<strong>Hello!</strong> <a href="/#values-test">Please fill in the value test to get a recommended view of the applications</a>
 	</div>
 
 	<!-- User Information -->
@@ -27,7 +27,7 @@
 				<div class="col-xs-8 col-sm-8 text-left">
 					<div ng-repeat="info in userInfo" >
 						<div class="row">
-							<div class="col-sm-4 text-left"> {{ info.info_header }}</div>
+							<div class="col-sm-4 text-left"> {{ info.info_header}} </div>
 							<div class="col-sm-8 text-left"><b> {{ info.info_value }} </b></div>
 						</div>
 					</div>

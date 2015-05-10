@@ -6,7 +6,7 @@
 angular.module('goodJob.update', ['firebase.auth', 'firebase.utils', 'ngRoute'])
 	//ng-route setup
 	.config(['$routeProvider', function($routeProvider) {
-    	$routeProvider.when('/update', {
+    	$routeProvider.whenAuthenticated('/update', {
       		controller: 'UpdateCtrl',
       		templateUrl: 'update/updateView.html'
     	});
@@ -20,7 +20,6 @@ angular.module('goodJob.update', ['firebase.auth', 'firebase.utils', 'ngRoute'])
 			//Variable used to access auth object containing e-mail and password
 			
 		
-			
 			//pre fill fields 
 			$scope.email = userdata.password.email;
 			$scope.phone = $scope.userObject.phone;

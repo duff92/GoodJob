@@ -47,13 +47,13 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
 
 
     <script src="login/login.js"></script>
-    <script src="list-of-adds/list-of-adds.js"></script>
+    <script src="available-jobs/available-jobs.js"></script>
     <script src="profile/profile.js"></script>
     <script src="home/home.js"></script>
     <script src="register/register.js"></script>
-    <script src="applications/applications.js"></script>
+    <script src="active-job-applications/applications.js"></script>
     <script src="apply/apply.js"></script>
-    <script src="values/values.js"></script>
+    <script src="values-test/values-test.js"></script>
     <script src="update/update.js"></script>
     
   </head>
@@ -77,12 +77,12 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" collapse="navbarCollapsed">
       <ul class="nav navbar-nav">
         <li ng-class="getClass('/home')"><a href="/#home">Home <span class="sr-only">(current)</span></a></li>
-        <li ng-class="getClass('/list')"><a href="#/list">Available Jobs</a></li>
+        <li ng-class="getClass('/available-jobs')"><a href="#/available-jobs">Available Jobs</a></li>
         <li ng-class="getClass('/login')" ng-hide="isUserLoggedIn"><a  href="#/login">Login</a></li>
 
         <!--If user is logged in, show personal information-->
         
-            <li ng-class="getClass('/applications')" ng-show="isUserLoggedIn"><a  href="#/applications">Active Job Applications</a></li>
+            <li ng-class="getClass('/active-job-applications')" ng-show="isUserLoggedIn"><a  href="#/active-job-applications">Active Job Applications</a></li>
             <li ng-class="getClass('/profile')" ng-show="isUserLoggedIn"><a href="#/profile">Profile</a></li>
             <li ng-class="getClass('/login')" ng-show="isUserLoggedIn"><a  href="#/login" ng-click="logout()">Logout</a></li>
 

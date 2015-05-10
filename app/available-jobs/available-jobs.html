@@ -8,13 +8,23 @@
 
 				
 		  <div class="search">
-		  	<input type="search" ng-model="query" class="form-control" placeholder="Search.."></input>
+		  	<input ng-change="search(query)" type="text" ng-model="query" id="jobFilter" class="form-control" name="Filter" placeholder="Search..">
+
 			</div>
 				<div class="text-center search">
 					Top 10 latest job sorted by {{date | date:'yyyy-MM-dd'}}
 				</div>
 
+
+
+<div class="main-container" layout="vertical" layout-fill>
+						<div class="text-center">
+							{{status}}
+						</div>
+
+
 			<div ng-repeat="ad in ads | filter:query">
+
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h2 class="panel-title company_name"><b>
