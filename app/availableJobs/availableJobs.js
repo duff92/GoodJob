@@ -16,61 +16,75 @@ angular.module('goodJob.availableJobs', ['firebase.auth', 'firebase.utils', 'ngR
 
 	}])
 	//Definition of the controller
-	.controller("AvailableJobsCtrl", ["$scope", "$routeParams", "$location", "ApplicationAPI",
-		function ($scope, $routeParams, $location, ApplicationAPI) {
+	.controller("AvailableJobsCtrl", ["$scope", "$routeParams", "$route","$location", "ApplicationAPI",
+		function ($scope, $routeParams, $route, $location, ApplicationAPI) {
 			//Communicating with rest API @See ApplicationAPI
-		    ApplicationAPI.latestApplications.get(function (data) {
-		        
-				//Object containing the jobs from arbets database (Array)
-		        var matchedJobs = data.matchningslista.matchningdata;
-		        
-				//Empty the add list
-		        $scope.ads = [];
+		    $scope.latestJobs = function(){
+			    	ApplicationAPI.latestApplications.get(function (data) {
+			        
+					//Object containing the jobs from arbets database (Array)
+			        var matchedJobs = data.matchningslista.matchningdata;
+			        
+					//Empty the add list
+			        $scope.ads = [];
 
-				//Populate the Add list with retrieved data
-		        for (var i = 0; i < matchedJobs.length; i++) {
-		        	$scope.ads.push({
-								company_name: matchedJobs[i].arbetsplatsnamn,
-								company_logo: "/img/logo_black.png",
-								job_header: matchedJobs[i].annonsrubrik,
-								job_id: matchedJobs[i].annonsid,
-								job_title: matchedJobs[i].yrkesbenamning,
-								job_city: matchedJobs[i].kommunnamn,
-								job_posted: matchedJobs[i].publiceraddatum.substring(0,10)
-		        	})
-		        };
+					//Populate the Add list with retrieved data
+			        for (var i = 0; i < matchedJobs.length; i++) {
+			        	$scope.ads.push({
+									company_name: matchedJobs[i].arbetsplatsnamn,
+									company_logo: "/img/logo_black.png",
+									job_header: matchedJobs[i].annonsrubrik,
+									job_id: matchedJobs[i].annonsid,
+									job_title: matchedJobs[i].yrkesbenamning,
+									job_city: matchedJobs[i].kommunnamn,
+									job_posted: matchedJobs[i].publiceraddatum.substring(0,10)
+			        	})
+			        };
 
-		    }, function (data) { //Catching error
-		        console.log("There was an error");
-		        
-		    });
+			    }, function (data) { //Catching error
+			        console.log("There was an error");
+			        
+			    });
+			 }
 
 			 $scope.search = function(query) {
-			   $scope.status = "Searching...";
-			   ApplicationAPI.jobSearch.get({nyckelord:query},function(data){
-			     $scope.ads = [];
-  				var matchedJobs = data.matchningslista.matchningdata;
-			    
-			     $scope.status = "Showing " + data.matchningslista.matchningdata.length + " results";
-			
-			  	//Populate the Add list with retrieved data
-		        for (var i = 0; i < matchedJobs.length; i++) {
-		        	$scope.ads.push({
-								company_name: matchedJobs[i].arbetsplatsnamn,
-								company_logo: "/img/logo_black.png",
-								job_header: matchedJobs[i].annonsrubrik,
-								job_id: matchedJobs[i].annonsid,
-								job_title: matchedJobs[i].yrkesbenamning,
-								job_city: matchedJobs[i].kommunnamn,
-								job_posted: matchedJobs[i].publiceraddatum.substring(0,10)
-		        	})
-		        };
+				if(query){
+				   $scope.status = "Searching...";
+				   ApplicationAPI.jobSearch.get({nyckelord:query},function(data){
+				   	console.log("Job search",data);
+					$scope.ads = [];
+				   	if(data.matchningslista.matchningdata){
+		  				 var matchedJobs = data.matchningslista.matchningdata;
+					     console.log("MatchedJobs", matchedJobs);
+					     $scope.status = "Showing " + matchedJobs.length + " results";
+					
+					  	//Populate the Add list with retrieved data
+				        for (var i = 0; i < matchedJobs.length; i++) {
+				        	$scope.ads.push({
+										company_name: matchedJobs[i].arbetsplatsnamn,
+										company_logo: "/img/logo_black.png",
+										job_header: matchedJobs[i].annonsrubrik,
+										job_id: matchedJobs[i].annonsid,
+										job_title: matchedJobs[i].yrkesbenamning,
+										job_city: matchedJobs[i].kommunnamn,
+										job_posted: matchedJobs[i].publiceraddatum.substring(0,10)
+				        	})
+				        };
+				   	}
+				   	else{
+				   		$scope.status = "No results!";
+				   	}
 
-		       
-			     console.log(data);
-			   },function(data){
-			     $scope.status = "There was an error";
-			   });
+				   },function(err){
+				   		if(err.statusText === 'Bad Request'){
+				     		$scope.status = "Error... try another keyword!";
+				   		}
+				   });
+				}
+				else{
+					//If no query i sent, reload page with 10 latest available jobs
+					$route.reload();
+				}
 			 };
 
 
