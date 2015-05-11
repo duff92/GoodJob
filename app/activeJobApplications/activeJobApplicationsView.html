@@ -6,6 +6,7 @@
 	<div ng-repeat="ad in ads">
 		<div class="panel panel-default">
 			<div class="panel-heading">
+        <a href="" class="close" ng-click="removeFromActiveApplications(ad.job_id)"data-dismiss="alert">&times;</a>
 				<h2 class="panel-title company_name"><b>
 					{{ ad.company_name }} <!-- - {{ ad.company_match }} match -->
 				</b></h2>
@@ -63,17 +64,24 @@
             </div>
           </div>
         </div>
-        <div>
-          <h3 class="text-center">Job options</h3>
-        </div>
         <div class="row">
-					<div class="text-center">
-						<button class=" btn btn-default btn-danger" ng-click="removeFromActiveApplications(ad.job_id)">Remove application</button>
-					</div>
-					</br>
-					<div class="text-center">
-						<button class="btn btn-default btn-success" ng-if="ad.job_status=='Accepted'" ng-click="continueWithApplication(ad.job_status)">Continue</button>
-					</div>
+          </br>
+          <div ng-if="ad.job_status=='Accepted'" class="alert alert-success text-center">
+            <strong>Congratulations!</strong></br>Your application has been accepted!
+            </br>
+            </br>
+            <div><button class="btn btn-default btn-success"ng-click="continueWithApplication(ad.job_status)">Continue</button></div>
+          </div>
+          <div ng-if="ad.job_status=='Pending'" class="alert alert-warning text-center">
+            <strong>Patience!</strong></br> Your application is still pending! The deadline to apply is {{ad.job_deadline}}.
+            </br>
+          </div>
+          <div ng-if="ad.job_status=='Rejected'" class="alert alert-danger text-center">
+            <strong>Too bad!</strong></br>Your application was not one of the top 10 applications this time.</br>Better match next time!
+            </br>
+            </br>
+            <div><button class=" btn btn-default btn-danger" ng-click="removeFromActiveApplications(ad.job_id)">Remove application</button></div>
+          </div>
 				</div>
       </div>
 		</div>
