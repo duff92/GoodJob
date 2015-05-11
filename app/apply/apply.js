@@ -65,7 +65,7 @@ angular.module('goodJob.apply', ['firebase.auth', 'firebase.utils', 'ngRoute', '
       // console.log("Add to active applications",id);
 
 			//Redirect to applications
-      $location.path("/active-job-applications");
+      $location.path("/activeJobApplications");
       
       Profile.addApplication(id);
     }
