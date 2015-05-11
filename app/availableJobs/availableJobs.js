@@ -9,18 +9,18 @@
 angular.module('goodJob.availableJobs', ['firebase.auth', 'firebase.utils', 'ngRoute'])
 	//Routing
 	.config(['$routeProvider', function ($routeProvider) {
-	    $routeProvider.when('/available-jobs', {
-    	    controller: 'ApplicationCtrl',
-    	    templateUrl: 'available-jobs/available-jobs.html'
+	    $routeProvider.when('/availableJobs', {
+    	    controller: 'AvailableJobsCtrl',
+    	    templateUrl: 'availableJobs/availableJobsView.html'
     	});
 
 	}])
 	//Definition of the controller
-	.controller("ApplicationCtrl", ["$scope", "$routeParams", "$location", "ApplicationAPI", "$http",
+	.controller("AvailableJobsCtrl", ["$scope", "$routeParams", "$location", "ApplicationAPI", "$http",
 		function ($scope, $routeParams, $location, ApplicationAPI, $http) {
 			//Communicating with rest API @See ApplicationAPI
 		    ApplicationAPI.latestApplications.get(function (data) {
-		        // console.log("Response from ApplicationAPI.latestApplictions:", data);
+		        
 				//Object containing the jobs from arbets database (Array)
 		        var matchedJobs = data.matchningslista.matchningdata;
 		        // console.log("Mathcningdata", matchedJobs);
@@ -43,7 +43,7 @@ angular.module('goodJob.availableJobs', ['firebase.auth', 'firebase.utils', 'ngR
 
 		    }, function (data) { //Catching error
 		        console.log("There was an error");
-		        //alert("There was an error loading the data");
+		        
 		    });
 
 			 $scope.search = function(query) {
@@ -68,7 +68,7 @@ angular.module('goodJob.availableJobs', ['firebase.auth', 'firebase.utils', 'ngR
 		        	})
 		        };
 
-		       //$location.path('/available-jobs').search({query});
+		       
 			     console.log(data);
 			   },function(data){
 			     $scope.status = "There was an error";
@@ -80,15 +80,13 @@ angular.module('goodJob.availableJobs', ['firebase.auth', 'firebase.utils', 'ngR
 
 
 		     $scope.date = new Date();
-		   /* $http.get('data/persons.json').success(function (data) {
-		        $scope.persons = data;
-		    });*/
+		   
 
 			//Function attached to apply button
 			//
 			//@Param id the id of the job
 			$scope.applyForJob = function (id) {
-	        	// console.log("Apply for job: " + id);
+	        	
 				//Redirect to the job specific detailed information
 	        	$location.path("/apply/" + id);
 	    	}
