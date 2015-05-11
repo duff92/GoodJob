@@ -7,7 +7,7 @@ angular.module('goodJob.home', ['firebase.auth', 'firebase.utils', 'ngRoute'])
 	.config(['$routeProvider', function($routeProvider) {
     	$routeProvider.when('/home', {
       		controller: 'HomeCtrl',
-      		templateUrl: 'home/home.html'
+      		templateUrl: 'home/homeView.html'
     	});
   	}])
 
