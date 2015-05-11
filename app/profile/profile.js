@@ -8,7 +8,7 @@ angular.module('goodJob.profile', ['firebase.auth', 'firebase.utils', 'ngRoute',
 	.config(['$routeProvider', function($routeProvider) {
     	$routeProvider.whenAuthenticated('/profile', {
       		controller: 'ProfileCtrl',
-      		templateUrl: 'profile/profile.html'
+      		templateUrl: 'profile/profileView.html'
     	});
   	}])
 	//definition of the controller
@@ -61,7 +61,7 @@ angular.module('goodJob.profile', ['firebase.auth', 'firebase.utils', 'ngRoute',
         $scope.competence_chart = 'PolarArea';
 		//Function attached to button redirecting to values.
         $scope.updateValues = function(){
-          $location.path("/values-test");
+          $location.path("/valuesTest");
         }
 		
 		$scope.updateUserInfo = function(){
