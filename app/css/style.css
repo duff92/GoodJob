@@ -1,17 +1,31 @@
+body div.container-home {
+	 background-image: url("../img/bg-2.jpg");
+		 background-attachment: fixed;
+		  background-repeat: no-repeat;
+		  background-size: cover;
+		  -moz-background-size: cover;
+		  height:1124px;
+}
+
+
 	body {
 		font: 16px/1.5 Lato, "Century Gothic", "Trebuchet MS", Helvetica, sans-serif;
 		  height:100%;
 		font-weight: 300;
 		-webkit-font-smoothing: antialiased;
 		text-rendering: optimizeLegibility;
+		background-color: #f3f3f3;
+		
 
 	}
 	.container {
-	  	background-color:#ffffff;
+		background-image: url("../img/bg-1.jpg") !important;
+		border-radius: 7px;
 	  	padding:20px;
-	  	margin-top:-20px;
+	  	margin-top:20px;
 	  	min-height: 100%;
-		
+	  	/* Fallback for web browsers that don't support RGBa */
+   
 	}
 	a { 
 		color: #4fc1e9;
@@ -21,10 +35,30 @@
 		-o-transition: all 0.125s ease-in-out 0s;
 		-ms-transition: all 0.125s ease-in-out 0s;
 	}
-	
+
+	.panel-default{
+		border-color:#ececec;
+	}
+	.panel-default>.panel-heading{
+		color:#ccc;
+		 background-color: #f3f3f3; 
+  		border-color: #f3f3f3; 
+	}
+	.form-control{
+		background-color: #fff;
+		  border: 1px solid #dadada;
+		  color: #000;
+	}
+	.panel-title{
+		 color: #000;
+	}
 	.alert-danger a, .alert-danger a:hover{
 		  color: #a94442;
 		  font-weight: 800;
+	}
+
+	.alert-danger a:hover{
+		text-decoration: underline;
 	}
 
 	a:hover {
@@ -43,11 +77,11 @@
   		padding-right: 15px;
 	}
 	.section{
+		background: #f3f3f3;
 		margin-right: auto;
 	  margin-left: auto;
 	  padding-left: 15px;
 	  padding-right: 15px;
-	  background: #fff;
 	  padding-top: 10px;
 	  padding-bottom: 10px;
 	}
@@ -63,13 +97,12 @@
 		height:100%;
 		max-height: 150px;
 	}
+	.navbar{
+		margin-bottom: 0px; 
+	}
 	.container-home{
 	
-	   	background-image: url("../img/bg-2.jpg");
-		 background-attachment: fixed;
-		  background-repeat: no-repeat;
-		  background-size: cover;
-		  -moz-background-size: cover;
+	 
 
 	}
 	/* =================================== */
@@ -202,6 +235,7 @@
   	}
   	.list-group a:hover{
 		color: #000000 !important;
+		border: 1px solid #dadada;
   	}
 
 
@@ -576,6 +610,12 @@
 	.list-group-item{
 		height:200px;
 		font-size: 12px;
+	}
+	.img{
+		width:70px;
+	}
+	.text-center{
+		padding:20px;
 	}
 
 
