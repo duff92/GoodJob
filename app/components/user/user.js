@@ -3,8 +3,8 @@
 *  This is our interface between app and firebase for user information
 *  @See firebase.utils
 */
-angular.module('profile', ['firebase.utils', 'firebase'])
-  .factory('Profile', ['fbutil', '$firebaseObject', '$firebaseArray', function(fbutil, $firebaseObject, $firebaseArray) {
+angular.module('user', ['firebase.utils', 'firebase'])
+  .factory('User', ['fbutil', '$firebaseObject', '$firebaseArray', function(fbutil, $firebaseObject, $firebaseArray) {
 	//Firebase reference
   	var _ref = fbutil.ref();
 	
@@ -12,7 +12,6 @@ angular.module('profile', ['firebase.utils', 'firebase'])
 		//Set user method that creates or update user information in firebase.
 		//@Param info an object containing the user information that is required
   		setUser: function(info){
-  			// console.log("setUser:",_ref.getAuth());
 			    _ref.child("users").child(_ref.getAuth().uid).set({
 			      uname: info.uname,
 			      phone: info.phone,
@@ -25,7 +24,7 @@ angular.module('profile', ['firebase.utils', 'firebase'])
 		//Return a JSON object containing all user information stored into firebase.
 		getUser: function(){
 				var userRef = _ref.child("users").child(_ref.getAuth().uid);
-				// console.log("getUser.userRef", $firebaseObject(userRef));
+				
 				return $firebaseObject(userRef);
 		},
 
@@ -33,7 +32,7 @@ angular.module('profile', ['firebase.utils', 'firebase'])
 			var activeApplicationsID = [];
 			var appRef = _ref.child("users").child(_ref.getAuth().uid).child("applications");
 			var applicationArray = $firebaseArray(appRef);
-			// console.log("applicationArray",applicationArray);
+			
 			return applicationArray;
 		},
 		
@@ -44,7 +43,7 @@ angular.module('profile', ['firebase.utils', 'firebase'])
 		addApplication: function(applicationid){
 			this.getApplications().$add({id:applicationid}).then(function(ref) {
 			  var id = ref.key();
-			  // console.log("AddApplication added record with id " + id);
+			  
 			});
 		},
 

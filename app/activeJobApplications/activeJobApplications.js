@@ -13,12 +13,12 @@ angular.module('goodJob.activeJobApplications', ['firebase.auth', 'firebase.util
 			});
 		}])
 	//Definition of the controller
-	.controller("ActiveJobApplicationsCtrl", ["$scope", "Auth", "$route", "$routeParams", "$location", "ApplicationAPI", "Profile",
-		function($scope, Auth, $route, $routeParams, $location, ApplicationAPI, Profile) {
+	.controller("ActiveJobApplicationsCtrl", ["$scope", "Auth", "$route", "$routeParams", "$location", "ApplicationAPI", "User",
+		function($scope, Auth, $route, $routeParams, $location, ApplicationAPI, User) {
 		//Populate the scope with a static list of data
 		//@TODO fetch the list from firebase
 		
-		Profile.getUser(Auth.$getAuth().uid).$bindTo($scope, "userObject").then(function(){
+		User.getUser(Auth.$getAuth().uid).$bindTo($scope, "userObject").then(function(){
 		
 			$scope.itemList = $scope.userObject.applications;
 			$scope.ads = [];
@@ -91,7 +91,7 @@ angular.module('goodJob.activeJobApplications', ['firebase.auth', 'firebase.util
 					for (var item in $scope.itemList) {
 						if($scope.itemList[item].id == applicationid) {
 							itemID = $scope.itemList[item];
-							Profile.removeApplication(item);
+							User.removeApplication(item);
 						}
 					}
 					//Redirect to applications

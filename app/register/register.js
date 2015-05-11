@@ -12,8 +12,8 @@ angular.module('goodJob.register', ['firebase.auth', 'firebase.utils', 'ngRoute'
     	});
   	}])
 	//Definition of the controller
-	.controller("RegisterCtrl", ["$scope", "Auth", "$location", "Profile",
-		function($scope, Auth, $location, Profile) {
+	.controller("RegisterCtrl", ["$scope", "Auth", "$location", "User",
+		function($scope, Auth, $location, User) {
 		 
 		 
 		  //Define the createUser method user when register button is clicked
@@ -32,12 +32,12 @@ angular.module('goodJob.register', ['firebase.auth', 'firebase.utils', 'ngRoute'
 					}).then(function(userData) { //Callback on user creation
 					  console.log("User created successfully!");
 					  //On registration return an Auth object for the new user
-					  //@See Profile
+					  //@See User
 					  return Auth.$authWithPassword({email: $scope.email, password: $scope.password1});
 					}).then(function(authData) { //Callback
 					  console.log("Logged in");
-					  //Store the data into Firebase using Profile factory
-					  Profile.setUser({
+					  //Store the data into Firebase using User factory
+					  User.setUser({
 					  		uname: $scope.username, 
 					  		phone: $scope.phone, 
 					  		firstName: $scope.firstName, 

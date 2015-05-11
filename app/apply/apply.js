@@ -13,8 +13,8 @@ angular.module('goodJob.apply', ['firebase.auth', 'firebase.utils', 'ngRoute'])
     	});
   	}])
 	//Definition of the controller
-	.controller("ApplyCtrl", ["$scope", "Auth", "$routeParams", "$location", "ApplicationAPI", "Profile",
-		function($scope, Auth, $routeParams, $location, ApplicationAPI, Profile) {
+	.controller("ApplyCtrl", ["$scope", "Auth", "$routeParams", "$location", "ApplicationAPI", "User",
+		function($scope, Auth, $routeParams, $location, ApplicationAPI, User) {
 		$scope.radioModel = 'Middle';
 		// console.log("Apply for jobID: " + $routeParams.jobID);
 		//Get information from arbets API using job id
@@ -68,7 +68,7 @@ angular.module('goodJob.apply', ['firebase.auth', 'firebase.utils', 'ngRoute'])
       $location.path("/activeJobApplications");
 	  //Test if logged in.
       if(Auth.$getAuth() !== null){
-      Profile.addApplication(id);
+      User.addApplication(id);
 	  }
     }
 	}]

@@ -16,14 +16,14 @@ angular.module('goodJob.availableJobs', ['firebase.auth', 'firebase.utils', 'ngR
 
 	}])
 	//Definition of the controller
-	.controller("AvailableJobsCtrl", ["$scope", "$routeParams", "$location", "ApplicationAPI", "$http",
-		function ($scope, $routeParams, $location, ApplicationAPI, $http) {
+	.controller("AvailableJobsCtrl", ["$scope", "$routeParams", "$location", "ApplicationAPI",
+		function ($scope, $routeParams, $location, ApplicationAPI) {
 			//Communicating with rest API @See ApplicationAPI
 		    ApplicationAPI.latestApplications.get(function (data) {
 		        
 				//Object containing the jobs from arbets database (Array)
 		        var matchedJobs = data.matchningslista.matchningdata;
-		        // console.log("Mathcningdata", matchedJobs);
+		        
 				//Empty the add list
 		        $scope.ads = [];
 
@@ -32,7 +32,6 @@ angular.module('goodJob.availableJobs', ['firebase.auth', 'firebase.utils', 'ngR
 		        	$scope.ads.push({
 								company_name: matchedJobs[i].arbetsplatsnamn,
 								company_logo: "/img/logo_black.png",
-								// company_logo: matchedJobs[i].arbetsplats.logotypurl,
 								job_header: matchedJobs[i].annonsrubrik,
 								job_id: matchedJobs[i].annonsid,
 								job_title: matchedJobs[i].yrkesbenamning,
@@ -59,7 +58,6 @@ angular.module('goodJob.availableJobs', ['firebase.auth', 'firebase.utils', 'ngR
 		        	$scope.ads.push({
 								company_name: matchedJobs[i].arbetsplatsnamn,
 								company_logo: "/img/logo_black.png",
-								// company_logo: matchedJobs[i].arbetsplats.logotypurl,
 								job_header: matchedJobs[i].annonsrubrik,
 								job_id: matchedJobs[i].annonsid,
 								job_title: matchedJobs[i].yrkesbenamning,

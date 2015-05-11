@@ -12,11 +12,11 @@ angular.module('goodJob.profile', ['firebase.auth', 'firebase.utils', 'ngRoute',
     	});
   	}])
 	//definition of the controller
-	.controller("ProfileCtrl", ["$scope", "Auth", "$location", "Profile",
-		function($scope, Auth, $location, Profile) {
-		//Use of Profile factory
-		// @See Profile for more information
-        Profile.getUser(Auth.$getAuth().uid).$bindTo($scope, "userObject").then(function(){
+	.controller("ProfileCtrl", ["$scope", "Auth", "$location", "User",
+		function($scope, Auth, $location, User) {
+		//Use of User factory
+		// @See User for more information
+        User.getUser(Auth.$getAuth().uid).$bindTo($scope, "userObject").then(function(){
 
           var userdata = $scope.currentUser = Auth.$getAuth(); 
 

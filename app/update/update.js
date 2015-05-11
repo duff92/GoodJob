@@ -12,11 +12,11 @@ angular.module('goodJob.update', ['firebase.auth', 'firebase.utils', 'ngRoute'])
     	});
   	}])
 	//Definition of the controller
-	.controller("UpdateCtrl", ["$scope", "Auth", "$location", "Profile",
-		function($scope, Auth, $location, Profile) {
+	.controller("UpdateCtrl", ["$scope", "Auth", "$location", "User",
+		function($scope, Auth, $location, User) {
 		var userdata = $scope.currentUser = Auth.$getAuth(); 
 		//Get user current information from firebase.
-		Profile.getUser(Auth.$getAuth().uid).$bindTo($scope, "userObject").then(function(){
+		User.getUser(Auth.$getAuth().uid).$bindTo($scope, "userObject").then(function(){
 			//Variable used to access auth object containing e-mail and password
 			
 		
@@ -31,9 +31,9 @@ angular.module('goodJob.update', ['firebase.auth', 'firebase.utils', 'ngRoute'])
 		      $scope.error = null;
 			  //Check if the form is valid.
 		      if(!$scope.updateForm.$invalid){
-			    //Store the data into Firebase using Profile factory
+			    //Store the data into Firebase using User factory
 				//Set phone number
-				Profile.setPhone($scope.phone);
+				User.setPhone($scope.phone);
 				console.log("phone successfully changed to : " , $scope.phone);
 				
 				//Change email only if a new email address has been put in the field

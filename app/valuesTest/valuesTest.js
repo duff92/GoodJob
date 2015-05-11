@@ -3,16 +3,16 @@
 *  @TODO replace by a standardized test and store results in firebase
 */
 "use strict";
-angular.module('goodJob.values', ['firebase.auth', 'firebase.utils', 'ngRoute'])
+angular.module('goodJob.valuesTest', ['firebase.auth', 'firebase.utils', 'ngRoute'])
 	//Routing
 	.config(['$routeProvider', function($routeProvider) {
-    	$routeProvider.when('/values-test', {
-      		controller: 'ValuesCtrl',
-      		templateUrl: 'values-test/values-test.html'
+    	$routeProvider.when('/valuesTest', {
+      		controller: 'ValuesTestCtrl',
+      		templateUrl: 'valuesTest/valuesTestView.html'
 		});
 	}])
 	//Definition of the controller
-	.controller("ValuesCtrl", ["$scope", "$routeParams",
+	.controller("ValuesTestCtrl", ["$scope", "$routeParams",
 		function($scope, $location) {
 
 			console.log("Writing ads");

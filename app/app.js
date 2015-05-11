@@ -11,9 +11,9 @@ var goodJob = angular.module('goodJob', [
   'goodJob.availableJobs',
   'goodJob.activeJobApplications',
   'goodJob.profile',
-  'profile',
+  'user',
   'applicationAPI',
-  'goodJob.values',
+  'goodJob.valuesTest',
   'goodJob.apply',
   'goodJob.update',
   'mobile-angular-ui'])
