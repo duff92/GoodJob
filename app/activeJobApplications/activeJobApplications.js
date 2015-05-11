@@ -4,17 +4,17 @@
 *  @See firebase.utils
 */
 "use strict";
-angular.module('goodJob.activeJobApplications', ['firebase.auth', 'firebase.utils', 'ngRoute', 'chart.js', 'base64'])
+angular.module('goodJob.activeJobApplications', ['firebase.auth', 'firebase.utils', 'ngRoute', 'chart.js'])
 	 //Routing
 	.config(['$routeProvider', function($routeProvider) {
-			$routeProvider.whenAuthenticated('/active-job-applications', {
-					controller: 'ApplicationsCtrl',
-					templateUrl: 'active-job-applications/applications.html'
+			$routeProvider.whenAuthenticated('/activeJobApplications', {
+					controller: 'ActiveJobApplicationsCtrl',
+					templateUrl: 'activeJobApplications/activeJobApplicationsView.html'
 			});
 		}])
 	//Definition of the controller
-	.controller("ApplicationsCtrl", ["$scope", "Auth", "$route", "$routeParams", "$location", "ApplicationAPI", "Profile", "$base64",
-		function($scope, Auth, $route, $routeParams, $location, ApplicationAPI, Profile, $base64) {
+	.controller("ActiveJobApplicationsCtrl", ["$scope", "Auth", "$route", "$routeParams", "$location", "ApplicationAPI", "Profile",
+		function($scope, Auth, $route, $routeParams, $location, ApplicationAPI, Profile) {
 		//Populate the scope with a static list of data
 		//@TODO fetch the list from firebase
 

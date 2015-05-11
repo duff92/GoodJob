@@ -51,7 +51,7 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
     <script src="profile/profile.js"></script>
     <script src="home/home.js"></script>
     <script src="register/register.js"></script>
-    <script src="active-job-applications/applications.js"></script>
+    <script src="activeJobApplications/activeJobApplications.js"></script>
     <script src="apply/apply.js"></script>
     <script src="values-test/values-test.js"></script>
     <script src="update/update.js"></script>
@@ -82,7 +82,7 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
 
         <!--If user is logged in, show personal information-->
         
-            <li ng-class="getClass('/active-job-applications')" ng-show="isUserLoggedIn"><a  href="#/active-job-applications">Active Job Applications</a></li>
+            <li ng-class="getClass('/activeJobApplications')" ng-show="isUserLoggedIn"><a  href="#/activeJobApplications">Active Job Applications</a></li>
             <li ng-class="getClass('/profile')" ng-show="isUserLoggedIn"><a href="#/profile">Profile</a></li>
             <li ng-class="getClass('/login')" ng-show="isUserLoggedIn"><a  href="#/login" ng-click="logout()">Logout</a></li>
 
