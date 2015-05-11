@@ -4,17 +4,17 @@
 * @See firebase.utils
 */
 "use strict";
-angular.module('goodJob.apply', ['firebase.auth', 'firebase.utils', 'ngRoute', 'base64'])
+angular.module('goodJob.apply', ['firebase.auth', 'firebase.utils', 'ngRoute'])
 	//Routing
 	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.when('/apply/:jobID', {
 			controller: 'ApplyCtrl',
-			templateUrl: 'apply/apply.html'
+			templateUrl: 'apply/applyView.html'
     	});
   	}])
 	//Definition of the controller
-	.controller("ApplyCtrl", ["$scope", "Auth", "$routeParams", "$location", "ApplicationAPI", "Profile", "$base64",
-		function($scope, Auth, $routeParams, $location, ApplicationAPI, Profile, $base64) {
+	.controller("ApplyCtrl", ["$scope", "Auth", "$routeParams", "$location", "ApplicationAPI", "Profile",
+		function($scope, Auth, $routeParams, $location, ApplicationAPI, Profile) {
 		$scope.radioModel = 'Middle';
 		// console.log("Apply for jobID: " + $routeParams.jobID);
 		//Get information from arbets API using job id
