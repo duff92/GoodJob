@@ -9,7 +9,7 @@ angular.module('goodJob.login', ['firebase.auth', 'firebase.utils', 'ngRoute'])
 	.config(['$routeProvider', function($routeProvider) {
     	$routeProvider.when('/login', {
       		controller: 'LoginCtrl',
-      		templateUrl: 'login/login.html'
+      		templateUrl: 'login/loginView.html'
     	});
   	}])
 	//Definition of the controller

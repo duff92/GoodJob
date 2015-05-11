@@ -66,8 +66,10 @@ angular.module('goodJob.apply', ['firebase.auth', 'firebase.utils', 'ngRoute'])
 
 			//Redirect to applications
       $location.path("/activeJobApplications");
-      
+	  //Test if logged in.
+      if(Auth.$getAuth() !== null){
       Profile.addApplication(id);
+	  }
     }
 	}]
 

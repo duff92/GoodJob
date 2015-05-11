@@ -17,9 +17,9 @@ angular.module('goodJob.activeJobApplications', ['firebase.auth', 'firebase.util
 		function($scope, Auth, $route, $routeParams, $location, ApplicationAPI, Profile) {
 		//Populate the scope with a static list of data
 		//@TODO fetch the list from firebase
-
+		
 		Profile.getUser(Auth.$getAuth().uid).$bindTo($scope, "userObject").then(function(){
-
+		
 			$scope.itemList = $scope.userObject.applications;
 			$scope.ads = [];
 			$scope.jobID = null;
