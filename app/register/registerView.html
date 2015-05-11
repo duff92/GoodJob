@@ -29,7 +29,7 @@
 
         <div class="form-group has-success has-feedback">
           <label>Phone</label>
-          <input type="number"
+          <input type="text"
                  ng-model="phone"
                  class="form-control"
                  placeholder="Phone (070 000 00 00)">
@@ -62,7 +62,7 @@
 
           <div class="form-group has-success has-feedback">
           <label>Personalnumber</label>
-          <input type="number"
+          <input type="text"
                  ng-model="personalNum"
                  class="form-control"
                  placeholder="Personalnumber (ÅÅÅÅMMDDNNNN)" required="">
@@ -100,11 +100,7 @@
 		<p style="color:red;" ng-show="regError">{{regErrorMessage}}</p>
     </fieldset>
     <hr>
-<!-- 
-<span class="error" ng-show="registerForm.input.$error.required">
-    Required!</span>
-  <span class="error" ng-show="registerForm.input.$error.number">
-    Not valid number!</span> -->
+
 
 <span class="help-block">{{help_message}}</span>
 

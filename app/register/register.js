@@ -8,7 +8,7 @@ angular.module('goodJob.register', ['firebase.auth', 'firebase.utils', 'ngRoute'
 	.config(['$routeProvider', function($routeProvider) {
     	$routeProvider.when('/register', {
       		controller: 'RegisterCtrl',
-      		templateUrl: 'register/register.html'
+      		templateUrl: 'register/registerView.html'
     	});
   	}])
 	//Definition of the controller
@@ -24,19 +24,18 @@ angular.module('goodJob.register', ['firebase.auth', 'firebase.utils', 'ngRoute'
 			  //Check if the form is valid and passwords match @TODO find a better way.
 		      if(!$scope.registerForm.$invalid && $scope.password1 == $scope.password2){
 				  //user creation using Auth object
-				  console.log($scope.password1);
 			      //Create method from firebase
 				  Auth.$createUser({
 					  //Get data from the view
 					  email: $scope.email,
 					  password: $scope.password1
 					}).then(function(userData) { //Callback on user creation
-					  console.log("User " + userData.uid + " created successfully!");
+					  console.log("User created successfully!");
 					  //On registration return an Auth object for the new user
 					  //@See Profile
 					  return Auth.$authWithPassword({email: $scope.email, password: $scope.password1});
 					}).then(function(authData) { //Callback
-					  console.log("Logged in as:", authData.uid);
+					  console.log("Logged in");
 					  //Store the data into Firebase using Profile factory
 					  Profile.setUser({
 					  		uname: $scope.username, 
