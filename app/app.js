@@ -67,6 +67,8 @@ var goodJob = angular.module('goodJob', [
 }
 
 
+
+
 }]);
 
 
